@@ -10,6 +10,7 @@ import {
   Users,
   ArrowRight,
   Sparkles,
+  Crown,
   Building,
   Handshake,
   HardHat,
@@ -147,47 +148,62 @@ export function DocumentCard({ document }: DocumentCardProps) {
   const Icon = iconMap[document.icon] || Home;
   const gradient = gradientMap[document.icon] || "from-blue-500 to-blue-700";
   const isPopular = document.id === "rent-agreement";
+  const isPremium = document.price >= 99;
   
   return (
-    <div className="group relative flex flex-col h-full">
+    <div className="group relative flex flex-col h-full perspective-1000">
       {/* Popular Badge */}
       {isPopular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-semibold shadow-lg shadow-orange-500/30">
-            <Sparkles className="h-3 w-3" />
-            Most Popular
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-500/40 animate-pulse">
+            <Sparkles className="h-3.5 w-3.5" />
+            MOST POPULAR
           </div>
         </div>
       )}
       
-      <div className="flex flex-col h-full bg-white rounded-2xl border border-slate-200/60 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/10 hover:border-orange-300 hover:-translate-y-1">
-        {/* Card Header with Gradient Icon */}
-        <div className="p-6 pb-4">
-          <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-lg mb-4 transition-transform duration-300 group-hover:scale-110`}>
-            <Icon className="h-7 w-7 text-white" />
+      {/* Premium Badge */}
+      {isPremium && !isPopular && (
+        <div className="absolute -top-3 right-4 z-20">
+          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-xs font-semibold shadow-lg">
+            <Crown className="h-3 w-3" />
+            PRO
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">{document.name}</h3>
+        </div>
+      )}
+      
+      <div className="flex flex-col h-full bg-white rounded-3xl border border-slate-200/80 overflow-hidden transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] hover:border-orange-300/50 hover:-translate-y-2 group-hover:[transform:rotateX(2deg)]">
+        {/* Card Header with 3D Gradient Icon */}
+        <div className="p-7 pb-5">
+          <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-xl mb-5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
+            <Icon className="h-8 w-8 text-white relative z-10" />
+            <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{document.name}</h3>
           <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
             {document.description}
           </p>
         </div>
         
-        {/* Price Section */}
-        <div className="px-6 py-4 bg-slate-50/50 border-y border-slate-100">
+        {/* Price Section with Gradient Text */}
+        <div className="px-7 py-5 bg-gradient-to-r from-slate-50 to-white border-y border-slate-100">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">${document.price}</span>
-            <span className="text-sm text-slate-500">USD</span>
+            <span className="text-3xl font-black bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">${document.price}</span>
+            <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">USD</span>
           </div>
         </div>
         
-        {/* CTA Button */}
-        <div className="p-6 mt-auto">
+        {/* Premium CTA Button with Shimmer Effect */}
+        <div className="p-7 mt-auto">
           <Link 
             href={`/documents/${document.id}`} 
-            className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25 group-hover:gap-3"
+            className="group/btn relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-bold rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(249,115,22,0.4)] hover:-translate-y-0.5"
           >
-            Generate Now
-            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            {/* Shimmer Effect */}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></span>
+            
+            <span className="relative">Generate Now</span>
+            <ArrowRight className="h-5 w-5 relative transition-all duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" />
           </Link>
         </div>
       </div>

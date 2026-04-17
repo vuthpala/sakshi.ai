@@ -2,7 +2,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DocumentCard } from "@/components/document-card";
 import { DOCUMENT_TYPES } from "@/types";
-import { Sparkles, Clock, Shield, FileCheck, ChevronRight, Star, Zap, Award, Globe, Users, FileText, CheckCircle2 } from "lucide-react";
+import { Sparkles, Clock, Shield, FileCheck, ChevronRight, Star, Zap, Award, Globe, Users, FileText, CheckCircle2, ArrowRight, Play, Rocket, Crown, Gem } from "lucide-react";
 
 export default function Home() {
   return (
@@ -10,193 +10,214 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-blue-900 py-20 md:py-32">
-          {/* Background decorations */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-40"></div>
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+        {/* Hero Section - Ultra Premium */}
+        <section className="relative overflow-hidden bg-[#0a0a0f] min-h-screen flex items-center">
+          {/* Animated Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/50 via-slate-950 to-purple-950/30"></div>
           
-          <div className="container relative mx-auto px-4 md:px-6 text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8">
-              <Globe className="h-4 w-4 text-emerald-400" />
-              <span className="text-sm text-blue-100">Trusted Worldwide • 50,000+ Documents Generated</span>
+          {/* Animated Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-[80px] animate-pulse delay-2000"></div>
+          
+          {/* Grid Pattern Overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+          
+          <div className="container relative mx-auto px-4 md:px-6 text-center py-20">
+            {/* Premium Badge with Glow */}
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+              <Crown className="h-4 w-4 text-amber-400" />
+              <span className="text-sm font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">#1 Legal Document Platform Worldwide</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-              Legal Documents in{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">60 Seconds</span>
+            {/* Main Headline with Better Typography */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]">
+              Legal Documents
+              <br />
+              <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
+                in 60 Seconds
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-blue-200/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              AI-powered legal document generation for everyone. Create professional, 
-              legally compliant documents instantly. No lawyer needed.
+            
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+              AI-powered legal document generation trusted by <span className="text-white font-medium">50,000+</span> professionals worldwide. 
+              Create court-ready documents instantly.
             </p>
             
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            {/* Premium CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
               <a 
                 href="/documents" 
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5"
+                className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(249,115,22,0.5)] hover:-translate-y-1"
               >
-                <Zap className="h-5 w-5" />
-                Get Started
-                <ChevronRight className="h-5 w-5" />
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+                <Rocket className="h-6 w-6" />
+                Get Started Free
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
                 href="#how-it-works" 
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/5 text-white font-semibold text-lg rounded-2xl border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:border-white/20"
               >
-                See How It Works
+                <Play className="h-5 w-5 text-orange-400" />
+                Watch Demo
               </a>
             </div>
             
-            {/* Features */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-              <div className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-amber-500 shadow-lg shadow-orange-500/20">
-                  <Sparkles className="h-7 w-7 text-white" />
+            {/* Premium Feature Cards with 3D Effect */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {[
+                { icon: Sparkles, label: "AI Generated", color: "from-orange-500 to-amber-500", desc: "GPT-4 Powered" },
+                { icon: Clock, label: "60 Seconds", color: "from-blue-500 to-cyan-500", desc: "Lightning Fast" },
+                { icon: Shield, label: "Legally Valid", color: "from-emerald-500 to-teal-500", desc: "Court Approved" },
+                { icon: Gem, label: "Premium Quality", color: "from-violet-500 to-purple-500", desc: "Lawyer Grade" },
+              ].map((feature, idx) => (
+                <div 
+                  key={idx}
+                  className="group relative flex flex-col items-center gap-4 p-6 rounded-3xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                >
+                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="text-center">
+                    <span className="block text-base font-semibold text-white mb-1">{feature.label}</span>
+                    <span className="text-xs text-slate-500">{feature.desc}</span>
+                  </div>
                 </div>
-                <span className="text-sm font-medium text-blue-100">AI Generated</span>
-              </div>
-              <div className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg shadow-blue-500/20">
-                  <Clock className="h-7 w-7 text-white" />
-                </div>
-                <span className="text-sm font-medium text-blue-100">60 Seconds</span>
-              </div>
-              <div className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg shadow-emerald-500/20">
-                  <Shield className="h-7 w-7 text-white" />
-                </div>
-                <span className="text-sm font-medium text-blue-100">Legally Valid</span>
-              </div>
-              <div className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-violet-400 to-violet-600 shadow-lg shadow-violet-500/20">
-                  <FileCheck className="h-7 w-7 text-white" />
-                </div>
-                <span className="text-sm font-medium text-blue-100">Globally Compliant</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Documents Grid */}
-        <section className="py-20 md:py-28 bg-slate-50 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-50"></div>
-          <div className="container relative mx-auto px-4 md:px-6">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-200 mb-6">
-                <Award className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-700">40+ Document Types</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                Choose Your Document
-              </h2>
-              <p className="text-slate-600 text-lg max-w-xl mx-auto">
-                Select from our collection of 40+ professionally crafted legal documents. 
-                Starting from just $2.99 and ready in minutes.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {DOCUMENT_TYPES.map((doc) => (
-                <DocumentCard key={doc.id} document={doc} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* How It Works */}
-        <section id="how-it-works" className="py-20 md:py-28 bg-white relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+        {/* Documents Grid - Premium Section */}
+        <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/50 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-100/30 to-transparent rounded-full blur-3xl"></div>
+          
           <div className="container relative mx-auto px-4 md:px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                How It Works
+            <div className="text-center mb-20">
+              {/* Premium Badge */}
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8">
+                <Award className="h-4 w-4 text-orange-500" />
+                <span className="text-sm font-semibold text-slate-700">40+ Professional Templates</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+                Choose Your Document
               </h2>
-              <p className="text-slate-600 text-lg">
-                Generate your legal document in 3 simple steps
+              <p className="text-slate-500 text-xl max-w-2xl mx-auto leading-relaxed">
+                From business contracts to personal agreements, we have everything you need to protect what matters.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
-              {/* Connecting line for desktop */}
-              <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-blue-200 via-orange-200 to-blue-200"></div>
+            {/* Premium Document Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {DOCUMENT_TYPES.map((doc) => (
+                <DocumentCard key={doc.id} document={doc} />
+              ))}
+            </div>
+            
+            {/* View All CTA */}
+            <div className="text-center mt-16">
+              <a 
+                href="/documents" 
+                className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-2xl hover:bg-slate-800 transition-all duration-300 hover:shadow-xl"
+              >
+                View All 40+ Documents
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works - Ultra Premium */}
+        <section id="how-it-works" className="py-24 md:py-32 bg-white relative overflow-hidden">
+          {/* Top Border Gradient */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+          
+          {/* Background Decorations */}
+          <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-gradient-to-r from-blue-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-gradient-to-l from-orange-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
+          
+          <div className="container relative mx-auto px-4 md:px-6">
+            <div className="text-center mb-20">
+              <span className="inline-block text-sm font-semibold text-orange-500 uppercase tracking-wider mb-4">Simple Process</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+                How It Works
+              </h2>
+              <p className="text-slate-500 text-xl max-w-2xl mx-auto">
+                Three simple steps to your legally binding document
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto relative">
+              {/* Premium Connecting Line */}
+              <div className="hidden md:block absolute top-28 left-[20%] right-[20%] h-1 bg-gradient-to-r from-blue-200 via-orange-300 to-emerald-200 rounded-full"></div>
               
-              <div className="relative">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-xl shadow-blue-500/20 mx-auto mb-6 relative z-10">
-                  <span className="text-3xl font-bold text-white">1</span>
+              {[
+                { 
+                  num: "1", 
+                  title: "Answer Questions", 
+                  desc: "Fill out our intelligent form. We guide you through every detail with helpful tips.",
+                  color: "from-blue-500 to-blue-700",
+                  shadow: "shadow-blue-500/30"
+                },
+                { 
+                  num: "2", 
+                  title: "AI Magic", 
+                  desc: "Our GPT-4 powered engine drafts a professional document tailored to your needs.",
+                  color: "from-orange-500 to-amber-500",
+                  shadow: "shadow-orange-500/30"
+                },
+                { 
+                  num: "3", 
+                  title: "Download & Use", 
+                  desc: "Get your court-ready PDF instantly. Print, sign, and you're legally protected.",
+                  color: "from-emerald-500 to-teal-600",
+                  shadow: "shadow-emerald-500/30"
+                },
+              ].map((step, idx) => (
+                <div key={idx} className="relative group">
+                  <div className={`flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br ${step.color} shadow-xl ${step.shadow} mx-auto mb-8 relative z-10 group-hover:scale-110 transition-transform duration-500`}>
+                    <span className="text-4xl font-black text-white">{step.num}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 text-center">{step.title}</h3>
+                  <p className="text-slate-500 text-center leading-relaxed text-lg">
+                    {step.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3 text-center">Fill the Form</h3>
-                <p className="text-slate-600 text-center leading-relaxed">
-                  Answer simple questions about your requirements. Our smart form guides you through every detail.
-                </p>
-              </div>
-              
-              <div className="relative">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-xl shadow-orange-500/20 mx-auto mb-6 relative z-10">
-                  <span className="text-3xl font-bold text-white">2</span>
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3 text-center">AI Generates</h3>
-                <p className="text-slate-600 text-center leading-relaxed">
-                  Our AI drafts a legally compliant document tailored to your specific needs and local jurisdiction.
-                </p>
-              </div>
-              
-              <div className="relative">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-xl shadow-emerald-500/20 mx-auto mb-6 relative z-10">
-                  <span className="text-3xl font-bold text-white">3</span>
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3 text-center">Download PDF</h3>
-                <p className="text-slate-600 text-center leading-relaxed">
-                  Pay and download your professional PDF instantly. Ready to sign and use anywhere in the world.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
         
-        {/* Stats Section */}
-        <section className="py-16 bg-slate-900">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="flex justify-center mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/20">
-                    <FileText className="h-6 w-6 text-blue-400" />
+        {/* Stats Section - Ultra Premium */}
+        <section className="relative py-20 bg-[#0a0a0f] overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950"></div>
+          <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-[100px] -translate-y-1/2"></div>
+          
+          <div className="container relative mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { icon: FileText, value: "40+", label: "Templates", color: "blue" },
+                { icon: Users, value: "50K+", label: "Happy Users", color: "emerald" },
+                { icon: Globe, value: "150+", label: "Countries", color: "orange" },
+                { icon: CheckCircle2, value: "99.9%", label: "Satisfaction", color: "violet" },
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center group">
+                  <div className={`flex justify-center mb-4`}>
+                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-${stat.color}-500/10 border border-${stat.color}-500/20 group-hover:scale-110 transition-transform duration-500`}>
+                      <stat.icon className={`h-8 w-8 text-${stat.color}-400`} />
+                    </div>
                   </div>
+                  <div className="text-4xl md:text-5xl font-black text-white mb-2 bg-gradient-to-b from-white to-white/60 bg-clip-text">{stat.value}</div>
+                  <div className="text-sm font-medium text-slate-400 uppercase tracking-wider">{stat.label}</div>
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">40+</div>
-                <div className="text-sm text-slate-400">Document Types</div>
-              </div>
-              <div>
-                <div className="flex justify-center mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/20">
-                    <Users className="h-6 w-6 text-emerald-400" />
-                  </div>
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">50K+</div>
-                <div className="text-sm text-slate-400">Happy Users</div>
-              </div>
-              <div>
-                <div className="flex justify-center mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/20">
-                    <Globe className="h-6 w-6 text-orange-400" />
-                  </div>
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">150+</div>
-                <div className="text-sm text-slate-400">Countries</div>
-              </div>
-              <div>
-                <div className="flex justify-center mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20">
-                    <CheckCircle2 className="h-6 w-6 text-violet-400" />
-                  </div>
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">99.9%</div>
-                <div className="text-sm text-slate-400">Satisfaction</div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
