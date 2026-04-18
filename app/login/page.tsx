@@ -73,16 +73,40 @@ export default function LoginPage() {
     }
 
     setIsLoading(true);
+    setError("");
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Call real OTP API
+      const response = await fetch("/api/otp/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone: method === "phone" ? phone : undefined,
+          email: method === "email" ? email : undefined,
+        }),
+      });
 
-    setIsLoading(false);
-    setStep("otp");
-    setCountdown(60);
-    
-    // Focus first OTP input
-    setTimeout(() => otpRefs.current[0]?.focus(), 100);
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to send OTP");
+      }
+
+      setIsLoading(false);
+      setStep("otp");
+      setCountdown(60);
+      
+      // Show demo notice if no MSG91 configured
+      if (data.demo) {
+        setError("⚠️ DEMO MODE: Check browser console for OTP (F12 → Console)");
+      }
+      
+      // Focus first OTP input
+      setTimeout(() => otpRefs.current[0]?.focus(), 100);
+    } catch (err: any) {
+      setIsLoading(false);
+      setError(err.message || "Failed to send OTP");
+    }
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -113,23 +137,43 @@ export default function LoginPage() {
     }
 
     setIsLoading(true);
+    setError("");
 
-    // Simulate verification
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Call verify OTP API
+      const response = await fetch("/api/otp/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone: method === "phone" ? phone : undefined,
+          email: method === "email" ? email : undefined,
+          otp: otpString,
+        }),
+      });
 
-    // Authenticate user
-    login({
-      email: method === "email" ? email : undefined,
-      phone: method === "phone" ? phone : undefined,
-    });
+      const data = await response.json();
 
-    setIsLoading(false);
-    setStep("success");
-    
-    // Redirect to home after 1 second
-    setTimeout(() => {
-      router.push("/");
-    }, 1000);
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Invalid OTP");
+      }
+
+      // Authenticate user
+      login({
+        email: method === "email" ? email : undefined,
+        phone: method === "phone" ? phone : undefined,
+      });
+
+      setIsLoading(false);
+      setStep("success");
+      
+      // Redirect to home after 1 second
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
+    } catch (err: any) {
+      setIsLoading(false);
+      setError(err.message || "Failed to verify OTP");
+    }
   };
 
   const handleResendOTP = () => {

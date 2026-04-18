@@ -20,6 +20,13 @@ export const CONFIG = {
     API_KEY: process.env.ANTHROPIC_API_KEY || "",
   },
 
+  // MSG91 SMS (Optional - demo mode works without this)
+  MSG91: {
+    AUTH_KEY: process.env.MSG91_AUTH_KEY || "",
+    TEMPLATE_ID: process.env.MSG91_TEMPLATE_ID || "",
+    SENDER_ID: process.env.MSG91_SENDER_ID || "PAPERW",
+  },
+
   // App Settings
   APP: {
     NAME: "DocReady",
@@ -36,3 +43,6 @@ export const getRazorpayConfig = () => CONFIG.RAZORPAY;
 
 // Helper to get Supabase config
 export const getSupabaseConfig = () => CONFIG.SUPABASE;
+
+// Helper to get MSG91 config
+export const getMSG91Config = () => CONFIG.MSG91;
