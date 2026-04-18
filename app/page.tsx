@@ -37,23 +37,23 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black"></div>
             
             {/* Animated gradient orbs */}
-            <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-[100px] animate-pulse delay-2000"></div>
+            <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-emerald-600/10 rounded-full blur-[150px] animate-pulse"></div>
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-400/5 rounded-full blur-[100px] animate-pulse delay-2000"></div>
             
             {/* Noise texture overlay */}
             <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`}}></div>
             
             {/* Subtle grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
           </div>
           
           <div className="container relative mx-auto px-4 md:px-8 text-center py-32">
-            {/* Luxury Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 backdrop-blur-xl mb-12">
-              <Crown className="h-4 w-4 text-amber-400" />
-              <span className="text-sm font-medium bg-gradient-to-r from-amber-200 to-orange-200 bg-clip-text text-transparent">
-                India's #1 Premium Legal Platform
+            {/* Premium Badge */}
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 backdrop-blur-xl mb-12">
+              <Crown className="h-4 w-4 text-emerald-400" />
+              <span className="text-sm font-medium bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent">
+                India's #1 Smart Legal Platform
               </span>
             </div>
             
@@ -61,14 +61,14 @@ export default function Home() {
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-[1.05]">
               Legal Excellence,
               <br />
-              <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
                 Instantly Yours
               </span>
             </h1>
             
             {/* Premium Subheadline */}
             <p className="font-sans text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed">
-              Experience the future of legal documentation. <span className="text-amber-400 font-medium">50+ court-ready documents</span> crafted by AI, 
+              Experience the future of legal documentation. <span className="text-emerald-400 font-medium">50+ court-ready documents</span> crafted by AI, 
               trusted by <span className="text-white font-medium">50,000+ Indians</span>. From ₹49.
             </p>
             
@@ -76,7 +76,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-5 justify-center mb-24">
               <a 
                 href="/documents" 
-                className="group relative inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(245,158,11,0.4)] hover:-translate-y-1"
+                className="group relative inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(16,185,129,0.4)] hover:-translate-y-1"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
                 <Sparkles className="h-5 w-5" />
@@ -85,10 +85,10 @@ export default function Home() {
               </a>
               <a 
                 href="#how-it-works" 
-                className="group inline-flex items-center justify-center gap-3 px-10 py-6 bg-white/5 text-white font-semibold text-lg rounded-2xl border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:border-amber-500/30"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-6 bg-white/5 text-white font-semibold text-lg rounded-2xl border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:border-emerald-500/30"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
-                  <Play className="h-4 w-4 text-amber-400 ml-0.5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20">
+                  <Play className="h-4 w-4 text-emerald-400 ml-0.5" />
                 </div>
                 See How It Works
               </a>
@@ -103,7 +103,7 @@ export default function Home() {
                 { value: "₹49", label: "Starting Price" },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center px-6">
-                  <div className="font-serif text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent mb-1">
+                  <div className="font-serif text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent mb-1">
                     {stat.value}
                   </div>
                   <div className="text-sm text-slate-500 uppercase tracking-wider">{stat.label}</div>
@@ -114,16 +114,16 @@ export default function Home() {
             {/* Premium Feature Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { icon: Zap, label: "60 Seconds", desc: "Instant Generation", color: "from-amber-500 to-orange-500" },
-                { icon: Shield, label: "Court Ready", desc: "Lawyer Verified", color: "from-emerald-500 to-teal-500" },
-                { icon: Lock, label: "Secure", desc: "Bank-Grade SSL", color: "from-blue-500 to-cyan-500" },
-                { icon: Star, label: "Premium", desc: "Gold Standard", color: "from-violet-500 to-purple-500" },
+                { icon: Zap, label: "60 Seconds", desc: "Instant Generation", color: "from-emerald-500 to-teal-500" },
+                { icon: Shield, label: "Court Ready", desc: "Lawyer Verified", color: "from-blue-500 to-cyan-500" },
+                { icon: Lock, label: "Secure", desc: "Bank-Grade SSL", color: "from-violet-500 to-purple-500" },
+                { icon: Star, label: "Smart", desc: "AI-Powered", color: "from-amber-500 to-orange-500" },
               ].map((feature, idx) => (
                 <div 
                   key={idx}
-                  className="group relative flex flex-col items-center gap-4 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                  className="group relative flex flex-col items-center gap-4 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm hover:bg-white/[0.05] hover:border-emerald-500/20 transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                 >
-                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg shadow-${feature.color.split(' ')[1].replace('to-', '')}/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
                     <feature.icon className="h-7 w-7 text-white" />
                   </div>
                   <div className="text-center">
@@ -139,14 +139,14 @@ export default function Home() {
         {/* Documents Grid - Premium Section */}
         <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/50 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-100/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-emerald-100/50 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-teal-100/30 to-transparent rounded-full blur-3xl"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-20">
               {/* Premium Badge */}
               <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8">
-                <Award className="h-4 w-4 text-orange-500" />
+                <Award className="h-4 w-4 text-emerald-500" />
                 <span className="text-sm font-semibold text-slate-700">50+ Indian Legal Documents</span>
               </div>
               
@@ -185,12 +185,12 @@ export default function Home() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
           
           {/* Background Decorations */}
-          <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-gradient-to-r from-blue-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
-          <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-gradient-to-l from-orange-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
+          <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-gradient-to-r from-emerald-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-gradient-to-l from-teal-50 to-transparent rounded-full blur-3xl -translate-y-1/2"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-20">
-              <span className="inline-block text-sm font-semibold text-orange-500 uppercase tracking-wider mb-4">Simple Process</span>
+              <span className="inline-block text-sm font-semibold text-emerald-500 uppercase tracking-wider mb-4">Simple Process</span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
                 How It Works
               </h2>
@@ -201,7 +201,7 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto relative">
               {/* Premium Connecting Line */}
-              <div className="hidden md:block absolute top-28 left-[20%] right-[20%] h-1 bg-gradient-to-r from-blue-200 via-orange-300 to-emerald-200 rounded-full"></div>
+              <div className="hidden md:block absolute top-28 left-[20%] right-[20%] h-1 bg-gradient-to-r from-emerald-200 via-teal-300 to-blue-200 rounded-full"></div>
               
               {[
                 { 
@@ -215,8 +215,8 @@ export default function Home() {
                   num: "2", 
                   title: "AI Magic", 
                   desc: "Our GPT-4 powered engine drafts a professional document tailored to your needs.",
-                  color: "from-orange-500 to-amber-500",
-                  shadow: "shadow-orange-500/30"
+                  color: "from-teal-500 to-emerald-500",
+                  shadow: "shadow-emerald-500/30"
                 },
                 { 
                   num: "3", 
@@ -243,17 +243,17 @@ export default function Home() {
         {/* Stats Section - Ultra Premium */}
         <section className="relative py-20 bg-[#0a0a0f] overflow-hidden">
           {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950"></div>
-          <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] -translate-y-1/2"></div>
-          <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-[100px] -translate-y-1/2"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950"></div>
+          <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-emerald-600/10 rounded-full blur-[100px] -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[100px] -translate-y-1/2"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {[
-                { icon: FileText, value: "40+", label: "Templates", color: "blue" },
-                { icon: Users, value: "50K+", label: "Happy Users", color: "emerald" },
-                { icon: Globe, value: "150+", label: "Countries", color: "orange" },
-                { icon: CheckCircle2, value: "99.9%", label: "Satisfaction", color: "violet" },
+                { icon: FileText, value: "50+", label: "Documents", color: "emerald" },
+                { icon: Users, value: "50K+", label: "Happy Users", color: "teal" },
+                { icon: Globe, value: "28", label: "States Covered", color: "blue" },
+                { icon: CheckCircle2, value: "4.9", label: "Star Rating", color: "violet" },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center group">
                   <div className={`flex justify-center mb-4`}>
@@ -261,7 +261,7 @@ export default function Home() {
                       <stat.icon className={`h-8 w-8 text-${stat.color}-400`} />
                     </div>
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-white mb-2 bg-gradient-to-b from-white to-white/60 bg-clip-text">{stat.value}</div>
+                  <div className="text-4xl md:text-5xl font-black text-white mb-2 bg-gradient-to-b from-white to-emerald-200/60 bg-clip-text">{stat.value}</div>
                   <div className="text-sm font-medium text-slate-400 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}

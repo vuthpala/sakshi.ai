@@ -182,7 +182,7 @@ export function DocumentCard({ document }: DocumentCardProps) {
       {/* Popular Badge */}
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-          <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-500/40 animate-pulse">
+          <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold shadow-lg shadow-emerald-500/40 animate-pulse">
             <Sparkles className="h-3.5 w-3.5" />
             MOST POPULAR
           </div>
@@ -199,14 +199,14 @@ export function DocumentCard({ document }: DocumentCardProps) {
         </div>
       )}
       
-      <div className="flex flex-col h-full bg-white rounded-3xl border border-slate-200/80 overflow-hidden transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] hover:border-orange-300/50 hover:-translate-y-2 group-hover:[transform:rotateX(2deg)]">
+      <div className="flex flex-col h-full bg-white rounded-3xl border border-slate-200/80 overflow-hidden transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] hover:border-emerald-300/50 hover:-translate-y-2 group-hover:[transform:rotateX(2deg)]">
         {/* Card Header with 3D Gradient Icon */}
         <div className="p-7 pb-5">
           <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-xl mb-5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
             <Icon className="h-8 w-8 text-white relative z-10" />
             <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{document.name}</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300">{document.name}</h3>
           <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
             {document.description}
           </p>
@@ -224,7 +224,7 @@ export function DocumentCard({ document }: DocumentCardProps) {
         <div className="p-7 mt-auto">
           <Link 
             href={`/documents/${document.id}`} 
-            className="group/btn relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-bold rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(249,115,22,0.4)] hover:-translate-y-0.5"
+            className="group/btn relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-white font-bold rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
           >
             {/* Shimmer Effect */}
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></span>

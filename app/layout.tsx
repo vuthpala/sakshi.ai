@@ -15,11 +15,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "NyayaSetu - Premium Legal Documents for India",
-  description: "India's most trusted AI-powered legal document platform. Create court-ready Rent Agreements, Sale Deeds, Wills, Legal Notices & 50+ documents in 60 seconds. As per Indian Contract Act & Registration Act.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india",
+  title: "PaperWise - Smart Legal Documents for India",
+  description: "India's smartest AI-powered legal document platform. Create court-ready Rent Agreements, Sale Deeds, Wills, Legal Notices & 50+ documents in 60 seconds. As per Indian Contract Act & Registration Act.",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise",
   openGraph: {
-    title: "NyayaSetu - Premium Legal Documents for India",
+    title: "PaperWise - Smart Legal Documents for India",
     description: "Create professional legal documents in 60 seconds. Trusted by 50,000+ Indians.",
     type: "website",
   },
