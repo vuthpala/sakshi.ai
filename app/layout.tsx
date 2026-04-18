@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
+import { LanguageProvider } from "@/lib/language-context";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -39,8 +40,10 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-white font-sans">
         <AuthProvider>
-          {children}
-          <Chatbot />
+          <LanguageProvider>
+            {children}
+            <Chatbot />
+          </LanguageProvider>
         </AuthProvider>
       </body>
     </html>

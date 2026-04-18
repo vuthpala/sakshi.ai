@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
+import { LanguageSelector } from "@/components/language-selector";
 import { FileText, Menu, X, Sparkles, ChevronRight, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -40,6 +41,7 @@ export function Header() {
         
         {/* Premium Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-2">
+          <LanguageSelector />
           <Link 
             href="/documents" 
             className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-xl transition-all duration-300"
