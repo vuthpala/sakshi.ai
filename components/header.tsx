@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, Menu, X, Sparkles, ChevronRight } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
+import { FileText, Menu, X, Sparkles, ChevronRight, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Header() {
+  const { isAuthenticated, user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -49,18 +52,50 @@ export function Header() {
           >
             Pricing
           </Link>
-          <Link 
-            href="/documents" 
-            className="group relative ml-4 px-8 py-3.5 text-sm font-bold text-white overflow-hidden rounded-2xl transition-all duration-500"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(16,185,129,0.5)]"></span>
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-            <span className="relative flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              Create Document
-              <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </Link>
+          
+          {isAuthenticated ? (
+            <div className="relative ml-4">
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all"
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600">
+                  <User className="h-4 w-4 text-white" />
+                </div>
+                <span className="text-sm font-medium">
+                  {user?.email || user?.phone || "User"}
+                </span>
+              </button>
+              
+              {showUserMenu && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-emerald-500/20 rounded-xl shadow-xl overflow-hidden">
+                  <button
+                    onClick={() => {
+                      logout();
+                      setShowUserMenu(false);
+                    }}
+                    className="flex items-center gap-2 w-full px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link 
+              href="/documents" 
+              className="group relative ml-4 px-8 py-3.5 text-sm font-bold text-white overflow-hidden rounded-2xl transition-all duration-500"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(16,185,129,0.5)]"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+              <span className="relative flex items-center gap-2">
+                <Sparkles className="h-4 w-4" />
+                Create Document
+                <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Link>
+          )}
         </nav>
 
         {/* Premium Mobile Menu Button */}
@@ -90,13 +125,26 @@ export function Header() {
             >
               Pricing
             </Link>
-            <Link 
-              href="/documents" 
-              className="px-5 py-4 text-base font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl text-center mt-2 shadow-lg shadow-emerald-500/25"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Create Document Now
-            </Link>
+            {isAuthenticated ? (
+              <button
+                onClick={() => {
+                  logout();
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-center gap-2 px-5 py-4 text-base font-bold text-white bg-red-500/20 border border-red-500/30 rounded-xl text-center mt-2"
+              >
+                <LogOut className="h-5 w-5" />
+                Logout
+              </button>
+            ) : (
+              <Link 
+                href="/documents" 
+                className="px-5 py-4 text-base font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl text-center mt-2 shadow-lg shadow-emerald-500/25"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Create Document Now
+              </Link>
+            )}
           </nav>
         </div>
       )}

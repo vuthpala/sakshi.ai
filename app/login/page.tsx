@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useAuth } from "@/lib/auth-context";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { 
@@ -23,6 +25,9 @@ type LoginMethod = "email" | "phone";
 type LoginStep = "input" | "otp" | "success";
 
 export default function LoginPage() {
+  const { login } = useAuth();
+  const router = useRouter();
+  
   const [method, setMethod] = useState<LoginMethod>("email");
   const [step, setStep] = useState<LoginStep>("input");
   const [email, setEmail] = useState("");
@@ -112,8 +117,19 @@ export default function LoginPage() {
     // Simulate verification
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
+    // Authenticate user
+    login({
+      email: method === "email" ? email : undefined,
+      phone: method === "phone" ? phone : undefined,
+    });
+
     setIsLoading(false);
     setStep("success");
+    
+    // Redirect to home after 1 second
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
   };
 
   const handleResendOTP = () => {
@@ -138,8 +154,20 @@ export default function LoginPage() {
 
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    // Authenticate user
+    login({
+      email: method === "email" ? email : undefined,
+      phone: method === "phone" ? phone : undefined,
+    });
+    
     setIsLoading(false);
     setStep("success");
+    
+    // Redirect to home after 1 second
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
   };
 
   return (
