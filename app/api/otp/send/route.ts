@@ -28,24 +28,19 @@ export async function POST(request: NextRequest) {
       expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
     });
 
+    // Get MSG91 config
+    const MSG91_AUTH_KEY = process.env.MSG91_AUTH_KEY;
+    const MSG91_TEMPLATE_ID = process.env.MSG91_TEMPLATE_ID;
+    const MSG91_SENDER_ID = process.env.MSG91_SENDER_ID || "PAPERW";
+
     // Send SMS via MSG91 if phone number provided
     if (phone) {
-      const MSG91_AUTH_KEY = process.env.MSG91_AUTH_KEY;
-      const MSG91_TEMPLATE_ID = process.env.MSG91_TEMPLATE_ID;
-      const MSG91_SENDER_ID = process.env.MSG91_SENDER_ID || "PAPERW";
-
       if (!MSG91_AUTH_KEY || !MSG91_TEMPLATE_ID) {
         // Demo mode - log OTP to console
         console.log(`\n🔐 DEMO OTP for ${phone}: ${otp}\n`);
-        return NextResponse.json({ 
-          success: true, 
-          message: "OTP sent (check console for demo)",
-          demo: true 
-        });
-      }
-
-      // Real MSG91 API call
-      const msg91Response = await fetch("https://api.msg91.com/api/v5/flow/", {
+      } else {
+        // Real MSG91 API call
+        const msg91Response = await fetch("https://api.msg91.com/api/v5/flow/", {
         method: "POST",
         headers: {
           "authkey": MSG91_AUTH_KEY,
@@ -67,15 +62,20 @@ export async function POST(request: NextRequest) {
       }
 
       console.log(`✅ Real OTP sent to ${phone}: ${otp}`);
-    } else if (email) {
+    }
+  } else if (email) {
       // For email, just log it (integrate SendGrid/AWS SES later)
       console.log(`\n📧 DEMO Email OTP for ${email}: ${otp}\n`);
     }
 
+    // Determine if demo mode
+    const isDemo = !MSG91_AUTH_KEY || !MSG91_TEMPLATE_ID;
+
     return NextResponse.json({ 
       success: true, 
       message: "OTP sent successfully",
-      demo: !process.env.MSG91_AUTH_KEY 
+      demo: isDemo,
+      otp: isDemo ? otp : undefined // Only return OTP in demo mode
     });
 
   } catch (error) {

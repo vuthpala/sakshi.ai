@@ -38,6 +38,7 @@ export default function LoginPage() {
   const [countdown, setCountdown] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
+  const [demoOtp, setDemoOtp] = useState<string | null>(null);
 
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -96,9 +97,10 @@ export default function LoginPage() {
       setStep("otp");
       setCountdown(60);
       
-      // Show demo notice if no MSG91 configured
-      if (data.demo) {
-        setError("⚠️ DEMO MODE: Check browser console for OTP (F12 → Console)");
+      // Show demo OTP on screen for mobile users
+      if (data.demo && data.otp) {
+        setDemoOtp(data.otp);
+        setError(""); // Clear error, show OTP box instead
       }
       
       // Focus first OTP input
@@ -401,6 +403,15 @@ export default function LoginPage() {
                       />
                     ))}
                   </div>
+
+                  {/* Demo OTP Display - for mobile users */}
+                  {demoOtp && (
+                    <div className="mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-center">
+                      <p className="text-xs text-amber-400 uppercase tracking-wider mb-1">Demo Mode - Your OTP</p>
+                      <p className="text-2xl font-bold text-amber-400 tracking-widest">{demoOtp}</p>
+                      <p className="text-xs text-amber-400/70 mt-1">Enter this code above ↑</p>
+                    </div>
+                  )}
 
                   {/* Verify Button */}
                   <button
