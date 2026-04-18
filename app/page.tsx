@@ -2,7 +2,26 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DocumentCard } from "@/components/document-card";
 import { DOCUMENT_TYPES } from "@/types";
-import { Sparkles, Clock, Shield, FileCheck, ChevronRight, Star, Zap, Award, Globe, Users, FileText, CheckCircle2, ArrowRight, Play, Rocket, Crown, Gem, MapPin } from "lucide-react";
+import { 
+  Sparkles, 
+  Clock, 
+  Shield, 
+  ChevronRight, 
+  ArrowRight, 
+  Play, 
+  Scale,
+  Zap,
+  Award,
+  Users,
+  FileText,
+  CheckCircle2,
+  Star,
+  TrendingUp,
+  Lock,
+  Crown,
+  Globe,
+  Gem
+} from "lucide-react";
 
 export default function Home() {
   return (
@@ -10,75 +29,102 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section - Ultra Premium */}
-        <section className="relative overflow-hidden bg-[#0a0a0f] min-h-screen flex items-center">
-          {/* Animated Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/50 via-slate-950 to-purple-950/30"></div>
+        {/* === ULTRA PREMIUM HERO SECTION === */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+          {/* Animated Background Layers */}
+          <div className="absolute inset-0">
+            {/* Deep gradient base */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black"></div>
+            
+            {/* Animated gradient orbs */}
+            <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse"></div>
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-[100px] animate-pulse delay-2000"></div>
+            
+            {/* Noise texture overlay */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`}}></div>
+            
+            {/* Subtle grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+          </div>
           
-          {/* Animated Orbs */}
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-[100px] animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-[80px] animate-pulse delay-2000"></div>
-          
-          {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-          
-          <div className="container relative mx-auto px-4 md:px-6 text-center py-20">
-            {/* Premium Badge with Glow */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-              <MapPin className="h-4 w-4 text-orange-400" />
-              <span className="text-sm font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">#1 Legal Documents Platform in India</span>
+          <div className="container relative mx-auto px-4 md:px-8 text-center py-32">
+            {/* Luxury Badge */}
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 backdrop-blur-xl mb-12">
+              <Crown className="h-4 w-4 text-amber-400" />
+              <span className="text-sm font-medium bg-gradient-to-r from-amber-200 to-orange-200 bg-clip-text text-transparent">
+                India's #1 Premium Legal Platform
+              </span>
             </div>
             
-            {/* Main Headline with Better Typography */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]">
-              Legal Documents
+            {/* Luxury Headline with Serif Font */}
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-[1.05]">
+              Legal Excellence,
               <br />
-              <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                in 60 Seconds
+              <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-amber-400 bg-clip-text text-transparent">
+                Instantly Yours
               </span>
             </h1>
             
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              AI-powered legal document generator for India. Trusted by <span className="text-white font-medium">50,000+</span> Indians. 
-              Create court-ready documents as per Indian laws instantly.
+            {/* Premium Subheadline */}
+            <p className="font-sans text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed">
+              Experience the future of legal documentation. <span className="text-amber-400 font-medium">50+ court-ready documents</span> crafted by AI, 
+              trusted by <span className="text-white font-medium">50,000+ Indians</span>. From ₹49.
             </p>
             
-            {/* Premium CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+            {/* Luxury CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-5 justify-center mb-24">
               <a 
                 href="/documents" 
-                className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(249,115,22,0.5)] hover:-translate-y-1"
+                className="group relative inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_60px_rgba(245,158,11,0.4)] hover:-translate-y-1"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
-                <Rocket className="h-6 w-6" />
-                Get Started Free
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                <Sparkles className="h-5 w-5" />
+                Create Document
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
                 href="#how-it-works" 
-                className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/5 text-white font-semibold text-lg rounded-2xl border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:border-white/20"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-6 bg-white/5 text-white font-semibold text-lg rounded-2xl border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:border-amber-500/30"
               >
-                <Play className="h-5 w-5 text-orange-400" />
-                Watch Demo
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
+                  <Play className="h-4 w-4 text-amber-400 ml-0.5" />
+                </div>
+                See How It Works
               </a>
             </div>
             
-            {/* Premium Feature Cards with 3D Effect */}
+            {/* Premium Trust Indicators */}
+            <div className="flex flex-wrap items-center justify-center gap-8 mb-20">
+              {[
+                { value: "50,000+", label: "Happy Customers" },
+                { value: "50+", label: "Document Types" },
+                { value: "4.9/5", label: "Rating" },
+                { value: "₹49", label: "Starting Price" },
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center px-6">
+                  <div className="font-serif text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-slate-500 uppercase tracking-wider">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Premium Feature Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { icon: Sparkles, label: "AI Generated", color: "from-orange-500 to-amber-500", desc: "Made for India" },
-                { icon: Clock, label: "60 Seconds", color: "from-blue-500 to-cyan-500", desc: "Lightning Fast" },
-                { icon: Shield, label: "Legally Valid", color: "from-emerald-500 to-teal-500", desc: "Court Approved" },
-                { icon: Gem, label: "₹49 Only", color: "from-violet-500 to-purple-500", desc: "Affordable" },
+                { icon: Zap, label: "60 Seconds", desc: "Instant Generation", color: "from-amber-500 to-orange-500" },
+                { icon: Shield, label: "Court Ready", desc: "Lawyer Verified", color: "from-emerald-500 to-teal-500" },
+                { icon: Lock, label: "Secure", desc: "Bank-Grade SSL", color: "from-blue-500 to-cyan-500" },
+                { icon: Star, label: "Premium", desc: "Gold Standard", color: "from-violet-500 to-purple-500" },
               ].map((feature, idx) => (
                 <div 
                   key={idx}
-                  className="group relative flex flex-col items-center gap-4 p-6 rounded-3xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                  className="group relative flex flex-col items-center gap-4 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm hover:bg-white/[0.05] hover:border-amber-500/20 transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
                 >
-                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
-                    <feature.icon className="h-8 w-8 text-white" />
+                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg shadow-${feature.color.split(' ')[1].replace('to-', '')}/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <feature.icon className="h-7 w-7 text-white" />
                   </div>
                   <div className="text-center">
                     <span className="block text-base font-semibold text-white mb-1">{feature.label}</span>
