@@ -96,141 +96,158 @@ function generateMockRentAgreement(formData: RentAgreementFormData): string {
   const today = new Date().toLocaleDateString('en-IN');
   const rentInWords = numberToWords(formData.terms.monthlyRent);
   const depositInWords = numberToWords(formData.terms.securityDeposit);
+  const propertyTypeDisplay = formData.property.propertyType.replace(/_/g, ' ');
+  const furnishingDisplay = formData.property.furnishing.replace(/_/g, ' ');
+  const durationDisplay = formData.terms.duration.replace(/_/g, ' ');
+  const noticeDisplay = formData.terms.noticePeriod.replace(/_/g, ' ');
+  const lockInDisplay = formData.terms.lockInPeriod.replace(/_/g, ' ');
   
   return `RENT AGREEMENT
 
-Date: ${today}
-Place: ${formData.property.city}, ${formData.property.state}
+This Rent Agreement (hereinafter referred to as "Agreement") is made and executed on this ${today} at ${formData.property.city}, ${formData.property.state}.
 
-PARTIES:
-
-THIS RENT AGREEMENT is made and executed on this ${today} at ${formData.property.city}, ${formData.property.state}.
 
 BETWEEN
 
-${formData.landlord.fullName}, residing at ${formData.landlord.address}, hereinafter referred to as the "LESSOR" (which expression shall unless repugnant to the context mean and include his/her heirs, legal representatives, successors and assigns) of the ONE PART;
+${formData.landlord.fullName},
+Residing at: ${formData.landlord.address}
+Contact: ${formData.landlord.phoneNumber}${formData.landlord.aadhaarNumber ? `
+Aadhaar: ${formData.landlord.aadhaarNumber}` : ''}
+
+Hereinafter referred to as the "LESSOR" (which expression shall, unless repugnant to the context, meaning or import thereof, be deemed to include his/her heirs, legal representatives, successors and assigns) of the ONE PART;
+
 
 AND
 
-${formData.tenant.fullName}, residing at ${formData.tenant.permanentAddress}, hereinafter referred to as the "LESSEE" (which expression shall unless repugnant to the context mean and include his/her heirs, legal representatives, successors and assigns) of the OTHER PART.
+${formData.tenant.fullName},
+Residing at: ${formData.tenant.permanentAddress}
+Contact: ${formData.tenant.phoneNumber}${formData.tenant.aadhaarNumber ? `
+Aadhaar: ${formData.tenant.aadhaarNumber}` : ''}
 
-The Lessor and Lessee are hereinafter individually referred to as "Party" and collectively as "Parties".
-
-
-RECITALS:
-
-WHEREAS the Lessor is the absolute owner of the property situated at ${formData.property.address}, ${formData.property.city}, ${formData.property.state}, being a ${formData.property.propertyType.replace('_', ' ')} property with ${formData.property.furnishing.replace('_', ' ')} furnishing.
-
-AND WHEREAS the Lessee has approached the Lessor to take on rent the said property for residential/commercial purposes.
-
-AND WHEREAS the Lessor has agreed to let out the said property to the Lessee on the terms and conditions hereinafter mentioned.
-
-NOW THEREFORE, in consideration of the mutual covenants and agreements hereinafter set forth, the Parties agree as follows:
+Hereinafter referred to as the "LESSEE" (which expression shall, unless repugnant to the context, meaning or import thereof, be deemed to include his/her heirs, legal representatives, successors and assigns) of the OTHER PART.
 
 
-1. PROPERTY DESCRIPTION
-1.1 The property is situated at: ${formData.property.address}, ${formData.property.city}, ${formData.property.state}
-1.2 Property Type: ${formData.property.propertyType.replace('_', ' ')}
-1.3 Furnishing Status: ${formData.property.furnishing.replace('_', ' ')}
+RECITALS
+
+WHEREAS the Lessor is the sole and absolute owner of the ${propertyTypeDisplay} property situated at ${formData.property.address}, ${formData.property.city}, ${formData.property.state}, India, which is ${furnishingDisplay};
+
+AND WHEREAS the Lessee has requested the Lessor to grant a lease of the said property for residential purposes, and the Lessor has agreed to grant such lease on the terms and conditions hereinafter set forth;
+
+AND WHEREAS the Lessee has paid a security deposit and the first month's rent as consideration for entering into this Agreement;
+
+NOW THEREFORE, in consideration of the mutual covenants, conditions, and agreements hereinafter contained, the Parties hereto agree as follows:
+
+
+1. PREMISES
+1.1 The Lessor hereby lets and the Lessee hereby hires the ${propertyTypeDisplay} property located at ${formData.property.address}, ${formData.property.city}, ${formData.property.state} (hereinafter referred to as the "Premises"), together with all fixtures, fittings, and appurtenances thereto.
+1.2 The Premises shall be used exclusively for ${formData.property.propertyType === 'commercial_space' ? 'commercial' : 'residential'} purposes only.
+
 
 2. TERM AND COMMENCEMENT
-2.1 This Agreement shall commence from ${formData.terms.startDate}.
-2.2 The duration of this Agreement shall be ${formData.terms.duration.replace('_', ' ')}.
-2.3 The Agreement may be renewed by mutual consent of both parties.
+2.1 This Agreement shall commence with effect from ${formData.terms.startDate} ("Commencement Date").
+2.2 The term of this Agreement shall be for a period of ${durationDisplay} from the Commencement Date.
+2.3 Upon expiry of the said term, this Agreement may be renewed for a further period by mutual consent of both parties in writing.
 
-3. RENT AND PAYMENT TERMS
-3.1 The monthly rent is fixed at Rs. ${formData.terms.monthlyRent}/- (Rupees ${rentInWords} Only).
-3.2 The rent shall be paid by the ${formData.terms.monthlyRent}th day of each calendar month.
-3.3 Rent shall be paid via bank transfer/cash/cheque as mutually agreed.
-3.4 Late payment beyond 5 days shall attract interest at 2% per month.
+
+3. MONTHLY RENT
+3.1 The Lessee shall pay to the Lessor a monthly rent of Rs. ${formData.terms.monthlyRent}/- (Rupees ${rentInWords} Only) (hereinafter referred to as "Rent").
+3.2 The Rent shall be payable in advance on or before the 5th day of each calendar month.
+3.3 Payment shall be made by cash/cheque/online transfer to the Lessor's designated account.
+3.4 In the event of delayed payment beyond the due date, the Lessee shall be liable to pay a late payment charge of Rs. 500/- per week or part thereof.
+3.5 A grace period of 3 days shall be allowed for payment of Rent, after which the late payment charge shall apply.
+
 
 4. SECURITY DEPOSIT
-4.1 The Lessee has paid a security deposit of Rs. ${formData.terms.securityDeposit}/- (Rupees ${depositInWords} Only).
-4.2 The security deposit shall be refunded within 15 days of vacation of the property, after deduction of any dues.
-4.3 The security deposit shall not carry any interest.
-
-5. UTILITIES AND MAINTENANCE
-5.1 ${formData.terms.electricityBillPayer === 'tenant' ? 'The Lessee shall pay all electricity bills directly to the concerned authority.' : 'The Lessor shall pay all electricity bills.'}
-5.2 ${formData.terms.waterBillPayer === 'tenant' ? 'The Lessee shall pay all water bills directly to the concerned authority.' : 'The Lessor shall pay all water bills.'}
-5.3 ${formData.terms.maintenanceCharges === 'included' ? 'Maintenance charges are included in the monthly rent.' : formData.terms.maintenanceCharges === 'tenant_pays' ? 'The Lessee shall pay all maintenance charges separately.' : 'The Lessor shall pay all maintenance charges.'}
-
-6. RULES AND RESTRICTIONS
-6.1 The property shall be used strictly for ${formData.property.propertyType === 'commercial_space' ? 'commercial' : 'residential'} purposes only.
-6.2 ${formData.terms.petAllowed ? 'Pets are allowed with prior written consent of the Lessor.' : 'No pets are allowed in the property without prior written consent of the Lessor.'}
-6.3 ${formData.terms.sublettingAllowed ? 'Subletting is permitted with prior written consent of the Lessor.' : 'The Lessee shall not sublet, assign, or transfer this Agreement to any third party without prior written consent of the Lessor.'}
-6.4 No structural alterations or modifications shall be made without written consent of the Lessor.
-6.5 The Lessee shall not engage in any illegal activities on the premises.
-
-7. TERMINATION AND NOTICE PERIOD
-7.1 Either party may terminate this Agreement by giving ${formData.terms.noticePeriod.replace('_', ' ')} notice in writing.
-7.2 The Lessee shall hand over peaceful possession of the property on termination.
-7.3 The Lessor has the right to inspect the property with prior notice.
-
-8. LOCK-IN PERIOD
-${formData.terms.lockInPeriod === 'none' ? '8.1 There is no lock-in period for this Agreement.' : `8.1 There is a lock-in period of ${formData.terms.lockInPeriod.replace('_', ' ')} from the commencement date. Neither party can terminate during this period.`}
-
-9. DISPUTE RESOLUTION
-9.1 Any dispute arising from this Agreement shall be subject to the jurisdiction of courts at ${formData.property.city}, ${formData.property.state}.
-9.2 The parties shall first attempt to resolve disputes through amicable negotiation.
-
-10. GENERAL TERMS
-10.1 This Agreement constitutes the entire understanding between the parties.
-10.2 Any amendment must be in writing and signed by both parties.
-10.3 The Lessee shall maintain the property in good condition.
-10.4 The Lessee shall allow the Lessor or authorized agents to inspect the property with 24 hours notice.
-10.5 The Lessee shall not cause nuisance or disturbance to neighbors.
-10.6 All fixtures and fittings shall remain the property of the Lessor.
-10.7 The Lessee shall pay for any damages caused by negligence.
-10.8 The Lessor shall ensure peaceful enjoyment of the property by the Lessee.
-10.9 No waiver of any breach shall be deemed a waiver of subsequent breaches.
-10.10 If any clause is found invalid, the remaining Agreement shall continue in force.
+4.1 The Lessee has paid to the Lessor a sum of Rs. ${formData.terms.securityDeposit}/- (Rupees ${depositInWords} Only) as interest-free refundable security deposit (hereinafter referred to as "Deposit").
+4.2 The Deposit is held by the Lessor as security for the due performance and observance by the Lessee of all terms and conditions of this Agreement.
+4.3 The Deposit shall be refundable to the Lessee within 15 (fifteen) days from the date of handover of peaceful vacant possession of the Premises, after deducting any outstanding dues, damages, or amounts payable by the Lessee.
+4.4 The Lessee shall not be entitled to adjust the Deposit against the Rent or any other charges payable under this Agreement.
 
 
-IN WITNESS WHEREOF, the parties have set their hands on this ${today} at ${formData.property.city}, ${formData.property.state}.
+5. MAINTENANCE CHARGES AND UTILITIES
+${formData.terms.maintenanceCharges === 'included' ? `5.1 Monthly maintenance charges are included in the Rent and shall be paid by the Lessor to the Residents' Welfare Association (RWA) or Society.` : formData.terms.maintenanceCharges === 'tenant_pays' ? `5.1 Monthly maintenance charges shall be paid separately by the Lessee directly to the Residents' Welfare Association (RWA) or Society, over and above the Rent.` : `5.1 Monthly maintenance charges shall be paid by the Lessor to the Residents' Welfare Association (RWA) or Society.`}
+5.2 ${formData.terms.electricityBillPayer === 'tenant' ? 'Electricity bills shall be in the name of the Lessee and shall be paid directly by the Lessee to the Electricity Board.' : 'Electricity bills shall remain in the name of the Lessor and the actual amount shall be reimbursed by the Lessee to the Lessor upon presentation of bills.'}
+5.3 ${formData.terms.waterBillPayer === 'tenant' ? 'Water bills shall be paid directly by the Lessee to the concerned authority.' : 'Water bills shall be paid by the Lessor and reimbursed by the Lessee.'}
+5.4 Any other government charges, taxes, or levies in respect of the Premises shall be borne by the Lessor.
 
 
-LESSOR (LANDLORD):
-
-Signature: _______________________
-
-Name: ${formData.landlord.fullName}
-
-Date: ${today}
-
-Phone: ${formData.landlord.phoneNumber}
+6. USE OF PREMISES
+6.1 The Premises shall be used strictly for ${formData.property.propertyType === 'commercial_space' ? 'commercial business' : 'bona fide residential'} purposes only.
+6.2 ${formData.terms.petAllowed ? 'The Lessee may keep pets with the prior written consent of the Lessor, subject to compliance with society rules and regulations.' : 'The Lessee shall not keep any pets, animals, or birds in the Premises without the prior written consent of the Lessor.'}
+6.3 ${formData.terms.sublettingAllowed ? 'The Lessee may sublet a portion of the Premises with the prior written consent of the Lessor, provided the Lessee remains responsible for all obligations under this Agreement.' : 'The Lessee shall not sublet, assign, transfer, or part with possession of the whole or any part of the Premises to any third party without the prior written consent of the Lessor.'}
+6.4 The Lessee shall not use the Premises for any illegal, immoral, or unlawful activities, nor cause any nuisance or disturbance to the neighbors or other residents.
+6.5 The Lessee shall not make any structural alterations, additions, or modifications to the Premises without the prior written consent of the Lessor. Any approved alterations shall be made at the Lessee's cost and shall become the property of the Lessor.
 
 
-LESSEE (TENANT):
+7. REPAIRS AND MAINTENANCE
+7.1 The Lessor shall be responsible for all major structural repairs to the Premises, including repairs to the roof, external walls, and foundation.
+7.2 The Lessee shall maintain the Premises in good and tenantable condition and shall be responsible for all minor repairs, including plumbing, electrical fittings, and internal maintenance.
+7.3 The Lessee shall promptly report any defects or damages to the Lessor and shall permit the Lessor or authorized agents to enter the Premises for inspection and repairs with prior notice.
 
-Signature: _______________________
 
-Name: ${formData.tenant.fullName}
+8. INSPECTION
+8.1 The Lessor or their authorized representatives shall have the right to enter the Premises with 24 hours prior written notice for the purpose of inspection, repairs, or showing the property to prospective tenants.
+8.2 In case of any emergency, the Lessor may enter the Premises without notice.
 
-Date: ${today}
 
-Phone: ${formData.tenant.phoneNumber}
+9. TERMINATION
+9.1 Either party may terminate this Agreement by giving ${noticeDisplay} prior written notice to the other party.
+9.2 Upon termination, the Lessee shall hand over peaceful vacant possession of the Premises to the Lessor in the same condition as received (fair wear and tear excepted).
+9.3 The Lessor shall return the Deposit to the Lessee within 15 days after deducting any outstanding Rent, damages, or dues.
+${formData.terms.lockInPeriod !== 'none' ? `
+9.4 LOCK-IN PERIOD: This Agreement is subject to a lock-in period of ${lockInDisplay} from the Commencement Date. During this period, neither party shall terminate this Agreement except for breach of terms or under circumstances beyond control.` : ''}
+
+
+10. DEFAULT AND CONSEQUENCES
+10.1 If the Lessee fails to pay Rent for a period of two consecutive months, the Lessor shall have the right to terminate this Agreement and take possession of the Premises.
+10.2 If the Lessee breaches any material term of this Agreement, the Lessor may serve a notice of 15 days requiring the Lessee to rectify the breach. If the breach is not rectified, the Lessor may terminate this Agreement.
+10.3 Upon termination due to default by the Lessee, the Lessor shall be entitled to forfeit the Deposit and recover any outstanding amounts.
+
+
+11. INDEMNITY
+11.1 The Lessee shall indemnify and keep the Lessor harmless against any claims, demands, actions, or proceedings arising from the Lessee's use or occupation of the Premises.
+
+
+12. DISPUTE RESOLUTION
+12.1 Any dispute, difference, or claim arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the Courts at ${formData.property.city}, ${formData.property.state}, India.
+12.2 The parties shall first attempt to resolve any dispute through amicable negotiation and mediation before resorting to legal proceedings.
+
+
+13. ENTIRE AGREEMENT
+13.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, understandings, and agreements.
+13.2 No modification, alteration, or amendment of this Agreement shall be valid unless made in writing and signed by both parties.
+
+
+14. SEVERABILITY
+14.1 If any provision of this Agreement is held to be invalid, illegal, or unenforceable, the remaining provisions shall continue in full force and effect.
+
+
+IN WITNESS WHEREOF, the parties have executed this Agreement on the date first above written at ${formData.property.city}, ${formData.property.state}.
+
+
+___________________________                    ___________________________
+Signature of LESSOR                              Signature of LESSEE
+
+Name: ${formData.landlord.fullName}                  Name: ${formData.tenant.fullName}
+Date: ${today}                                        Date: ${today}
 
 
 WITNESS 1:
 
-Signature: _______________________
-
-Name: _______________________
-
-Address: _______________________
+Name: ___________________________
+Signature: ___________________________
+Address: ___________________________
 
 
 WITNESS 2:
 
-Signature: _______________________
-
-Name: _______________________
-
-Address: _______________________
+Name: ___________________________
+Signature: ___________________________
+Address: ___________________________
 
 
 ---
-[DEMO MODE: This is a template document. For legally compliant documents, configure Anthropic API key in .env.local]`;
+[DEMO MODE: This is a template document generated by PaperWise. For legally compliant and customized documents, configure Anthropic API key in .env.local]`;
 }
 
 // Helper function to convert numbers to words
