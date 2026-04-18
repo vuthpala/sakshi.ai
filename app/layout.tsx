@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Noto_Sans_Telugu } from "next/font/google";
 import "./globals.css";
-import "@/lib/i18n";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
+import { I18nProvider } from "@/components/i18n-provider";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -47,8 +47,10 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-white font-sans">
         <AuthProvider>
-          {children}
-          <Chatbot />
+          <I18nProvider>
+            {children}
+            <Chatbot />
+          </I18nProvider>
         </AuthProvider>
       </body>
     </html>
