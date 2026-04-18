@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
+import { getSupabaseConfig } from "./config";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const config = getSupabaseConfig();
 
 // Create a dummy client for build time when env vars are not available
 const dummyClient = {
@@ -26,6 +26,6 @@ const dummyClient = {
   }),
 } as any;
 
-export const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = config.URL && config.ANON_KEY 
+  ? createClient(config.URL, config.ANON_KEY)
   : dummyClient;

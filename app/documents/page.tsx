@@ -2,7 +2,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DocumentCard } from "@/components/document-card";
 import { ALL_DOCUMENT_TYPES } from "@/types";
-import { Search, SlidersHorizontal, FileText, Globe } from "lucide-react";
+import { Search, SlidersHorizontal, FileText, MapPin } from "lucide-react";
 
 export default function DocumentsPage() {
   return (
@@ -14,15 +14,15 @@ export default function DocumentsPage() {
         <div className="bg-slate-900 py-16 md:py-20">
           <div className="container mx-auto px-4 md:px-6 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-6">
-              <Globe className="h-4 w-4 text-emerald-400" />
-              <span className="text-sm text-blue-100">Used in 150+ Countries</span>
+              <MapPin className="h-4 w-4 text-orange-400" />
+              <span className="text-sm text-blue-100">Made for India • All 28 States</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              40+ Legal Documents
+              50+ Indian Legal Documents
             </h1>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Professional legal documents for every need. From business contracts to personal agreements, 
-              we have you covered.
+              Rent Agreement, Sale Deed, Will, Legal Notice, Affidavit & more. 
+              As per Indian Contract Act, Registration Act & state laws.
             </p>
           </div>
         </div>

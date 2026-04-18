@@ -10,7 +10,7 @@ import Link from "next/link";
 const plans = [
   {
     name: "Free",
-    price: "$0",
+    price: "₹0",
     description: "Preview documents",
     features: [
       "Preview any document type",
@@ -24,7 +24,7 @@ const plans = [
   },
   {
     name: "Single Document",
-    price: "$4.99",
+    price: "₹49",
     description: "Per document",
     features: [
       "Generate any document",
@@ -38,12 +38,12 @@ const plans = [
   },
   {
     name: "Unlimited",
-    price: "$49.99",
+    price: "₹499",
     period: "/year",
     description: "Best value",
     features: [
       "Unlimited documents",
-      "All 40+ document types",
+      "All 50+ Indian legal documents",
       "Priority support",
       "Save drafts",
       "Document history",
@@ -150,12 +150,12 @@ export default function PricingPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="font-semibold text-slate-900 mb-2">
-                    Are these documents legally valid?
+                    Are these documents legally valid in India?
                   </h3>
                   <p className="text-slate-600 text-sm">
-                    Yes, our documents are drafted using AI trained on international legal standards. 
-                    However, we recommend having important documents reviewed by a local lawyer 
-                    to ensure compliance with your specific jurisdiction.
+                    Yes! Our documents are drafted as per Indian laws including Contract Act 1872, 
+                    Registration Act 1908, and state-specific tenancy laws. All documents are 
+                    court-ready and legally enforceable across India.
                   </p>
                 </div>
                 
@@ -174,8 +174,9 @@ export default function PricingPage() {
                     What payment methods are accepted?
                   </h3>
                   <p className="text-slate-600 text-sm">
-                    We accept all major credit/debit cards, PayPal, and various local payment methods 
-                    depending on your region. All payments are secure and encrypted.
+                    We accept all Indian payment methods including UPI (Google Pay, PhonePe, Paytm), 
+                    credit/debit cards, net banking, and wallets via Razorpay. All payments are 
+                    secure and encrypted.
                   </p>
                 </div>
               </div>

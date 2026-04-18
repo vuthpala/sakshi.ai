@@ -2,7 +2,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DocumentCard } from "@/components/document-card";
 import { DOCUMENT_TYPES } from "@/types";
-import { Sparkles, Clock, Shield, FileCheck, ChevronRight, Star, Zap, Award, Globe, Users, FileText, CheckCircle2, ArrowRight, Play, Rocket, Crown, Gem } from "lucide-react";
+import { Sparkles, Clock, Shield, FileCheck, ChevronRight, Star, Zap, Award, Globe, Users, FileText, CheckCircle2, ArrowRight, Play, Rocket, Crown, Gem, MapPin } from "lucide-react";
 
 export default function Home() {
   return (
@@ -26,8 +26,8 @@ export default function Home() {
           <div className="container relative mx-auto px-4 md:px-6 text-center py-20">
             {/* Premium Badge with Glow */}
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-              <Crown className="h-4 w-4 text-amber-400" />
-              <span className="text-sm font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">#1 Legal Document Platform Worldwide</span>
+              <MapPin className="h-4 w-4 text-orange-400" />
+              <span className="text-sm font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">#1 Legal Documents Platform in India</span>
             </div>
             
             {/* Main Headline with Better Typography */}
@@ -41,8 +41,8 @@ export default function Home() {
             
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              AI-powered legal document generation trusted by <span className="text-white font-medium">50,000+</span> professionals worldwide. 
-              Create court-ready documents instantly.
+              AI-powered legal document generator for India. Trusted by <span className="text-white font-medium">50,000+</span> Indians. 
+              Create court-ready documents as per Indian laws instantly.
             </p>
             
             {/* Premium CTA Buttons */}
@@ -68,10 +68,10 @@ export default function Home() {
             {/* Premium Feature Cards with 3D Effect */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { icon: Sparkles, label: "AI Generated", color: "from-orange-500 to-amber-500", desc: "GPT-4 Powered" },
+                { icon: Sparkles, label: "AI Generated", color: "from-orange-500 to-amber-500", desc: "Made for India" },
                 { icon: Clock, label: "60 Seconds", color: "from-blue-500 to-cyan-500", desc: "Lightning Fast" },
                 { icon: Shield, label: "Legally Valid", color: "from-emerald-500 to-teal-500", desc: "Court Approved" },
-                { icon: Gem, label: "Premium Quality", color: "from-violet-500 to-purple-500", desc: "Lawyer Grade" },
+                { icon: Gem, label: "₹49 Only", color: "from-violet-500 to-purple-500", desc: "Affordable" },
               ].map((feature, idx) => (
                 <div 
                   key={idx}
@@ -101,14 +101,15 @@ export default function Home() {
               {/* Premium Badge */}
               <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8">
                 <Award className="h-4 w-4 text-orange-500" />
-                <span className="text-sm font-semibold text-slate-700">40+ Professional Templates</span>
+                <span className="text-sm font-semibold text-slate-700">50+ Indian Legal Documents</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
                 Choose Your Document
               </h2>
               <p className="text-slate-500 text-xl max-w-2xl mx-auto leading-relaxed">
-                From business contracts to personal agreements, we have everything you need to protect what matters.
+                From Rent Agreements to Will, Sale Deed to Legal Notice - all as per Indian laws.
+                Starting at just ₹49.
               </p>
             </div>
             
@@ -125,7 +126,7 @@ export default function Home() {
                 href="/documents" 
                 className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-2xl hover:bg-slate-800 transition-all duration-300 hover:shadow-xl"
               >
-                View All 40+ Documents
+                View All 50+ Indian Documents
                 <ArrowRight className="h-5 w-5" />
               </a>
             </div>

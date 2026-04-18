@@ -1,22 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
+import { getRazorpayConfig } from "@/lib/config";
 
-function getRazorpayClient() {
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+// Initialize Razorpay with config (includes fallback values)
+function getRazorpay() {
+  const config = getRazorpayConfig();
   
-  if (!keyId || !keySecret) {
-    throw new Error("Razorpay credentials not configured");
+  if (!config.KEY_ID || !config.KEY_SECRET) {
+    return null;
   }
   
-  return new Razorpay({ key_id: keyId, key_secret: keySecret });
+  return new Razorpay({
+    key_id: config.KEY_ID,
+    key_secret: config.KEY_SECRET,
+  });
 }
 
 export async function POST(request: NextRequest) {
   try {
     const { amount, receipt } = await request.json();
 
-    const razorpay = getRazorpayClient();
+    const razorpay = getRazorpay();
+
+    if (!razorpay) {
+      return NextResponse.json(
+        { error: "Payment service not configured" },
+        { status: 500 }
+      );
+    }
 
     const options = {
       amount: amount * 100, // Convert to paise

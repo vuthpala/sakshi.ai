@@ -46,7 +46,16 @@ import {
   ReceiptText,
   FileDigit,
   ClipboardList,
-  Truck
+  Truck,
+  Gift,
+  Split,
+  Laptop,
+  MapPin,
+  User,
+  Send,
+  Award,
+  FileText,
+  Landmark as Bank
 } from "lucide-react";
 import { DocumentType } from "@/types";
 
@@ -93,6 +102,15 @@ const iconMap: Record<string, React.ElementType> = {
   FileDigit,
   ClipboardList,
   Truck,
+  Gift,
+  Split,
+  Laptop,
+  MapPin,
+  User,
+  Send,
+  Award,
+  FileText,
+  Bank,
 };
 
 const gradientMap: Record<string, string> = {
@@ -138,6 +156,15 @@ const gradientMap: Record<string, string> = {
   "file-digit": "from-blue-400 to-blue-600",
   "clipboard-list": "from-teal-500 to-cyan-600",
   truck: "from-amber-600 to-orange-700",
+  gift: "from-pink-500 to-rose-500",
+  split: "from-violet-500 to-purple-600",
+  laptop: "from-slate-500 to-slate-700",
+  "map-pin": "from-red-500 to-rose-600",
+  user: "from-blue-500 to-blue-600",
+  send: "from-emerald-500 to-teal-600",
+  award: "from-amber-500 to-orange-600",
+  "file-text": "from-gray-500 to-gray-700",
+  bank: "from-green-600 to-emerald-700",
 };
 
 interface DocumentCardProps {
@@ -188,8 +215,8 @@ export function DocumentCard({ document }: DocumentCardProps) {
         {/* Price Section with Gradient Text */}
         <div className="px-7 py-5 bg-gradient-to-r from-slate-50 to-white border-y border-slate-100">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">${document.price}</span>
-            <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">USD</span>
+            <span className="text-3xl font-black bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">₹{document.price}</span>
+            <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">INR</span>
           </div>
         </div>
         

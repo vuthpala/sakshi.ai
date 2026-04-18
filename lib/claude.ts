@@ -1,7 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { RentAgreementFormData } from "@/types";
+import { CONFIG } from "./config";
 
-const apiKey = process.env.ANTHROPIC_API_KEY;
+const apiKey = CONFIG.ANTHROPIC.API_KEY;
 
 const anthropic = apiKey 
   ? new Anthropic({ apiKey })

@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { generatePDF, downloadPDF } from "@/lib/pdf-generator";
 import { FileText, Download, Lock, CheckCircle, Loader2 } from "lucide-react";
 import Confetti from "react-confetti";
+import { getRazorpayConfig } from "@/lib/config";
 
 interface DocumentData {
   id: string;
@@ -31,6 +32,7 @@ declare global {
 }
 
 interface RazorpayOptions {
+  
   key: string;
   amount: number;
   currency: string;
@@ -105,8 +107,9 @@ export default function PreviewPage() {
       const orderData = await orderResponse.json();
 
       // Initialize Razorpay
+      const razorpayConfig = getRazorpayConfig();
       const options: RazorpayOptions = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
+        key: razorpayConfig.KEY_ID,
         amount: orderData.amount,
         currency: orderData.currency,
         name: "DocReady",

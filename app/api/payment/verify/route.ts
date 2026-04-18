@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { supabase } from "@/lib/supabase";
+import { getRazorpayConfig } from "@/lib/config";
 
 function getRazorpayKeySecret(): string {
-  const secret = process.env.RAZORPAY_KEY_SECRET;
-  if (!secret) {
+  const config = getRazorpayConfig();
+  if (!config.KEY_SECRET) {
     throw new Error("Razorpay key secret not configured");
   }
-  return secret;
+  return config.KEY_SECRET;
 }
 
 export async function POST(request: NextRequest) {
