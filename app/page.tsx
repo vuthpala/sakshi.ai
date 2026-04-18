@@ -240,7 +240,7 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Stats Section - Ultra Premium */}
+        {/* Features Section - Why Choose PaperWise */}
         <section className="relative py-20 bg-[#0a0a0f] overflow-hidden">
           {/* Animated Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950"></div>
@@ -248,21 +248,26 @@ export default function Home() {
           <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[100px] -translate-y-1/2"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose PaperWise?</h2>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">Legal documents made simple, affordable, and accessible for everyone across India</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { icon: FileText, value: "50+", label: "Documents", color: "emerald" },
-                { icon: Users, value: "50K+", label: "Happy Users", color: "teal" },
-                { icon: Globe, value: "28", label: "States Covered", color: "blue" },
-                { icon: CheckCircle2, value: "4.9", label: "Star Rating", color: "violet" },
-              ].map((stat, idx) => (
-                <div key={idx} className="text-center group">
+                { icon: FileText, title: "50+ Documents", desc: "Rent agreements, wills, contracts & more", color: "emerald" },
+                { icon: Globe, title: "All India Coverage", desc: "Valid across all states and union territories", color: "blue" },
+                { icon: CheckCircle2, title: "Legally Compliant", desc: "As per Indian Contract Act & Registration Act", color: "violet" },
+                { icon: Users, title: "Easy to Use", desc: "Simple forms, instant generation", color: "teal" },
+              ].map((feature, idx) => (
+                <div key={idx} className="text-center group bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-all">
                   <div className={`flex justify-center mb-4`}>
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-${stat.color}-500/10 border border-${stat.color}-500/20 group-hover:scale-110 transition-transform duration-500`}>
-                      <stat.icon className={`h-8 w-8 text-${stat.color}-400`} />
+                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-${feature.color}-500/10 border border-${feature.color}-500/20 group-hover:scale-110 transition-transform duration-500`}>
+                      <feature.icon className={`h-8 w-8 text-${feature.color}-400`} />
                     </div>
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-white mb-2 bg-gradient-to-b from-white to-emerald-200/60 bg-clip-text">{stat.value}</div>
-                  <div className="text-sm font-medium text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                  <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                  <p className="text-sm text-slate-400">{feature.desc}</p>
                 </div>
               ))}
             </div>
