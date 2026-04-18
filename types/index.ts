@@ -4,6 +4,7 @@ export interface DocumentType {
   icon: string;
   price: number;
   description: string;
+  category?: 'property' | 'business' | 'employment' | 'legal' | 'personal' | 'family' | 'commercial' | 'financial';
 }
 
 export interface LandlordDetails {
