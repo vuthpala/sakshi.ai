@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Noto_Sans_Telugu } from "next/font/google";
 import "./globals.css";
+import "@/lib/i18n";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
-import { LanguageProvider } from "@/lib/language-context";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -17,13 +17,20 @@ const inter = Inter({
   display: "swap",
 });
 
+const notoTelugu = Noto_Sans_Telugu({
+  variable: "--font-telugu",
+  subsets: ["telugu"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "PaperWise - Smart Legal Documents for India",
-  description: "India's smartest AI-powered legal document platform. Create court-ready Rent Agreements, Sale Deeds, Wills, Legal Notices & 50+ documents in 60 seconds. As per Indian Contract Act & Registration Act.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise",
+  title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
+  description: "మీ న్యాయపరమైన పత్రాలు 15 నిమిషాల్లో రెడీ! Government e-Stamp తో. Advocate Sign తో. India's fastest legal document platform with Telugu & English support.",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, lexmeet, తెలుగు, న్యాయ పత్రాలు",
   openGraph: {
-    title: "PaperWise - Smart Legal Documents for India",
-    description: "Create professional legal documents in 60 seconds. Trusted by 50,000+ Indians.",
+    title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
+    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature.",
     type: "website",
   },
 };
@@ -35,15 +42,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      lang="te"
+      className={`${playfair.variable} ${inter.variable} ${notoTelugu.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white font-sans">
         <AuthProvider>
-          <LanguageProvider>
-            {children}
-            <Chatbot />
-          </LanguageProvider>
+          {children}
+          <Chatbot />
         </AuthProvider>
       </body>
     </html>
