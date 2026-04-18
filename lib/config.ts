@@ -1,4 +1,4 @@
-// Configuration for DocReady - Environment Variables
+// Configuration for PaperWise - Environment Variables
 // These are demo/test keys for immediate deployment
 
 export const CONFIG = {
@@ -29,8 +29,8 @@ export const CONFIG = {
 
   // App Settings
   APP: {
-    NAME: "DocReady",
-    URL: process.env.NEXT_PUBLIC_APP_URL || "https://docready.pages.dev",
+    NAME: "PaperWise",
+    URL: process.env.NEXT_PUBLIC_APP_URL || "https://paperwise.vercel.app",
     PRICE_PER_DOCUMENT: 499, // in cents ($4.99)
   },
 };

@@ -112,7 +112,7 @@ export default function PreviewPage() {
         key: razorpayConfig.KEY_ID,
         amount: orderData.amount,
         currency: orderData.currency,
-        name: "DocReady",
+        name: "PaperWise",
         description: "Rent Agreement Document",
         order_id: orderData.orderId,
         handler: async (response: RazorpayResponse) => {
