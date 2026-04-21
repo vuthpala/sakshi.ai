@@ -26,14 +26,69 @@ const notoTelugu = Noto_Sans_Telugu({
 });
 
 export const metadata: Metadata = {
-  title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
-  description: "మీ న్యాయపరమైన పత్రాలు 15 నిమిషాల్లో రెడీ! Government e-Stamp తో. Advocate Sign తో. India's fastest legal document platform with Telugu & English support.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, lexmeet, తెలుగు, న్యాయ పత్రాలు",
+  title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
+  description: "మీ న్యాయపరమైన పత్రాలు 15 నిమిషాల్లో రెడీ! Government e-Stamp తో. Advocate Sign తో. India's fastest legal document platform with Telugu & English support. Rent Agreement, Sale Deed, Will, Legal Notice & more.",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, lexmeet, తెలుగు, న్యాయ పత్రాలు, అద్దె ఒప్పందం, వీలునామా, lawyer verified, e-stamp, aadhaar esign",
+  authors: [{ name: "LexMeet" }],
+  creator: "LexMeet",
+  publisher: "LexMeet",
+  metadataBase: new URL("https://doc-mu-olive.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
-    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature.",
+    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature. India's #1 legal document platform with Telugu & English support.",
     type: "website",
+    locale: "te_IN",
+    siteName: "LexMeet",
+    url: "https://doc-mu-olive.vercel.app",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LexMeet - Legal Documents in 15 Minutes with Government e-Stamp",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
+    description: "Government e-Stamp + Advocate Sign. India's #1 legal document platform.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/icon.svg",
+        color: "#1B3A6B",
+      },
+    ],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
