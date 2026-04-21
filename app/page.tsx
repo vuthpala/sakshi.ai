@@ -30,22 +30,20 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-// Document types with Telugu and English
+// Document types
 const DOCUMENT_TYPES = [
-  { id: "rent-agreement", icon: Building2, te: "అద్దె ఒప్పందం", en: "Rent Agreement", price: "₹99", color: "from-blue-500 to-blue-600" },
-  { id: "freelance-contract", icon: Briefcase, te: "ఫ్రీలాన్స్ కాంట్రాక్ట్", en: "Freelance Contract", price: "₹49", color: "from-purple-500 to-purple-600" },
-  { id: "nda", icon: Lock, te: "NDA", en: "NDA", price: "₹49", color: "from-red-500 to-red-600" },
-  { id: "offer-letter", icon: FileSignature, te: "ఆఫర్ లెటర్", en: "Offer Letter", price: "₹49", color: "from-green-500 to-green-600" },
-  { id: "sale-agreement", icon: Handshake, te: "అమ్మకం ఒప్పందం", en: "Sale Agreement", price: "₹149", color: "from-orange-500 to-orange-600" },
-  { id: "partnership-deed", icon: Users, te: "భాగస్వామ్య డీడ్", en: "Partnership Deed", price: "₹99", color: "from-indigo-500 to-indigo-600" },
-  { id: "loan-agreement", icon: DollarSign, te: "లోన్ అగ్రిమెంట్", en: "Loan Agreement", price: "₹49", color: "from-yellow-500 to-yellow-600" },
-  { id: "vendor-contract", icon: Truck, te: "వెండర్ కాంట్రాక్ట్", en: "Vendor Contract", price: "₹49", color: "from-pink-500 to-pink-600" },
-  { id: "will", icon: Scroll, te: "వీలునామా", en: "Will", price: "₹149", color: "from-teal-500 to-teal-600" },
+  { id: "rent-agreement", icon: Building2, en: "Rent Agreement", price: "₹99", color: "from-blue-500 to-blue-600" },
+  { id: "freelance-contract", icon: Briefcase, en: "Freelance Contract", price: "₹49", color: "from-purple-500 to-purple-600" },
+  { id: "nda", icon: Lock, en: "NDA", price: "₹49", color: "from-red-500 to-red-600" },
+  { id: "offer-letter", icon: FileSignature, en: "Offer Letter", price: "₹49", color: "from-green-500 to-green-600" },
+  { id: "sale-agreement", icon: Handshake, en: "Sale Agreement", price: "₹149", color: "from-orange-500 to-orange-600" },
+  { id: "partnership-deed", icon: Users, en: "Partnership Deed", price: "₹99", color: "from-indigo-500 to-indigo-600" },
+  { id: "loan-agreement", icon: DollarSign, en: "Loan Agreement", price: "₹49", color: "from-yellow-500 to-yellow-600" },
+  { id: "vendor-contract", icon: Truck, en: "Vendor Contract", price: "₹49", color: "from-pink-500 to-pink-600" },
+  { id: "will", icon: Scroll, en: "Will", price: "₹149", color: "from-teal-500 to-teal-600" },
 ];
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
-  const isTelugu = i18n.language === "te";
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -67,47 +65,34 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8">
               <Crown className="h-4 w-4 text-orange-400" />
               <span className="text-sm font-medium text-white">
-                {isTelugu ? "భారతదేశపు #1 న్యాయ వేదిక" : "India's #1 Legal Platform"}
+                India's #1 Legal Platform
               </span>
             </div>
             
-            {/* Main Headline - Telugu + English */}
+            {/* Main Headline */}
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight leading-[1.1]">
-              {isTelugu ? (
-                <>
-                  మీ అద్దె అగ్రిమెంట్
-                  <br />
-                  <span className="text-orange-400">15 నిమిషాల్లో!</span>
-                </>
-              ) : (
-                <>
-                  Your Rent Agreement
-                  <br />
-                  <span className="text-orange-400">in 15 Minutes!</span>
-                </>
-              )}
+              Your Rent Agreement
+              <br />
+              <span className="text-orange-400">in 15 Minutes!</span>
             </h1>
             
             {/* Subtitle */}
             <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-6 leading-relaxed">
-              {isTelugu 
-                ? "ప్రభుత్వ స్టాంప్ తో. న్యాయవాది సంతకంతో."
-                : "With Government Stamp. With Advocate Signature."
-              }
+              With Government Stamp. With Advocate Signature.
             </p>
             
             {/* Trust Badges Row */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
               {[
-                { icon: Landmark, te: "ప్రభుత్వ e-స్టాంప్", en: "Government e-Stamp" },
-                { icon: Scale, te: "ధృవీకరించబడిన న్యాయవాది", en: "Verified Advocate" },
-                { icon: Fingerprint, te: "ఆధార్ eSign", en: "Aadhaar eSign" },
-                { icon: Shield, te: "కోర్టుకు చెల్లుబాటు", en: "Court Valid" },
+                { icon: Landmark, label: "Government e-Stamp" },
+                { icon: Scale, label: "Verified Advocate" },
+                { icon: Fingerprint, label: "Aadhaar eSign" },
+                { icon: Shield, label: "Court Valid" },
               ].map((badge, idx) => (
                 <div key={idx} className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
                   <badge.icon className="h-4 w-4 text-orange-400" />
                   <span className="text-sm text-white font-medium">
-                    {isTelugu ? badge.te : badge.en}
+                    {badge.label}
                   </span>
                 </div>
               ))}
@@ -120,7 +105,7 @@ export default function Home() {
                 className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-lg rounded-xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(249,115,22,0.4)] hover:-translate-y-1"
               >
                 <Sparkles className="h-5 w-5" />
-                {isTelugu ? "పత్రం తయారు చేయండి" : "Create Document"}
+                Create Document
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
@@ -130,24 +115,24 @@ export default function Home() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/20">
                   <Play className="h-4 w-4 text-orange-400 ml-0.5" />
                 </div>
-                {isTelugu ? "ఎలా పనిచేస్తుంది" : "How It Works"}
+                How It Works
               </Link>
             </div>
             
             {/* Stats Bar */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {[
-                { value: "1,247", te: "పత్రాలు తయారయ్యాయి", en: "Documents Generated" },
-                { value: "342", te: "న్యాయవాదులు", en: "Lawyers Registered" },
-                { value: "4.8⭐", te: "యూజర్ రేటింగ్", en: "User Rating" },
-                { value: "15min", te: "సగటు సమయం", en: "Avg. Time" },
+                { value: "1,247", label: "Documents Generated" },
+                { value: "342", label: "Lawyers Registered" },
+                { value: "4.8⭐", label: "User Rating" },
+                { value: "15min", label: "Avg. Time" },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center p-4 bg-white/5 border border-white/10 rounded-xl">
                   <div className="font-serif text-2xl md:text-3xl font-bold text-orange-400 mb-1">
                     {stat.value}
                   </div>
                   <div className="text-sm text-blue-200">
-                    {isTelugu ? stat.te : stat.en}
+                    {stat.label}
                   </div>
                 </div>
               ))}
@@ -161,19 +146,19 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <Lock className="h-4 w-4 text-green-500" />
-                <span>{isTelugu ? "256-బిట్ ఎన్క్రిప్షన్" : "256-bit Encryption"}</span>
+                <span>256-bit Encryption</span>
               </div>
               <div className="flex items-center gap-2">
                 <Landmark className="h-4 w-4 text-blue-500" />
-                <span>{isTelugu ? "IT చట్టం 2000 కంప్లైంట్" : "IT Act 2000 Compliant"}</span>
+                <span>IT Act 2000 Compliant</span>
               </div>
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-orange-500" />
-                <span>{isTelugu ? "భారతీయ కాంట్రాక్ట్ చట్టం" : "Indian Contract Act Valid"}</span>
+                <span>Indian Contract Act Valid</span>
               </div>
               <div className="flex items-center gap-2">
                 <Fingerprint className="h-4 w-4 text-purple-500" />
-                <span>{isTelugu ? "ఆధార్ సెక్యూర్డ్" : "Aadhaar Secured"}</span>
+                <span>Aadhaar Secured</span>
               </div>
             </div>
           </div>
@@ -186,18 +171,15 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 border border-orange-200 rounded-full mb-6">
                 <Award className="h-4 w-4 text-orange-600" />
                 <span className="text-sm font-semibold text-orange-800">
-                  {isTelugu ? "9+ న్యాయ పత్రాలు" : "9+ Legal Documents"}
+                  9+ Legal Documents
                 </span>
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
-                {isTelugu ? "మీ పత్రాన్ని ఎంచుకోండి" : "Choose Your Document"}
+                Choose Your Document
               </h2>
               <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-                {isTelugu 
-                  ? "అద్దె ఒప్పందం నుండి వీలునామా వరకు - అన్నీ భారతీయ చట్టాల ప్రకారం"
-                  : "From Rent Agreement to Will - all as per Indian laws"
-                }
+                From Rent Agreement to Will - all as per Indian laws
               </p>
             </div>
             
@@ -213,7 +195,7 @@ export default function Home() {
                     <doc.icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-1">
-                    {isTelugu ? doc.te : doc.en}
+                    {doc.en}
                   </h3>
                   <p className="text-sm text-slate-500 mb-4">
                     {doc.en}
@@ -221,7 +203,7 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-orange-600">{doc.price}</span>
                     <span className="flex items-center gap-1 text-sm font-medium text-orange-600 group-hover:gap-2 transition-all">
-                      {isTelugu ? "తయారు చేయండి" : "Create"}
+                      Create
                       <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
