@@ -32,6 +32,6 @@
   <text x="256" y="350" text-anchor="middle" font-size="16" font-weight="bold" fill="#C41E3A" font-family="serif">INDIA</text>
   <text x="256" y="368" text-anchor="middle" font-size="12" fill="#C41E3A" font-family="serif">e-STAMP</text>
   
-  <!-- Telugu Character -->
-  <text x="256" y="400" text-anchor="middle" font-size="24" fill="#1B3A6B" font-family="Noto Sans Telugu, sans-serif">ప</text>
+  <!-- Brand Character -->
+  <text x="256" y="400" text-anchor="middle" font-size="24" fill="#1B3A6B" font-family="sans-serif">P</text>
 </svg>

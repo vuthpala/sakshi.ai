@@ -37,7 +37,6 @@ export function Header() {
             <span className="font-serif text-3xl font-bold bg-gradient-to-r from-orange-200 via-white to-red-200 bg-clip-text text-transparent tracking-tight">
               PaperWise
             </span>
-            <span className="text-[10px] text-orange-400/80 hidden sm:block uppercase tracking-widest font-medium">పేపర్‌వైజ్</span>
           </div>
         </Link>
         

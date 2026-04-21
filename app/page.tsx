@@ -2,7 +2,6 @@
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { useTranslation } from "react-i18next";
 import { 
   Sparkles, 
   Shield, 
@@ -218,10 +217,10 @@ export default function Home() {
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <span className="inline-block text-sm font-semibold text-orange-600 uppercase tracking-wider mb-4">
-                {isTelugu ? "సరళ ప్రక్రియ" : "Simple Process"}
+                Simple Process
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
-                {isTelugu ? "ఇది ఎలా పనిచేస్తుంది" : "How It Works"}
+                How It Works
               </h2>
             </div>
             
@@ -229,26 +228,20 @@ export default function Home() {
               {[
                 { 
                   num: "1", 
-                  titleTe: "ఫారం నింపండి",
-                  titleEn: "Fill Form",
-                  descTe: "మీ పత్ర అవసరాల గురించి సరళమైన ప్రశ్నలకు సమాధానం ఇవ్వండి",
-                  descEn: "Answer simple questions about your document needs",
+                  title: "Fill Form",
+                  desc: "Answer simple questions about your document needs",
                   color: "from-blue-500 to-blue-600"
                 },
                 { 
                   num: "2", 
-                  titleTe: "AI పత్రం తయారు చేస్తుంది",
-                  titleEn: "AI Generates",
-                  descTe: "మా AI ప్రొఫెషనల్ చట్టపరమైన పత్రాన్ని సృష్టిస్తుంది",
-                  descEn: "Our AI creates a professional legal document",
+                  title: "AI Generates",
+                  desc: "Our AI creates a professional legal document",
                   color: "from-orange-500 to-red-500"
                 },
                 { 
                   num: "3", 
-                  titleTe: "న్యాయవాది సంతకం చేస్తారు",
-                  titleEn: "Advocate Signs",
-                  descTe: "ధృవీకరించబడిన స్థానిక న్యాయవాది సమీక్షిస్తారు మరియు సంతకం చేస్తారు",
-                  descEn: "Verified local advocate reviews and signs",
+                  title: "Advocate Signs",
+                  desc: "Verified local advocate reviews and signs",
                   color: "from-green-500 to-teal-500"
                 },
               ].map((step, idx) => (
@@ -257,10 +250,10 @@ export default function Home() {
                     <span className="text-3xl font-black text-white">{step.num}</span>
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">
-                    {isTelugu ? step.titleTe : step.titleEn}
+                    {step.title}
                   </h3>
                   <p className="text-slate-500">
-                    {isTelugu ? step.descTe : step.descEn}
+                    {step.desc}
                   </p>
                 </div>
               ))}
@@ -275,16 +268,16 @@ export default function Home() {
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {isTelugu ? "PaperWise ఎందుకు?" : "Why PaperWise?"}
+                Why PaperWise?
               </h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: FileText, te: "9+ పత్రాలు", en: "9+ Documents", descTe: "అన్ని రకాల న్యాయ పత్రాలు", descEn: "All types of legal documents", color: "bg-blue-500" },
-                { icon: Globe, te: "అన్ని రాష్ట్రాలు", en: "All States", descTe: "భారతదేశంలోని అన్ని రాష్ట్రాలకు చెల్లుబాటు", descEn: "Valid across all Indian states", color: "bg-green-500" },
-                { icon: CheckCircle2, te: "చట్టబద్ధం", en: "Legally Valid", descTe: "భారతీయ కాంట్రాక్ట్ చట్టం ప్రకారం", descEn: "As per Indian Contract Act", color: "bg-orange-500" },
-                { icon: Users, te: "సులభం", en: "Easy to Use", descTe: "సరళ ఫారాలు, తక్షణ తయారీ", descEn: "Simple forms, instant generation", color: "bg-purple-500" },
+                { icon: FileText, title: "9+ Documents", desc: "All types of legal documents", color: "bg-blue-500" },
+                { icon: Globe, title: "All States", desc: "Valid across all Indian states", color: "bg-green-500" },
+                { icon: CheckCircle2, title: "Legally Valid", desc: "As per Indian Contract Act", color: "bg-orange-500" },
+                { icon: Users, title: "Easy to Use", desc: "Simple forms, instant generation", color: "bg-purple-500" },
               ].map((feature, idx) => (
                 <div key={idx} className="text-center group bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-orange-500/30 transition-all">
                   <div className="flex justify-center mb-4">
@@ -293,10 +286,10 @@ export default function Home() {
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-white mb-1">
-                    {isTelugu ? feature.te : feature.en}
+                    {feature.title}
                   </h3>
                   <p className="text-sm text-blue-200">
-                    {isTelugu ? feature.descTe : feature.descEn}
+                    {feature.desc}
                   </p>
                 </div>
               ))}
@@ -309,32 +302,26 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                {isTelugu ? "మా వినియోగదారులు ఏమంటున్నారు" : "What Our Users Say"}
+                What Our Users Say
               </h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[
                 { 
-                  quoteTe: "చాలా సులభంగా ఉంది. స్టాంప్ పేపర్ షాప్‌కి వెళ్ళాల్సిన అవసరం లేకపోయింది!",
-                  quoteEn: "So easy to use. No need to go to stamp paper shops anymore!",
+                  quote: "So easy to use. No need to go to stamp paper shops anymore!",
                   name: "Suresh Kumar",
-                  locationTe: "హైదరాబాద్",
-                  locationEn: "Hyderabad"
+                  location: "Hyderabad"
                 },
                 { 
-                  quoteTe: "న్యాయవాది సంతకంతో వచ్చింది. కోర్టులో చెల్లుబాటు అయ్యే పత్రం.",
-                  quoteEn: "Got it with lawyer signature. Court valid document.",
+                  quote: "Got it with lawyer signature. Court valid document.",
                   name: "Lakshmi Devi",
-                  locationTe: "విజయవాడ",
-                  locationEn: "Vijayawada"
+                  location: "Vijayawada"
                 },
                 { 
-                  quoteTe: "15 నిమిషాల్లోనే వచ్చింది. చాలా వేగంగా మరియు నమ్మదగినది.",
-                  quoteEn: "Got it in 15 minutes. Very fast and reliable.",
+                  quote: "Got it in 15 minutes. Very fast and reliable.",
                   name: "Ramesh Reddy",
-                  locationTe: "గుంటూరు",
-                  locationEn: "Guntur"
+                  location: "Guntur"
                 },
               ].map((testimonial, idx) => (
                 <div key={idx} className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
@@ -344,7 +331,7 @@ export default function Home() {
                     ))}
                   </div>
                   <p className="text-slate-700 mb-4 italic">
-                    "{isTelugu ? testimonial.quoteTe : testimonial.quoteEn}"
+                    "{testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
@@ -353,7 +340,7 @@ export default function Home() {
                     <div>
                       <p className="font-semibold text-slate-900">{testimonial.name}</p>
                       <p className="text-sm text-slate-500">
-                        {isTelugu ? testimonial.locationTe : testimonial.locationEn}
+                        {testimonial.location}
                       </p>
                     </div>
                   </div>
@@ -367,13 +354,10 @@ export default function Home() {
         <section className="py-8 bg-slate-900 border-t border-slate-800">
           <div className="container mx-auto px-4 text-center">
             <p className="text-sm text-slate-400">
-              {isTelugu 
-                ? "PaperWise సాంకేతిక వేదిక మాత్రమే. ఇది వృత్తిపరమైన న్యాయ సలహాకు ప్రత్యామ్నాయం కాదు."
-                : "PaperWise is a technology platform only. This is not a substitute for professional legal advice."
-              }
+              PaperWise is a technology platform only. This is not a substitute for professional legal advice.
             </p>
             <p className="text-xs text-slate-500 mt-2">
-              © 2024 PaperWise (పేపర్‌వైజ్). {isTelugu ? "సర్వ హక్కులు ప్రత్యేకించబడ్డాయి." : "All rights reserved."}
+              © 2024 PaperWise. All rights reserved.
             </p>
           </div>
         </section>
