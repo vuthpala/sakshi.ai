@@ -22,9 +22,54 @@
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
+.font-telugu {
+  font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Telugu text styling */
+[lang="te"], .telugu-text {
+  font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
+  line-height: 1.6;
+}
+
+/* Mobile responsive utilities */
+@screen sm {
+  .container-mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@screen lg {
+  .container-mobile {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prevent zoom on iOS inputs */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
 }
 
 /* Custom scrollbar */

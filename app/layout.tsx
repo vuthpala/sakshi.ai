@@ -4,6 +4,7 @@ import "./globals.css";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
 import { I18nProvider } from "@/components/i18n-provider";
+import { ToastProvider } from "@/components/toast-provider";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -50,6 +51,7 @@ export default function RootLayout({
           <I18nProvider>
             {children}
             <Chatbot />
+            <ToastProvider />
           </I18nProvider>
         </AuthProvider>
       </body>
