@@ -27,7 +27,7 @@ export function Header() {
         : "bg-transparent"
     }`}>
       <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-8">
-        {/* LexMeet Logo */}
+        {/* PaperWise Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 shadow-xl shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-all duration-700 group-hover:scale-110">
             <FileText className="h-6 w-6 text-white relative z-10" />
@@ -35,9 +35,9 @@ export function Header() {
           </div>
           <div className="flex flex-col">
             <span className="font-serif text-3xl font-bold bg-gradient-to-r from-orange-200 via-white to-red-200 bg-clip-text text-transparent tracking-tight">
-              LexMeet
+              PaperWise
             </span>
-            <span className="text-[10px] text-orange-400/80 hidden sm:block uppercase tracking-widest font-medium">లెక్స్‌మీట్</span>
+            <span className="text-[10px] text-orange-400/80 hidden sm:block uppercase tracking-widest font-medium">పేపర్‌వైజ్</span>
           </div>
         </Link>
         

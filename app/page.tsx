@@ -32,15 +32,15 @@ import Link from "next/link";
 
 // Document types with Telugu and English
 const DOCUMENT_TYPES = [
-  { id: "rent-agreement", icon: Building2, te: "అద్దె ఒప్పందం", en: "Rent Agreement", price: "₹499", color: "from-blue-500 to-blue-600" },
-  { id: "freelance-contract", icon: Briefcase, te: "ఫ్రీలాన్స్ కాంట్రాక్ట్", en: "Freelance Contract", price: "₹299", color: "from-purple-500 to-purple-600" },
-  { id: "nda", icon: Lock, te: "NDA", en: "NDA", price: "₹399", color: "from-red-500 to-red-600" },
-  { id: "offer-letter", icon: FileSignature, te: "ఆఫర్ లెటర్", en: "Offer Letter", price: "₹249", color: "from-green-500 to-green-600" },
-  { id: "sale-agreement", icon: Handshake, te: "అమ్మకం ఒప్పందం", en: "Sale Agreement", price: "₹699", color: "from-orange-500 to-orange-600" },
-  { id: "partnership-deed", icon: Users, te: "భాగస్వామ్య డీడ్", en: "Partnership Deed", price: "₹599", color: "from-indigo-500 to-indigo-600" },
-  { id: "loan-agreement", icon: DollarSign, te: "లోన్ అగ్రిమెంట్", en: "Loan Agreement", price: "₹399", color: "from-yellow-500 to-yellow-600" },
-  { id: "vendor-contract", icon: Truck, te: "వెండర్ కాంట్రాక్ట్", en: "Vendor Contract", price: "₹349", color: "from-pink-500 to-pink-600" },
-  { id: "will", icon: Scroll, te: "వీలునామా", en: "Will", price: "₹799", color: "from-teal-500 to-teal-600" },
+  { id: "rent-agreement", icon: Building2, te: "అద్దె ఒప్పందం", en: "Rent Agreement", price: "₹99", color: "from-blue-500 to-blue-600" },
+  { id: "freelance-contract", icon: Briefcase, te: "ఫ్రీలాన్స్ కాంట్రాక్ట్", en: "Freelance Contract", price: "₹49", color: "from-purple-500 to-purple-600" },
+  { id: "nda", icon: Lock, te: "NDA", en: "NDA", price: "₹49", color: "from-red-500 to-red-600" },
+  { id: "offer-letter", icon: FileSignature, te: "ఆఫర్ లెటర్", en: "Offer Letter", price: "₹49", color: "from-green-500 to-green-600" },
+  { id: "sale-agreement", icon: Handshake, te: "అమ్మకం ఒప్పందం", en: "Sale Agreement", price: "₹149", color: "from-orange-500 to-orange-600" },
+  { id: "partnership-deed", icon: Users, te: "భాగస్వామ్య డీడ్", en: "Partnership Deed", price: "₹99", color: "from-indigo-500 to-indigo-600" },
+  { id: "loan-agreement", icon: DollarSign, te: "లోన్ అగ్రిమెంట్", en: "Loan Agreement", price: "₹49", color: "from-yellow-500 to-yellow-600" },
+  { id: "vendor-contract", icon: Truck, te: "వెండర్ కాంట్రాక్ట్", en: "Vendor Contract", price: "₹49", color: "from-pink-500 to-pink-600" },
+  { id: "will", icon: Scroll, te: "వీలునామా", en: "Will", price: "₹149", color: "from-teal-500 to-teal-600" },
 ];
 
 export default function Home() {
@@ -286,14 +286,14 @@ export default function Home() {
           </div>
         </section>
         
-        {/* === WHY CHOOSE LEXMEET === */}
+        {/* === WHY CHOOSE PAPERWISE === */}
         <section className="py-20 bg-[#1B3A6B] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B3A6B] via-[#0f2744] to-[#1B3A6B]"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {isTelugu ? "LexMeet ఎందుకు?" : "Why LexMeet?"}
+                {isTelugu ? "PaperWise ఎందుకు?" : "Why PaperWise?"}
               </h2>
             </div>
             
@@ -386,12 +386,12 @@ export default function Home() {
           <div className="container mx-auto px-4 text-center">
             <p className="text-sm text-slate-400">
               {isTelugu 
-                ? "LexMeet సాంకేతిక వేదిక మాత్రమే. ఇది వృత్తిపరమైన న్యాయ సలహాకు ప్రత్యామ్నాయం కాదు."
-                : "LexMeet is a technology platform only. This is not a substitute for professional legal advice."
+                ? "PaperWise సాంకేతిక వేదిక మాత్రమే. ఇది వృత్తిపరమైన న్యాయ సలహాకు ప్రత్యామ్నాయం కాదు."
+                : "PaperWise is a technology platform only. This is not a substitute for professional legal advice."
               }
             </p>
             <p className="text-xs text-slate-500 mt-2">
-              © 2024 LexMeet (లెక్స్‌మీట్). {isTelugu ? "సర్వ హక్కులు ప్రత్యేకించబడ్డాయి." : "All rights reserved."}
+              © 2024 PaperWise (పేపర్‌వైజ్). {isTelugu ? "సర్వ హక్కులు ప్రత్యేకించబడ్డాయి." : "All rights reserved."}
             </p>
           </div>
         </section>

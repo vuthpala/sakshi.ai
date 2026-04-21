@@ -256,8 +256,8 @@ export function DocumentPreview({
                 )}
                 <p className="text-xs text-blue-600 mt-2">
                   {isTelugu
-                    ? "ఈ పత్రం LexMeet వేదిక ద్వారా న్యాయవాది సమీక్ష మరియు ధృవీకరణతో సృష్టించబడింది."
-                    : "This document was created through LexMeet platform with advocate review and verification."}
+                    ? "ఈ పత్రం PaperWise వేదిక ద్వారా న్యాయవాది సమీక్ష మరియు ధృవీకరణతో సృష్టించబడింది."
+                    : "This document was created through PaperWise platform with advocate review and verification."}
                 </p>
               </div>
             )}

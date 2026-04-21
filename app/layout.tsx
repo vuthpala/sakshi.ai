@@ -26,35 +26,35 @@ const notoTelugu = Noto_Sans_Telugu({
 });
 
 export const metadata: Metadata = {
-  title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
+  title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
   description: "మీ న్యాయపరమైన పత్రాలు 15 నిమిషాల్లో రెడీ! Government e-Stamp తో. Advocate Sign తో. India's fastest legal document platform with Telugu & English support. Rent Agreement, Sale Deed, Will, Legal Notice & more.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, lexmeet, తెలుగు, న్యాయ పత్రాలు, అద్దె ఒప్పందం, వీలునామా, lawyer verified, e-stamp, aadhaar esign",
-  authors: [{ name: "LexMeet" }],
-  creator: "LexMeet",
-  publisher: "LexMeet",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise, తెలుగు, న్యాయ పత్రాలు, అద్దె ఒప్పందం, వీలునామా, lawyer verified, e-stamp, aadhaar esign",
+  authors: [{ name: "PaperWise" }],
+  creator: "PaperWise",
+  publisher: "PaperWise",
   metadataBase: new URL("https://doc-mu-olive.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
+    title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes",
     description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature. India's #1 legal document platform with Telugu & English support.",
     type: "website",
     locale: "te_IN",
-    siteName: "LexMeet",
+    siteName: "PaperWise",
     url: "https://doc-mu-olive.vercel.app",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "LexMeet - Legal Documents in 15 Minutes with Government e-Stamp",
+        alt: "PaperWise - Legal Documents in 15 Minutes with Government e-Stamp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LexMeet (లెక్స్‌మీట్) - Legal Documents in 15 Minutes",
+    title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes",
     description: "Government e-Stamp + Advocate Sign. India's #1 legal document platform.",
     images: ["/og-image.jpg"],
   },
