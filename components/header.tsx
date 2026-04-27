@@ -51,6 +51,12 @@ export function Header() {
           >
             Pricing
           </Link>
+          <Link 
+            href="/lawyer/login" 
+            className="px-6 py-3 text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 rounded-xl transition-all duration-300"
+          >
+            For Lawyers
+          </Link>
           
           {isAuthenticated ? (
             <div className="relative ml-4">
@@ -131,6 +137,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
+            </Link>
+            <Link 
+              href="/lawyer/login" 
+              className="px-5 py-4 text-base font-medium text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 rounded-xl transition-all"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              For Lawyers
             </Link>
             {isAuthenticated ? (
               <button
