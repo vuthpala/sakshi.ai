@@ -3,10 +3,20 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
+interface Document {
+  id: string;
+  type: string;
+  title: string;
+  createdAt: string;
+  status: "draft" | "completed" | "downloaded";
+  downloadUrl?: string;
+}
+
 interface User {
   email?: string;
   phone?: string;
   name?: string;
+  documents?: Document[];
 }
 
 interface AuthContextType {
@@ -15,6 +25,9 @@ interface AuthContextType {
   isLoading: boolean;
   login: (userData: User) => void;
   logout: () => void;
+  addDocument: (document: Omit<Document, "id" | "createdAt">) => void;
+  updateDocument: (id: string, updates: Partial<Document>) => void;
+  deleteDocument: (id: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -58,9 +71,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [user, isLoading, pathname, router]);
 
   const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("paperwise_user", JSON.stringify(userData));
+    const userWithDocs = { ...userData, documents: userData.documents || [] };
+    setUser(userWithDocs);
+    localStorage.setItem("paperwise_user", JSON.stringify(userWithDocs));
     localStorage.setItem("paperwise_auth", "true");
+  };
+
+  const addDocument = (document: Omit<Document, "id" | "createdAt">) => {
+    if (!user) return;
+    const newDoc: Document = {
+      ...document,
+      id: `doc_${Date.now()}`,
+      createdAt: new Date().toISOString(),
+    };
+    const updatedUser = {
+      ...user,
+      documents: [...(user.documents || []), newDoc],
+    };
+    setUser(updatedUser);
+    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
+  };
+
+  const updateDocument = (id: string, updates: Partial<Document>) => {
+    if (!user) return;
+    const updatedUser = {
+      ...user,
+      documents: (user.documents || []).map((doc) =>
+        doc.id === id ? { ...doc, ...updates } : doc
+      ),
+    };
+    setUser(updatedUser);
+    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
+  };
+
+  const deleteDocument = (id: string) => {
+    if (!user) return;
+    const updatedUser = {
+      ...user,
+      documents: (user.documents || []).filter((doc) => doc.id !== id),
+    };
+    setUser(updatedUser);
+    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
   };
 
   const logout = () => {
@@ -78,6 +129,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         login,
         logout,
+        addDocument,
+        updateDocument,
+        deleteDocument,
       }}
     >
       {children}

@@ -68,6 +68,14 @@ export function Header() {
               
               {showUserMenu && (
                 <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-orange-500/20 rounded-xl shadow-xl overflow-hidden">
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center gap-2 w-full px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                    onClick={() => setShowUserMenu(false)}
+                  >
+                    <User className="h-4 w-4" />
+                    Dashboard
+                  </Link>
                   <button
                     onClick={() => {
                       logout();

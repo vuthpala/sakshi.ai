@@ -25,7 +25,11 @@ import {
   Scroll,
   Landmark,
   Fingerprint,
-  Scale
+  Scale,
+  FileCheck,
+  Gift,
+  AlertTriangle,
+  Stamp
 } from "lucide-react";
 import Link from "next/link";
 
@@ -40,6 +44,10 @@ const DOCUMENT_TYPES = [
   { id: "loan-agreement", icon: DollarSign, en: "Loan Agreement", price: "₹49", color: "from-yellow-500 to-yellow-600" },
   { id: "vendor-contract", icon: Truck, en: "Vendor Contract", price: "₹49", color: "from-pink-500 to-pink-600" },
   { id: "will", icon: Scroll, en: "Will", price: "₹149", color: "from-teal-500 to-teal-600" },
+  { id: "power-of-attorney", icon: FileCheck, en: "Power of Attorney", price: "₹99", color: "from-rose-500 to-rose-600" },
+  { id: "gift-deed", icon: Gift, en: "Gift Deed", price: "₹79", color: "from-violet-500 to-violet-600" },
+  { id: "legal-notice", icon: AlertTriangle, en: "Legal Notice", price: "₹59", color: "from-amber-500 to-amber-600" },
+  { id: "affidavit", icon: Stamp, en: "Affidavit", price: "₹49", color: "from-cyan-500 to-cyan-600" },
 ];
 
 export default function Home() {

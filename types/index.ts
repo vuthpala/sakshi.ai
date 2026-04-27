@@ -99,7 +99,7 @@ export const DOCUMENT_TYPES: DocumentType[] = [
     id: 'rent-agreement',
     name: 'Rent Agreement',
     icon: 'Home',
-    price: 49,
+    price: 99,
     description: 'Legally binding rental contract for residential or commercial properties',
   },
   {
@@ -127,15 +127,43 @@ export const DOCUMENT_TYPES: DocumentType[] = [
     id: 'sale-agreement',
     name: 'Sale Agreement',
     icon: 'ShoppingCart',
-    price: 49,
+    price: 149,
     description: 'Contract for sale of goods, assets, or property with payment terms',
   },
   {
     id: 'partnership-deed',
     name: 'Partnership Deed',
     icon: 'Users',
-    price: 49,
+    price: 99,
     description: 'Define partnership terms, profit sharing, and responsibilities',
+  },
+  {
+    id: 'power-of-attorney',
+    name: 'Power of Attorney',
+    icon: 'FileKey',
+    price: 99,
+    description: 'Authorize someone to handle property or legal matters on your behalf',
+  },
+  {
+    id: 'gift-deed',
+    name: 'Gift Deed',
+    icon: 'Gift',
+    price: 79,
+    description: 'Transfer property to family/relatives without any monetary consideration',
+  },
+  {
+    id: 'legal-notice',
+    name: 'Legal Notice',
+    icon: 'MailWarning',
+    price: 59,
+    description: 'Formal legal communication before filing a court case',
+  },
+  {
+    id: 'general-affidavit',
+    name: 'Affidavit',
+    icon: 'FileText',
+    price: 49,
+    description: 'Sworn statement on stamp paper for legal/official purposes',
   },
 ];
 
@@ -174,7 +202,7 @@ export const ALL_DOCUMENT_TYPES: DocumentType[] = [
     id: 'gift-deed',
     name: 'Gift Deed',
     icon: 'Gift',
-    price: 149,
+    price: 79,
     description: 'Transfer property to family/relatives without consideration - Stamp Act compliant',
   },
   {
@@ -207,10 +235,10 @@ export const ALL_DOCUMENT_TYPES: DocumentType[] = [
   },
   {
     id: 'power-of-attorney',
-    name: 'Power of Attorney (Property)',
+    name: 'Power of Attorney',
     icon: 'FileKey',
     price: 99,
-    description: 'Authorize someone to handle property matters on your behalf',
+    description: 'Authorize someone to handle property or legal matters on your behalf',
   },
   {
     id: 'nda',
@@ -342,7 +370,7 @@ export const ALL_DOCUMENT_TYPES: DocumentType[] = [
     id: 'general-affidavit',
     name: 'General Affidavit',
     icon: 'FileText',
-    price: 29,
+    price: 49,
     description: 'Sworn statement on stamp paper for legal/official purposes',
   },
   {
@@ -363,7 +391,7 @@ export const ALL_DOCUMENT_TYPES: DocumentType[] = [
     id: 'legal-notice',
     name: 'Legal Notice',
     icon: 'MailWarning',
-    price: 79,
+    price: 59,
     description: 'Formal legal communication before filing court case',
   },
   {
