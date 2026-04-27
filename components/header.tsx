@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
-import { LanguageToggle } from "@/components/language-toggle";
-import { useTranslation } from "react-i18next";
 import { FileText, Menu, X, Sparkles, ChevronRight, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Header() {
   const { isAuthenticated, user, logout } = useAuth();
-  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -42,18 +39,17 @@ export function Header() {
         
         {/* Premium Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-2">
-          <LanguageToggle />
           <Link 
             href="/documents" 
             className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-orange-400 hover:bg-white/5 rounded-xl transition-all duration-300"
           >
-            {t('nav.documents')}
+            Documents
           </Link>
           <Link 
             href="/pricing" 
             className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-orange-400 hover:bg-white/5 rounded-xl transition-all duration-300"
           >
-            {t('nav.pricing')}
+            Pricing
           </Link>
           
           {isAuthenticated ? (
@@ -94,7 +90,7 @@ export function Header() {
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
               <span className="relative flex items-center gap-2">
                 <Sparkles className="h-4 w-4" />
-                {t('nav.create')}
+                Create Document
                 <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>
@@ -119,14 +115,14 @@ export function Header() {
               className="px-5 py-4 text-base font-medium text-slate-300 hover:text-orange-400 hover:bg-white/5 rounded-xl transition-all"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {t('nav.documents')}
+              Documents
             </Link>
             <Link 
               href="/pricing" 
               className="px-5 py-4 text-base font-medium text-slate-300 hover:text-orange-400 hover:bg-white/5 rounded-xl transition-all"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {t('nav.pricing')}
+              Pricing
             </Link>
             {isAuthenticated ? (
               <button
@@ -145,7 +141,7 @@ export function Header() {
                 className="px-5 py-4 text-base font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-center mt-2 shadow-lg shadow-orange-500/25"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t('nav.create')}
+                Create Document
               </Link>
             )}
           </nav>
