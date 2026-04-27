@@ -4,6 +4,7 @@ import "./globals.css";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
 import { AdminProvider } from "@/lib/admin-context";
+import { LawyerProvider } from "@/lib/lawyer-context";
 import { I18nProvider } from "@/components/i18n-provider";
 import { ToastProvider } from "@/components/toast-provider";
 
@@ -105,11 +106,13 @@ export default function RootLayout({
       <body className="min-h-full bg-white font-sans">
         <AuthProvider>
           <AdminProvider>
-            <I18nProvider>
-              {children}
-              <Chatbot />
-              <ToastProvider />
-            </I18nProvider>
+            <LawyerProvider>
+              <I18nProvider>
+                {children}
+                <Chatbot />
+                <ToastProvider />
+              </I18nProvider>
+            </LawyerProvider>
           </AdminProvider>
         </AuthProvider>
       </body>

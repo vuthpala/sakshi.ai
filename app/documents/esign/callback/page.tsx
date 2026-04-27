@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle, XCircle, Loader2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function ESignCallbackPage() {
+function ESignCallbackContent() {
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [message, setMessage] = useState("");
@@ -92,5 +92,22 @@ export default function ESignCallbackPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function ESignCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-8 text-center">
+            <Loader2 className="h-12 w-12 text-orange-500 animate-spin mx-auto mb-4" />
+            <p className="text-slate-600">Loading...</p>
+          </CardContent>
+        </Card>
+      </div>
+    }>
+      <ESignCallbackContent />
+    </Suspense>
   );
 }
