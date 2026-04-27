@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { generatePDF, downloadPDF, PDFFont, PDFOptions } from "@/lib/pdf-generator";
-import { FileText, Download, Lock, CheckCircle, Loader2, Type, Settings2 } from "lucide-react";
+import { FileText, Download, Lock, CheckCircle, Loader2, Type, Settings2, Mail, Send } from "lucide-react";
 import Confetti from "react-confetti";
 import { getRazorpayConfig } from "@/lib/config";
 
@@ -71,6 +71,26 @@ export default function PreviewPage() {
   const [showFullDocument, setShowFullDocument] = useState(false);
   const [selectedFont, setSelectedFont] = useState<PDFFont>("times");
   const [fontSize, setFontSize] = useState<number>(14);
+  const [email, setEmail] = useState("");
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+
+  // Get document title based on type
+  const getDocumentTitle = (type: string) => {
+    const titles: Record<string, string> = {
+      "rent-agreement": "RENT AGREEMENT",
+      "power-of-attorney": "POWER OF ATTORNEY",
+      "gift-deed": "GIFT DEED",
+      "legal-notice": "LEGAL NOTICE",
+      "affidavit": "AFFIDAVIT",
+      "nda": "NON-DISCLOSURE AGREEMENT",
+      "freelance-contract": "FREELANCE CONTRACT",
+      "partnership-deed": "PARTNERSHIP DEED",
+      "sale-agreement": "SALE AGREEMENT",
+      "employment-offer": "EMPLOYMENT OFFER LETTER",
+    };
+    return titles[type] || "LEGAL DOCUMENT";
+  };
 
   const fetchDocument = useCallback(async () => {
     try {
@@ -160,12 +180,53 @@ export default function PreviewPage() {
       fontSize: fontSize,
     };
     
-    const blob = generatePDF(
-      document.generated_text,
-      document.document_type === "rent-agreement" ? "RENT AGREEMENT" : "LEGAL DOCUMENT",
-      options
-    );
+    const title = getDocumentTitle(document.document_type);
+    const blob = generatePDF(document.generated_text, title, options);
     downloadPDF(blob, `paperwise-${document.document_type}-${document.id.slice(0, 8)}.pdf`);
+  };
+
+  const handleSendEmail = async () => {
+    if (!document || !email) return;
+    
+    setIsSendingEmail(true);
+    try {
+      // Generate PDF
+      const options: PDFOptions = {
+        font: selectedFont,
+        fontSize: fontSize,
+      };
+      const title = getDocumentTitle(document.document_type);
+      const blob = generatePDF(document.generated_text, title, options);
+      
+      // Convert blob to base64
+      const arrayBuffer = await blob.arrayBuffer();
+      const base64 = Buffer.from(arrayBuffer).toString("base64");
+      
+      // Send email
+      const response = await fetch("/api/email/send-document", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: email,
+          subject: `Your ${title} from PaperWise`,
+          documentType: title,
+          documentContent: base64,
+          userName: "User",
+        }),
+      });
+
+      if (response.ok) {
+        setEmailSent(true);
+        setTimeout(() => setEmailSent(false), 5000);
+      } else {
+        alert("Failed to send email. Please try again.");
+      }
+    } catch (error) {
+      console.error("Email sending error:", error);
+      alert("Failed to send email. Please try again.");
+    } finally {
+      setIsSendingEmail(false);
+    }
   };
 
   const renderDocumentContent = () => {
@@ -307,6 +368,41 @@ export default function PreviewPage() {
                     </Button>
                   </div>
                   
+                  {/* Email Document */}
+                  <div className="mt-4 pt-4 border-t border-green-200">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Mail className="h-4 w-4 text-green-700" />
+                      <span className="text-sm font-medium text-green-800">Email Document</span>
+                      {emailSent && (
+                        <span className="text-xs text-green-600 font-medium">✓ Sent!</span>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        className="flex-1 text-sm px-3 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                      />
+                      <Button
+                        onClick={handleSendEmail}
+                        disabled={isSendingEmail || !email}
+                        size="sm"
+                        className="bg-green-600 hover:bg-green-700"
+                      >
+                        {isSendingEmail ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <>
+                            <Send className="h-4 w-4 mr-1" />
+                            Send
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
                   {/* PDF Settings */}
                   <div className="mt-4 pt-4 border-t border-green-200">
                     <div className="flex items-center gap-2 mb-3">
@@ -356,7 +452,7 @@ export default function PreviewPage() {
               <CardContent className="p-8 md:p-12">
                 <div className="border-b-2 border-slate-900 pb-4 mb-8">
                   <h2 className="text-center text-xl font-bold uppercase tracking-wider text-slate-900">
-                    Rent Agreement
+                    {document ? getDocumentTitle(document.document_type) : "LEGAL DOCUMENT"}
                   </h2>
                 </div>
                 
