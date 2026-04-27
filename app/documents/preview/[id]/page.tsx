@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { generatePDF, downloadPDF, PDFFont, PDFOptions } from "@/lib/pdf-generator";
-import { FileText, Download, Lock, CheckCircle, Loader2, Type, Settings2, Mail, Send } from "lucide-react";
+import { FileText, Download, Lock, CheckCircle, Loader2, Type, Settings2, Mail, Send, Fingerprint } from "lucide-react";
 import Confetti from "react-confetti";
 import { getRazorpayConfig } from "@/lib/config";
 
@@ -74,6 +74,16 @@ export default function PreviewPage() {
   const [email, setEmail] = useState("");
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [esignOpen, setEsignOpen] = useState(false);
+  const [esignData, setEsignData] = useState({
+    signerName: "",
+    signerEmail: "",
+    signerPhone: "",
+    aadhaarNumber: "",
+  });
+  const [isESigning, setIsESigning] = useState(false);
+  const [esignStatus, setEsignStatus] = useState<"idle" | "pending" | "completed" | "failed">("idle");
+  const [esignId, setEsignId] = useState<string | null>(null);
 
   // Get document title based on type
   const getDocumentTitle = (type: string) => {
@@ -226,6 +236,73 @@ export default function PreviewPage() {
       alert("Failed to send email. Please try again.");
     } finally {
       setIsSendingEmail(false);
+    }
+  };
+
+  const handleESign = async () => {
+    if (!document) return;
+    
+    setIsESigning(true);
+    setEsignStatus("pending");
+    
+    try {
+      // Generate PDF
+      const options: PDFOptions = {
+        font: selectedFont,
+        fontSize: fontSize,
+      };
+      const title = getDocumentTitle(document.document_type);
+      const blob = generatePDF(document.generated_text, title, options);
+      
+      // Convert blob to base64
+      const arrayBuffer = await blob.arrayBuffer();
+      const base64 = Buffer.from(arrayBuffer).toString("base64");
+      
+      // Initiate eSign
+      const response = await fetch("/api/esign/initiate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          documentId: document.id,
+          signerName: esignData.signerName,
+          signerEmail: esignData.signerEmail,
+          signerPhone: esignData.signerPhone,
+          aadhaarNumber: esignData.aadhaarNumber || undefined,
+          documentContent: base64,
+          documentName: title,
+          redirectUrl: `${window.location.origin}/documents/esign/callback`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setEsignId(data.esignId);
+        setEsignStatus("pending");
+        
+        // Open eSign in popup
+        if (data.signUrl) {
+          const width = 800;
+          const height = 700;
+          const left = (window.innerWidth - width) / 2;
+          const top = (window.innerHeight - height) / 2;
+          
+          window.open(
+            data.signUrl,
+            "AadhaarESign",
+            `width=${width},height=${height},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
+          );
+        }
+      } else {
+        setEsignStatus("failed");
+        alert(data.error || "Failed to initiate eSign. Please try again.");
+      }
+    } catch (error) {
+      console.error("eSign error:", error);
+      setEsignStatus("failed");
+      alert("Failed to initiate eSign. Please try again.");
+    } finally {
+      setIsESigning(false);
     }
   };
 
@@ -401,6 +478,92 @@ export default function PreviewPage() {
                         )}
                       </Button>
                     </div>
+                  </div>
+
+                  {/* Aadhaar eSign */}
+                  <div className="mt-4 pt-4 border-t border-green-200">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Fingerprint className="h-4 w-4 text-green-700" />
+                      <span className="text-sm font-medium text-green-800">Aadhaar eSign</span>
+                      {esignStatus === "completed" && (
+                        <span className="text-xs text-green-600 font-medium">✓ Signed!</span>
+                      )}
+                      {esignStatus === "pending" && (
+                        <span className="text-xs text-orange-600 font-medium">⟳ Pending...</span>
+                      )}
+                    </div>
+                    
+                    {!esignOpen ? (
+                      <Button
+                        onClick={() => setEsignOpen(true)}
+                        variant="outline"
+                        size="sm"
+                        className="border-green-300 text-green-700 hover:bg-green-100"
+                      >
+                        <Fingerprint className="h-4 w-4 mr-1" />
+                        Sign with Aadhaar
+                      </Button>
+                    ) : (
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-3">
+                          <input
+                            type="text"
+                            value={esignData.signerName}
+                            onChange={(e) => setEsignData({...esignData, signerName: e.target.value})}
+                            placeholder="Full Name"
+                            className="text-sm px-3 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                          />
+                          <input
+                            type="email"
+                            value={esignData.signerEmail}
+                            onChange={(e) => setEsignData({...esignData, signerEmail: e.target.value})}
+                            placeholder="Email"
+                            className="text-sm px-3 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <input
+                            type="tel"
+                            value={esignData.signerPhone}
+                            onChange={(e) => setEsignData({...esignData, signerPhone: e.target.value})}
+                            placeholder="Phone (+91...)"
+                            className="text-sm px-3 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                          />
+                          <input
+                            type="text"
+                            value={esignData.aadhaarNumber}
+                            onChange={(e) => setEsignData({...esignData, aadhaarNumber: e.target.value})}
+                            placeholder="Aadhaar (Optional)"
+                            className="text-sm px-3 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                          />
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={handleESign}
+                            disabled={isESigning || !esignData.signerName || !esignData.signerEmail || !esignData.signerPhone}
+                            size="sm"
+                            className="bg-green-600 hover:bg-green-700"
+                          >
+                            {isESigning ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <>
+                                <Fingerprint className="h-4 w-4 mr-1" />
+                                Initiate eSign
+                              </>
+                            )}
+                          </Button>
+                          <Button
+                            onClick={() => setEsignOpen(false)}
+                            variant="ghost"
+                            size="sm"
+                            className="text-slate-500"
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* PDF Settings */}

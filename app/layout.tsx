@@ -3,6 +3,7 @@ import { Playfair_Display, Inter, Noto_Sans_Telugu } from "next/font/google";
 import "./globals.css";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
+import { AdminProvider } from "@/lib/admin-context";
 import { I18nProvider } from "@/components/i18n-provider";
 import { ToastProvider } from "@/components/toast-provider";
 
@@ -26,9 +27,9 @@ const notoTelugu = Noto_Sans_Telugu({
 });
 
 export const metadata: Metadata = {
-  title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
-  description: "మీ న్యాయపరమైన పత్రాలు 15 నిమిషాల్లో రెడీ! Government e-Stamp తో. Advocate Sign తో. India's fastest legal document platform with Telugu & English support. Rent Agreement, Sale Deed, Will, Legal Notice & more.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise, తెలుగు, న్యాయ పత్రాలు, అద్దె ఒప్పందం, వీలునామా, lawyer verified, e-stamp, aadhaar esign",
+  title: "PaperWise - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
+  description: "Your legal documents ready in 15 minutes! Government e-Stamp and Advocate Sign included. India's fastest legal document platform. Rent Agreement, Sale Deed, Will, Legal Notice & more.",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise, lawyer verified, e-stamp, aadhaar esign",
   authors: [{ name: "PaperWise" }],
   creator: "PaperWise",
   publisher: "PaperWise",
@@ -37,8 +38,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes",
-    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature. India's #1 legal document platform with Telugu & English support.",
+    title: "PaperWise - Legal Documents in 15 Minutes",
+    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature. India's #1 legal document platform.",
     type: "website",
     locale: "te_IN",
     siteName: "PaperWise",
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PaperWise (పేపర్‌వైజ్) - Legal Documents in 15 Minutes",
+    title: "PaperWise - Legal Documents in 15 Minutes",
     description: "Government e-Stamp + Advocate Sign. India's #1 legal document platform.",
     images: ["/og-image.jpg"],
   },
@@ -103,11 +104,13 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-white font-sans">
         <AuthProvider>
-          <I18nProvider>
-            {children}
-            <Chatbot />
-            <ToastProvider />
-          </I18nProvider>
+          <AdminProvider>
+            <I18nProvider>
+              {children}
+              <Chatbot />
+              <ToastProvider />
+            </I18nProvider>
+          </AdminProvider>
         </AuthProvider>
       </body>
     </html>
