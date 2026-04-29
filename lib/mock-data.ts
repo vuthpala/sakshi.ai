@@ -1,6 +1,34 @@
-// Realistic mock data for PaperWise platform
+// Realistic mock data for Sakshi.ai platform
+// Extended with expiry tracking fields for documents with end dates
 
-export const MOCK_DOCUMENTS = [
+export interface DocumentWithExpiry {
+  id: string;
+  type: string;
+  status: string;
+  userName: string;
+  userPhone: string;
+  propertyAddress?: string;
+  landlordName?: string;
+  tenantName?: string;
+  monthlyRent?: number;
+  deposit?: number;
+  duration?: string;
+  createdAt: string;
+  completedAt?: string;
+  advocate?: string;
+  eStampNumber?: string;
+  // Expiry tracking fields
+  startDate?: string;        // Document start date
+  endDate?: string;          // Document expiry/end date
+  reminder30Sent?: boolean;  // 30-day reminder sent
+  reminder7Sent?: boolean;   // 7-day reminder sent
+  reminder1Sent?: boolean;   // 1-day reminder sent
+  renewedFrom?: string;      // ID of original document if renewed
+  // Allow other properties for different document types
+  [key: string]: string | number | boolean | string[] | undefined;
+}
+
+export const MOCK_DOCUMENTS: DocumentWithExpiry[] = [
   {
     id: "doc_001",
     type: "rent_agreement",
@@ -299,7 +327,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_001",
     name: "Adv. Sridhar Sharma",
     phone: "+91 98765 12345",
-    email: "sridhar.sharma@paperwise.in",
+    email: "sridhar.sharma@sakshi.ai",
     barCouncilNumber: "TS/1234/2015",
     specialization: ["Property Law", "Civil Law"],
     experience: 12,
@@ -317,7 +345,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_002",
     name: "Adv. Padmaja Reddy",
     phone: "+91 98765 23456",
-    email: "padmaja.reddy@paperwise.in",
+    email: "padmaja.reddy@sakshi.ai",
     barCouncilNumber: "TS/2345/2010",
     specialization: ["Family Law", "Wills & Trusts"],
     experience: 18,
@@ -335,7 +363,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_003",
     name: "Adv. Rajesh Gupta",
     phone: "+91 98765 34567",
-    email: "rajesh.gupta@paperwise.in",
+    email: "rajesh.gupta@sakshi.ai",
     barCouncilNumber: "TS/3456/2012",
     specialization: ["Corporate Law", "Contracts"],
     experience: 15,
@@ -353,7 +381,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_004",
     name: "Adv. Harish Chandra",
     phone: "+91 98765 45678",
-    email: "harish.chandra@paperwise.in",
+    email: "harish.chandra@sakshi.ai",
     barCouncilNumber: "TS/4567/2008",
     specialization: ["Criminal Law", "Civil Law"],
     experience: 20,
@@ -371,7 +399,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_005",
     name: "Adv. Kavita Sharma",
     phone: "+91 98765 56789",
-    email: "kavita.sharma@paperwise.in",
+    email: "kavita.sharma@sakshi.ai",
     barCouncilNumber: "TS/5678/2016",
     specialization: ["Property Law", "Rental Agreements"],
     experience: 10,
@@ -389,7 +417,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_006",
     name: "Adv. Srinivas Reddy",
     phone: "+91 98765 67890",
-    email: "srinivas.reddy@paperwise.in",
+    email: "srinivas.reddy@sakshi.ai",
     barCouncilNumber: "TS/6789/2014",
     specialization: ["Land Law", "Agricultural Property"],
     experience: 14,
@@ -407,7 +435,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_007",
     name: "Adv. Meera Nair",
     phone: "+91 98765 78901",
-    email: "meera.nair@paperwise.in",
+    email: "meera.nair@sakshi.ai",
     barCouncilNumber: "TS/7890/2013",
     specialization: ["Corporate Law", "IP Law"],
     experience: 13,
@@ -425,7 +453,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_008",
     name: "Adv. Suresh Babu",
     phone: "+91 98765 89012",
-    email: "suresh.babu@paperwise.in",
+    email: "suresh.babu@sakshi.ai",
     barCouncilNumber: "TS/8901/2011",
     specialization: ["Banking Law", "Financial Agreements"],
     experience: 17,
@@ -443,7 +471,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_009",
     name: "Adv. Gopal Krishna",
     phone: "+91 98765 90123",
-    email: "gopal.krishna@paperwise.in",
+    email: "gopal.krishna@sakshi.ai",
     barCouncilNumber: "TS/9012/2009",
     specialization: ["Constitutional Law", "Civil Rights"],
     experience: 19,
@@ -461,7 +489,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_010",
     name: "Adv. Venkat Ram",
     phone: "+91 98765 01234",
-    email: "venkat.ram@paperwise.in",
+    email: "venkat.ram@sakshi.ai",
     barCouncilNumber: "TS/0123/2017",
     specialization: ["Property Law", "Documentation"],
     experience: 9,
@@ -479,7 +507,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_011",
     name: "Adv. Lakshmi Narayana",
     phone: "+91 98766 12345",
-    email: "lakshmi.narayana@paperwise.in",
+    email: "lakshmi.narayana@sakshi.ai",
     barCouncilNumber: "TS/1123/2012",
     specialization: ["Tax Law", "Corporate Law"],
     experience: 16,
@@ -497,7 +525,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_012",
     name: "Adv. Anitha Devi",
     phone: "+91 98766 23456",
-    email: "anitha.devi@paperwise.in",
+    email: "anitha.devi@sakshi.ai",
     barCouncilNumber: "TS/2234/2015",
     specialization: ["Family Law", "Women's Rights"],
     experience: 11,
@@ -515,7 +543,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_013",
     name: "Adv. Ravi Teja",
     phone: "+91 98766 34567",
-    email: "ravi.teja@paperwise.in",
+    email: "ravi.teja@sakshi.ai",
     barCouncilNumber: "TS/3345/2018",
     specialization: ["Startup Law", "Technology"],
     experience: 7,
@@ -533,7 +561,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_014",
     name: "Adv. Sarala Devi",
     phone: "+91 98766 45678",
-    email: "sarala.devi@paperwise.in",
+    email: "sarala.devi@sakshi.ai",
     barCouncilNumber: "TS/4456/2007",
     specialization: ["Succession Law", "Wills"],
     experience: 21,
@@ -551,7 +579,7 @@ export const MOCK_LAWYERS = [
     id: "lawyer_015",
     name: "Adv. Krishnam Raju",
     phone: "+91 98766 56789",
-    email: "krishnam.raju@paperwise.in",
+    email: "krishnam.raju@sakshi.ai",
     barCouncilNumber: "TS/5567/2010",
     specialization: ["Labor Law", "Employment"],
     experience: 18,

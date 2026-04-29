@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
+import { NotificationBell } from "@/components/notification-bell";
 import { FileText, Menu, X, Sparkles, ChevronRight, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -24,7 +25,7 @@ export function Header() {
         : "bg-transparent"
     }`}>
       <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-8">
-        {/* PaperWise Logo */}
+        {/* Sakshi.ai Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 shadow-xl shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-all duration-700 group-hover:scale-110">
             <FileText className="h-6 w-6 text-white relative z-10" />
@@ -32,8 +33,9 @@ export function Header() {
           </div>
           <div className="flex flex-col">
             <span className="font-serif text-3xl font-bold bg-gradient-to-r from-orange-200 via-white to-red-200 bg-clip-text text-transparent tracking-tight">
-              PaperWise
+              Sakshi.ai
             </span>
+            <span className="text-xs text-slate-400 -mt-1">India's Legal Witness</span>
           </div>
         </Link>
         
@@ -59,7 +61,10 @@ export function Header() {
           </Link>
           
           {isAuthenticated ? (
-            <div className="relative ml-4">
+            <div className="flex items-center gap-4 ml-4">
+              {/* Notification Bell */}
+              <NotificationBell userType="user" />
+              
               <button
                 onClick={() => setShowUserMenu(!showUserMenu)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all"

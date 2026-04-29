@@ -2,8 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import type { Lawyer, LawyerRegistrationData, AgreementRequest } from "@/types/lawyer";
-import { MOCK_LAWYERS, MOCK_AGREEMENTS } from "@/types/lawyer";
+import type { Lawyer, LawyerRegistrationData, AgreementRequest, Transaction, Payout, PayoutMethod } from "@/types/lawyer";
+import { MOCK_LAWYERS, MOCK_AGREEMENTS, MOCK_TRANSACTIONS, MOCK_PAYOUTS } from "@/types/lawyer";
 
 interface LawyerContextType {
   lawyer: Lawyer | null;
@@ -21,6 +21,13 @@ interface LawyerContextType {
   markAsReviewing: (agreementId: string) => void;
   signDocument: (agreementId: string, signatureData: any) => void;
   editDocument: (agreementId: string, edits: any[]) => void;
+  // Earnings & Payouts
+  transactions: Transaction[];
+  payouts: Payout[];
+  requestPayout: (amount: number, method: PayoutMethod) => Promise<boolean>;
+  updateBankDetails: (bankDetails: { accountHolderName: string; accountNumber: string; ifscCode: string; bankName: string; } | null, upiId?: string) => Promise<boolean>;
+  refreshTransactions: () => void;
+  refreshPayouts: () => void;
 }
 
 const LawyerContext = createContext<LawyerContextType | undefined>(undefined);
@@ -31,13 +38,15 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
   const [lawyer, setLawyer] = useState<Lawyer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [agreements, setAgreements] = useState<AgreementRequest[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [payouts, setPayouts] = useState<Payout[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
   // Load lawyer session
   useEffect(() => {
-    const storedLawyer = localStorage.getItem("paperwise_lawyer");
-    const storedAuth = localStorage.getItem("paperwise_lawyer_auth");
+    const storedLawyer = localStorage.getItem("sakshi_lawyer");
+    const storedAuth = localStorage.getItem("sakshi_lawyer_auth");
 
     if (storedLawyer && storedAuth === "true") {
       try {
@@ -48,8 +57,8 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
         setAgreements(lawyerAgreements);
       } catch (error) {
         console.error("Error parsing lawyer data:", error);
-        localStorage.removeItem("paperwise_lawyer");
-        localStorage.removeItem("paperwise_lawyer_auth");
+        localStorage.removeItem("sakshi_lawyer");
+        localStorage.removeItem("sakshi_lawyer_auth");
       }
     }
     setIsLoading(false);
@@ -76,8 +85,8 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
     if (foundLawyer) {
       // Store in localStorage (mock auth)
       setLawyer(foundLawyer);
-      localStorage.setItem("paperwise_lawyer", JSON.stringify(foundLawyer));
-      localStorage.setItem("paperwise_lawyer_auth", "true");
+      localStorage.setItem("sakshi_lawyer", JSON.stringify(foundLawyer));
+      localStorage.setItem("sakshi_lawyer_auth", "true");
       
       // Load agreements
       const lawyerAgreements = MOCK_AGREEMENTS.filter(a => a.lawyerId === foundLawyer.id);
@@ -93,6 +102,10 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
     const newLawyer: Lawyer = {
       id: `lawyer_${Date.now()}`,
       ...data,
+      address: data.city + ", " + data.state, // Temporary address
+      pincode: "000000", // Default pincode
+      latitude: 0, // Will be geocoded on server
+      longitude: 0,
       photo: `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.email}`,
       status: "offline",
       verificationStatus: "pending",
@@ -101,14 +114,16 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
       rating: 0,
       totalReviews: 0,
       totalEarnings: 0,
+      pendingPayout: 0,
+      withdrawnAmount: 0,
       joinedAt: new Date().toISOString(),
       lastActiveAt: new Date().toISOString(),
     };
 
     // Store in localStorage (mock)
     setLawyer(newLawyer);
-    localStorage.setItem("paperwise_lawyer", JSON.stringify(newLawyer));
-    localStorage.setItem("paperwise_lawyer_auth", "true");
+    localStorage.setItem("sakshi_lawyer", JSON.stringify(newLawyer));
+    localStorage.setItem("sakshi_lawyer_auth", "true");
     setAgreements([]);
     
     return true;
@@ -117,8 +132,8 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setLawyer(null);
     setAgreements([]);
-    localStorage.removeItem("paperwise_lawyer");
-    localStorage.removeItem("paperwise_lawyer_auth");
+    localStorage.removeItem("sakshi_lawyer");
+    localStorage.removeItem("sakshi_lawyer_auth");
     router.push("/lawyer/login");
   };
 
@@ -126,7 +141,7 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
     if (lawyer) {
       const updated = { ...lawyer, status, lastActiveAt: new Date().toISOString() };
       setLawyer(updated);
-      localStorage.setItem("paperwise_lawyer", JSON.stringify(updated));
+      localStorage.setItem("sakshi_lawyer", JSON.stringify(updated));
     }
   };
 
@@ -161,7 +176,9 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
     }));
   };
 
-  const markAsOpened = (agreementId: string) => {
+  const markAsOpened = async (agreementId: string) => {
+    const agreement = agreements.find(a => a.id === agreementId);
+    
     setAgreements(prev => prev.map(agreement => {
       if (agreement.id === agreementId && !agreement.openedAt) {
         return {
@@ -172,9 +189,37 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
       }
       return agreement;
     }));
+
+    // Send notification to user
+    if (agreement && lawyer) {
+      try {
+        await fetch("/api/notifications", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "agreement_opened",
+            title: "Document Opened",
+            message: `${lawyer.fullName} opened your ${agreement.documentTitle || "document"}`,
+            recipientId: agreement.userId,
+            recipientType: "user",
+            agreementId: agreement.id,
+            documentId: agreement.documentId,
+            documentType: agreement.documentType,
+            documentTitle: agreement.documentTitle,
+            lawyerId: lawyer.id,
+            lawyerName: lawyer.fullName,
+            priority: "medium",
+          }),
+        });
+      } catch (error) {
+        console.error("Failed to send notification:", error);
+      }
+    }
   };
 
-  const markAsReviewing = (agreementId: string) => {
+  const markAsReviewing = async (agreementId: string) => {
+    const agreement = agreements.find(a => a.id === agreementId);
+    
     setAgreements(prev => prev.map(agreement => {
       if (agreement.id === agreementId) {
         return {
@@ -185,10 +230,38 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
       }
       return agreement;
     }));
+
+    // Send notification to user
+    if (agreement && lawyer) {
+      try {
+        await fetch("/api/notifications", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "agreement_reviewing",
+            title: "Reviewing Document",
+            message: `${lawyer.fullName} is reviewing your ${agreement.documentTitle || "document"}`,
+            recipientId: agreement.userId,
+            recipientType: "user",
+            agreementId: agreement.id,
+            documentId: agreement.documentId,
+            documentType: agreement.documentType,
+            documentTitle: agreement.documentTitle,
+            lawyerId: lawyer.id,
+            lawyerName: lawyer.fullName,
+            priority: "medium",
+          }),
+        });
+      } catch (error) {
+        console.error("Failed to send notification:", error);
+      }
+    }
   };
 
-  const signDocument = (agreementId: string, signatureData: any) => {
+  const signDocument = async (agreementId: string, signatureData: any) => {
     if (!lawyer) return;
+
+    const agreement = agreements.find(a => a.id === agreementId);
 
     setAgreements(prev => prev.map(agreement => {
       if (agreement.id === agreementId) {
@@ -214,7 +287,55 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
       totalEarnings: lawyer.totalEarnings + (agreements.find(a => a.id === agreementId)?.lawyerFee || 0),
     };
     setLawyer(updated);
-    localStorage.setItem("paperwise_lawyer", JSON.stringify(updated));
+    localStorage.setItem("sakshi_lawyer", JSON.stringify(updated));
+
+    // Send notification to user
+    if (agreement) {
+      try {
+        await fetch("/api/notifications", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "agreement_signed",
+            title: "Document Signed! 🎉",
+            message: `Your ${agreement.documentTitle || "document"} has been signed by ${lawyer.fullName}`,
+            recipientId: agreement.userId,
+            recipientType: "user",
+            agreementId: agreement.id,
+            documentId: agreement.documentId,
+            documentType: agreement.documentType,
+            documentTitle: agreement.documentTitle,
+            lawyerId: lawyer.id,
+            lawyerName: lawyer.fullName,
+            priority: "high",
+          }),
+        });
+
+        // Also send completed notification after a delay
+        setTimeout(async () => {
+          await fetch("/api/notifications", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              type: "agreement_completed",
+              title: "Agreement Completed",
+              message: `Your ${agreement.documentTitle || "document"} is ready for download`,
+              recipientId: agreement.userId,
+              recipientType: "user",
+              agreementId: agreement.id,
+              documentId: agreement.documentId,
+              documentType: agreement.documentType,
+              documentTitle: agreement.documentTitle,
+              lawyerId: lawyer.id,
+              lawyerName: lawyer.fullName,
+              priority: "high",
+            }),
+          });
+        }, 2000);
+      } catch (error) {
+        console.error("Failed to send notification:", error);
+      }
+    }
   };
 
   const editDocument = (agreementId: string, edits: any[]) => {
@@ -234,6 +355,98 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
   // Calculate unread notifications
   const notifications = agreements.filter(a => a.status === "new").length;
 
+  // Earnings & Payout Functions
+  const refreshTransactions = () => {
+    if (lawyer) {
+      const lawyerTransactions = MOCK_TRANSACTIONS.filter(t => t.lawyerId === lawyer.id);
+      setTransactions(lawyerTransactions);
+    }
+  };
+
+  const refreshPayouts = () => {
+    if (lawyer) {
+      const lawyerPayouts = MOCK_PAYOUTS.filter(p => p.lawyerId === lawyer.id);
+      setPayouts(lawyerPayouts);
+    }
+  };
+
+  const requestPayout = async (amount: number, method: PayoutMethod): Promise<boolean> => {
+    if (!lawyer) return false;
+    
+    if (amount < 500) {
+      throw new Error("Minimum withdrawal amount is ₹500");
+    }
+    
+    if (amount > lawyer.pendingPayout) {
+      throw new Error("Insufficient balance");
+    }
+
+    // Create payout request
+    const newPayout: Payout = {
+      id: `payout_${Date.now()}`,
+      lawyerId: lawyer.id,
+      amount,
+      status: "pending",
+      method,
+      ...(method === "bank_transfer" && lawyer.bankDetails ? {
+        bankAccountNumber: lawyer.bankDetails.accountNumber,
+        ifscCode: lawyer.bankDetails.ifscCode,
+        bankName: lawyer.bankDetails.bankName,
+        accountHolderName: lawyer.bankDetails.accountHolderName,
+      } : {}),
+      ...(method === "upi" && lawyer.upiId ? {
+        upiId: lawyer.upiId,
+      } : {}),
+      requestedAt: new Date().toISOString(),
+    };
+
+    setPayouts(prev => [newPayout, ...prev]);
+    
+    // Update lawyer's pending payout
+    const updatedLawyer = {
+      ...lawyer,
+      pendingPayout: lawyer.pendingPayout - amount,
+    };
+    setLawyer(updatedLawyer);
+    localStorage.setItem("sakshi_lawyer", JSON.stringify(updatedLawyer));
+
+    // Notify admin (mock)
+    await fetch("/api/lawyer/payout/request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        payoutId: newPayout.id,
+        lawyerId: lawyer.id,
+        amount,
+        method,
+      }),
+    }).catch(() => {/* Silent fail for mock */});
+
+    return true;
+  };
+
+  const updateBankDetails = async (bankDetails: { accountHolderName: string; accountNumber: string; ifscCode: string; bankName: string; } | null, upiId?: string): Promise<boolean> => {
+    if (!lawyer) return false;
+
+    const updatedLawyer = {
+      ...lawyer,
+      bankDetails: bankDetails || undefined,
+      upiId: upiId || undefined,
+    };
+    
+    setLawyer(updatedLawyer);
+    localStorage.setItem("sakshi_lawyer", JSON.stringify(updatedLawyer));
+    return true;
+  };
+
+  // Load transactions and payouts when lawyer loads
+  useEffect(() => {
+    if (lawyer) {
+      refreshTransactions();
+      refreshPayouts();
+    }
+  }, [lawyer]);
+
   return (
     <LawyerContext.Provider
       value={{
@@ -252,6 +465,13 @@ export function LawyerProvider({ children }: { children: ReactNode }) {
         markAsReviewing,
         signDocument,
         editDocument,
+        // Earnings & Payouts
+        transactions,
+        payouts,
+        requestPayout,
+        updateBankDetails,
+        refreshTransactions,
+        refreshPayouts,
       }}
     >
       {children}

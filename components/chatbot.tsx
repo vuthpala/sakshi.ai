@@ -28,10 +28,10 @@ const botResponses: Record<string, string> = {
   "valid": "Yes! Our documents are legally valid in India and can be used in courts. They're drafted following Indian legal standards.",
   "download": "After payment, you can download your document instantly as a PDF. It's ready to print and use!",
   "edit": "You can edit the document anytime within 30 days of purchase at no extra cost!",
-  "support": "Our support team is available Mon-Sat 9AM-7PM. Email us at hello@paperwise.in or use this chat!",
-  "contact": "Email: hello@paperwise.in | Support hours: Mon-Sat 9AM-7PM",
-  "hi": "Hello! 👋 Welcome to PaperWise. I'm here to help you with legal documents. How can I assist you today?",
-  "hello": "Hello! 👋 Welcome to PaperWise. I'm here to help you with legal documents. How can I assist you today?",
+  "support": "Our support team is available Mon-Sat 9AM-7PM. Email us at hello@sakshi.ai or use this chat!",
+  "contact": "Email: hello@sakshi.ai | Support hours: Mon-Sat 9AM-7PM",
+  "hi": "Hello! 👋 Welcome to Sakshi.ai — India's Legal Witness. I'm here to help you with legal documents. How can I assist you today?",
+  "hello": "Hello! 👋 Welcome to Sakshi.ai — India's Legal Witness. I'm here to help you with legal documents. How can I assist you today?",
   "help": "I can help you with:\n• Creating documents\n• Pricing information\n• Payment methods\n• Document validity\n• Technical support\n\nWhat do you need help with?",
 };
 
@@ -60,7 +60,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      text: "👋 Hi! I'm PaperWise Assistant. I can help you create legal documents, answer pricing questions, or guide you through the process. What can I help you with?",
+      text: "👋 Hi! I'm Sakshi.ai Assistant — India's Legal Witness. I can help you create legal documents, answer pricing questions, or guide you through the process. What can I help you with?",
       isUser: false,
       timestamp: new Date(),
     },
@@ -153,7 +153,7 @@ export function Chatbot() {
               <Bot className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">PaperWise Assistant</h3>
+              <h3 className="font-semibold text-white">Sakshi.ai Assistant</h3>
               <p className="text-xs text-emerald-100">Online | Replies instantly</p>
             </div>
           </div>
@@ -243,7 +243,7 @@ export function Chatbot() {
               </button>
             </div>
             <p className="text-center text-[10px] text-slate-500 mt-2">
-              Powered by PaperWise AI • hello@paperwise.in
+              Powered by Sakshi.ai AI • hello@sakshi.ai
             </p>
           </div>
         </div>

@@ -120,7 +120,7 @@ export default function AdminDashboard() {
               <Shield className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">PaperWise Admin</h1>
+              <h1 className="text-lg font-bold text-white">Sakshi.ai Admin</h1>
               <p className="text-xs text-slate-400">{admin.role === "superadmin" ? "Super Admin" : "Admin"}</p>
             </div>
           </div>

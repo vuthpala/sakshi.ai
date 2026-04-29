@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Check auth on mount
   useEffect(() => {
     const checkAuth = () => {
-      const storedUser = localStorage.getItem("paperwise_user");
+      const storedUser = localStorage.getItem("sakshi_user");
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       }
@@ -73,8 +73,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = (userData: User) => {
     const userWithDocs = { ...userData, documents: userData.documents || [] };
     setUser(userWithDocs);
-    localStorage.setItem("paperwise_user", JSON.stringify(userWithDocs));
-    localStorage.setItem("paperwise_auth", "true");
+    localStorage.setItem("sakshi_user", JSON.stringify(userWithDocs));
+    localStorage.setItem("sakshi_auth", "true");
   };
 
   const addDocument = (document: Omit<Document, "id" | "createdAt">) => {
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       documents: [...(user.documents || []), newDoc],
     };
     setUser(updatedUser);
-    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
+    localStorage.setItem("sakshi_user", JSON.stringify(updatedUser));
   };
 
   const updateDocument = (id: string, updates: Partial<Document>) => {
@@ -101,7 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       ),
     };
     setUser(updatedUser);
-    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
+    localStorage.setItem("sakshi_user", JSON.stringify(updatedUser));
   };
 
   const deleteDocument = (id: string) => {
@@ -111,13 +111,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       documents: (user.documents || []).filter((doc) => doc.id !== id),
     };
     setUser(updatedUser);
-    localStorage.setItem("paperwise_user", JSON.stringify(updatedUser));
+    localStorage.setItem("sakshi_user", JSON.stringify(updatedUser));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("paperwise_user");
-    localStorage.removeItem("paperwise_auth");
+    localStorage.removeItem("sakshi_user");
+    localStorage.removeItem("sakshi_auth");
     router.push("/login");
   };
 

@@ -236,7 +236,7 @@ export function DocumentPreview({
                   </p>
                 )}
                 <p className="text-xs text-blue-600 mt-2">
-                  This document was created through PaperWise platform with advocate review and verification.
+                  This document was created through Sakshi.ai — India's Legal Witness platform with advocate review and verification.
                 </p>
               </div>
             )}

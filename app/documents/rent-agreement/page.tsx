@@ -13,7 +13,8 @@ import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { INDIAN_STATES, RentAgreementFormData } from "@/types";
-import { ChevronLeft, ChevronRight, Home } from "lucide-react";
+import { ChevronLeft, ChevronRight, Home, Bot, MessageSquare } from "lucide-react";
+import Link from "next/link";
 
 const initialFormData: RentAgreementFormData = {
   landlord: {
@@ -603,6 +604,12 @@ export default function RentAgreementPage() {
                 <h1 className="text-2xl font-bold text-slate-900">Rent Agreement</h1>
                 <p className="text-sm text-slate-500">Complete all 4 steps to generate your document</p>
               </div>
+              <Link href="/generate/chat?type=rent-agreement&lang=english" className="ml-auto">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Bot className="h-4 w-4" />
+                  Use AI Chat
+                </Button>
+              </Link>
             </div>
             
             <Progress value={progress} className="h-2" />

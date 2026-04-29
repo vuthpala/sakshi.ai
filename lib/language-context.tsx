@@ -62,7 +62,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.trust": "Trusted by thousands across India",
     
     // Features
-    "features.title": "Why Choose PaperWise?",
+    "features.title": "Why Choose Sakshi.ai?",
     "features.subtitle": "Legal documents made simple, affordable, and accessible for everyone across India",
     "features.documents": "50+ Documents",
     "features.documents.desc": "Rent agreements, wills, contracts & more",
@@ -154,7 +154,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta": "మీ పత్రాన్ని సృష్టించండి",
     "hero.trust": "భారతదేశం మొత్తం వేలాది మంది విశ్వసిస్తున్నారు",
     
-    "features.title": "PaperWise ఎందుకు ఎంచుకోవాలి?",
+    "features.title": "Sakshi.ai ఎందుకు ఎంచుకోవాలి?",
     "features.subtitle": "భారతదేశం మొత్తం ప్రతి ఒక్కరికీ చట్టబద్ధమైన పత్రాలు సులభంగా, సరళంగా మరియు అందుబాటులో",
     "features.documents": "50+ పత్రాలు",
     "features.documents.desc": "అద్దె ఒప్పందాలు, విల్లులు, ఒప్పందాలు & మరిన్ని",
@@ -218,7 +218,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta": "अपना दस्तावेज़ बनाएं",
     "hero.trust": "पूरे भारत में हजारों लोग भरोसा करते हैं",
     
-    "features.title": "PaperWise क्यों चुनें?",
+    "features.title": "Sakshi.ai क्यों चुनें?",
     "features.subtitle": "पूरे भारत में हर किसी के लिए कानूनी दस्तावेज़ सरल, किफायती और सुलभ बनाएं",
     "features.documents": "50+ दस्तावेज़",
     "features.documents.desc": "किराया समझौते, वसीयत, अनुबंध और अधिक",
@@ -279,7 +279,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "நிமிடங்களில் தொழில்முறை, நீதிமன்றத் தயார்நிலை சட்ட ஆவணங்களை உருவாக்கவும். அனைத்து இந்திய மாநிலங்களுக்கும் மலிவானது, விரைவானது, மற்றும் சட்டபூர்வமானது.",
     "hero.cta": "உங்கள் ஆவணத்தை உருவாக்கு",
     
-    "features.title": "PaperWise ஏன் தேர்வு செய்ய வேண்டும்?",
+    "features.title": "Sakshi.ai ஏன் தேர்வு செய்ய வேண்டும்?",
     "features.documents": "50+ ஆவணங்கள்",
     "features.documents.desc": "வாடகை ஒப்பந்தங்கள், வில்லுகள், ஒப்பந்தங்கள் மற்றும் பல",
     "features.coverage": "இந்தியா முழுவதும் பாதுகாப்பு",
@@ -315,7 +315,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "ಕಾನೂನು ದಾಖಲೆಗಳು ಸುಲಭವಾಗಿ",
     "hero.subtitle": "ನಿಮಿಷಗಳಲ್ಲಿ ವೃತ್ತಿಪರ, ನ್ಯಾಯಾಲಯ-ಸಿದ್ಧ ಕಾನೂನು ದಾಖಲೆಗಳನ್ನು ರಚಿಸಿ. ಎಲ್ಲಾ ಭಾರತೀಯ ರಾಜ್ಯಗಳಿಗೆ ಕೈಗೆಟುಕುವ, ವೇಗವಾದ ಮತ್ತು ಕಾನೂನುಬದ್ಧವಾದದು.",
     
-    "features.title": "PaperWise ಏಕೆ ಆಯ್ಕೆ ಮಾಡಬೇಕು?",
+    "features.title": "Sakshi.ai ಏಕೆ ಆಯ್ಕೆ ಮಾಡಬೇಕು?",
     "features.documents": "50+ ದಾಖಲೆಗಳು",
     "features.documents.desc": "ಬಾಡಿಗೆ ಒಪ್ಪಂದಗಳು, ವಿಲ್ಲುಗಳು, ಒಪ್ಪಂದಗಳು ಹೆಚ್ಚು",
     "features.coverage": "ಇಡೀ ಭಾರತ ವ್ಯಾಪ್ತಿ",
@@ -351,7 +351,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "कायदेशीर कागदपत्रे सोपी",
     "hero.subtitle": "मिनिटांत व्यावसायिक, न्यायालय-तयार कायदेशीर कागदपत्रे तयार करा. सर्व भारतीय राज्यांसाठी स्वस्त, जलद आणि कायदेशीर.",
     
-    "features.title": "PaperWise का निवडावे?",
+    "features.title": "Sakshi.ai का निवडावे?",
     "features.documents": "50+ दस्तऐवज",
     "features.documents.desc": "भाडेकरार, वसियतनामे, करार आणि बरेच काही",
     "features.coverage": "संपूर्ण भारत व्याप्ती",
@@ -387,7 +387,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "আইনি নথি সহজে",
     "hero.subtitle": "মিনিটের মধ্যে পেশাদার, আদালত-প্রস্তুত আইনি নথি তৈরি করুন। সমস্ত ভারতীয় রাজ্যের জন্য সাশ্রয়ী মূল্যের, দ্রুত এবং আইনসম্মত।",
     
-    "features.title": "কেন PaperWise বেছে নেবেন?",
+    "features.title": "কেন Sakshi.ai বেছে নেবেন?",
     "features.documents": "50+ নথিপত্র",
     "features.documents.desc": "ভাড়া চুক্তি, উইল, চুক্তি এবং আরও অনেক কিছু",
     "features.coverage": "সমগ্র ভারত কভারেজ",
@@ -423,7 +423,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "કાયદાકીય દસ્તાવેજો સરળ",
     "hero.subtitle": "મિનિટોમાં વ્યાવસાયિક, કોર્ટ-તૈયાર કાયદાકીય દસ્તાવેજો બનાવો. બધી ભારતીય રાજ્યો માટે ખર્ચડાયક, ઝડપી અને કાયદાકીય.",
     
-    "features.title": "PaperWise કેમ પસંદ કરવું?",
+    "features.title": "Sakshi.ai કેમ પસંદ કરવું?",
     "features.documents": "50+ દસ્તાવેજો",
     "features.documents.desc": "ભાડા કરાર, વસiyatનામા, કરારો અને વધુ",
     "features.coverage": "સમગ્ર ભારત કવરેજ",
@@ -459,7 +459,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "നിയമപരമായ രേഖകൾ ലളിതമാക്കി",
     "hero.subtitle": "മിനിറ്റുകൾക്കുള്ളിൽ പ്രൊഫഷണൽ, കോടതി-സജ്ജമായ നിയമപരമായ രേഖകൾ സൃഷ്ടിക്കുക. എല്ലാ ഇന്ത്യൻ സംസ്ഥാനങ്ങൾക്കും വിലകുറഞ്ഞത്, വേഗതയേറിയത്, നിയമപരമായത്.",
     
-    "features.title": "എന്തുകൊണ്ട് PaperWise തിരഞ്ഞെടുക്കണം?",
+    "features.title": "എന്തുകൊണ്ട് Sakshi.ai തിരഞ്ഞെടുക്കണം?",
     "features.documents": "50+ രേഖകൾ",
     "features.documents.desc": "വാടകകരാറുകൾ, വിൽകഥകൾ, കരാറുകൾ എന്നിവ",
     "features.coverage": "ഇന്ത്യയുടെ പൂർണ്ണ കവറേജ്",
@@ -495,7 +495,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "ਕਾਨੂੰਨੀ ਦਸਤਾਵੇਜ਼ ਸਰਲ",
     "hero.subtitle": "ਮਿੰਟਾਂ ਵਿੱਚ ਪੇਸ਼ੇਵਰ, ਅਦਾਲਤ-ਤਿਆਰ ਕਾਨੂੰਨੀ ਦਸਤਾਵੇਜ਼ ਬਣਾਓ। ਸਾਰੇ ਭਾਰਤੀ ਰਾਜਾਂ ਲਈ ਕਿਫਾਇਤੀ, ਤੇਜ਼ ਅਤੇ ਕਾਨੂੰਨੀ।",
     
-    "features.title": "PaperWise ਕਿਉਂ ਚੁਣੋ?",
+    "features.title": "Sakshi.ai ਕਿਉਂ ਚੁਣੋ?",
     "features.documents": "50+ ਦਸਤਾਵੇਜ਼",
     "features.documents.desc": "ਕਿਰਾਏ ਦੇ ਇਕਰਾਰਨਾਮੇ, ਵਸੀਅਤਨਾਮੇ, ਇਕਰਾਰਨਾਮੇ ਅਤੇ ਹੋਰ",
     "features.coverage": "ਪੂਰਾ ਭਾਰਤ ਕਵਰੇਜ",
@@ -531,7 +531,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "ଆଇନି ଡକ୍ୟୋର୍ ସହଜ",
     "hero.subtitle": "ମିନିଟ୍‌ରେ ପେସାଦାର, କୋର୍ଟ୍-ପ୍ରସ୍ତୁତ ଆଇନି ଡକ୍ୟୋର୍ ସୃଷ୍ଟି କରନ୍ତୁ। ସମସ୍ତ ଭାରତୀୟ ରାଜ୍ୟ ପାଇଁ ସସ୍ତା, ଶୀଘ୍ର ଏବଂ ଆଇନି।",
     
-    "features.title": "କାହିଁକି PaperWise ବାଛିବେ?",
+    "features.title": "କାହିଁକି Sakshi.ai ବାଛିବେ?",
     "features.documents": "50+ ଡକ୍ୟୋର୍",
     "features.documents.desc": "ଭଡା ଚୁକ୍ତି, ଇଚ୍ଛାପତ୍ର, ଚୁକ୍ତି ଏବଂ ଅଧିକ",
     "features.coverage": "ସମ୍ପୂର୍ଣ ଭାରତ କଭରେଜ୍",

@@ -343,7 +343,7 @@ export default function LawyerRegisterPage() {
           </div>
           <CardTitle className="text-2xl font-bold text-white">Lawyer Registration</CardTitle>
           <CardDescription className="text-slate-400">
-            Join PaperWise as a verified legal professional
+            Join Sakshi.ai as a verified legal professional
           </CardDescription>
         </CardHeader>
         <CardContent>

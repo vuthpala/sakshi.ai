@@ -1,9 +1,12 @@
-# DocReady - AI-Powered Legal Document Generator
+# Sakshi.ai — India's Legal Witness
 
-DocReady is an AI-powered legal document generator for India. Create professional, legally compliant documents in minutes.
+Sakshi.ai — India's trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.
 
 ## Features
 
+- **AI Conversational Chat**: Create documents by simply chatting with AI
+- **Voice Input**: Speak in your language to create documents (removes literacy barrier)
+- **9 Indian Languages**: English, Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Gujarati, Bengali
 - **6 Document Types**: Rent Agreement, Freelance Contract, NDA, Employment Offer, Sale Agreement, Partnership Deed
 - **AI-Powered Generation**: Uses Claude AI to generate legally worded documents
 - **Payment Integration**: Razorpay integration for ₹49 per document
@@ -16,10 +19,12 @@ DocReady is an AI-powered legal document generator for India. Create professiona
 - TypeScript
 - Tailwind CSS
 - Shadcn UI Components
-- Claude API (Anthropic)
-- Razorpay Payments
+- Claude API (Anthropic) - AI document generation
+- Razorpay Payments - Payment processing
+- Razorpay Payouts - Lawyer payments
 - Supabase Database
 - jsPDF for PDF generation
+- Web Speech API - Voice input
 
 ## Getting Started
 
@@ -98,14 +103,17 @@ create table documents (
 ## Project Structure
 
 ```
-docready/
+sakshi-ai/
 ├── app/
 │   ├── api/              # API routes
-│   │   ├── documents/    # Document generation & retrieval
+│   │   ├── documents/    # Document generation & chat
+│   │   ├── lawyer/       # Lawyer verification & payouts
 │   │   └── payment/      # Razorpay integration
 │   ├── documents/        # Document forms & pages
+│   ├── generate/chat/    # AI conversational chat
+│   ├── lawyer/           # Lawyer dashboard
+│   ├── admin/            # Admin panel
 │   ├── page.tsx          # Home page
-│   ├── pricing/          # Pricing page
 │   └── layout.tsx        # Root layout
 ├── components/
 │   ├── ui/               # Shadcn UI components
@@ -116,6 +124,7 @@ docready/
 │   ├── utils.ts          # Utility functions
 │   ├── supabase.ts       # Supabase client
 │   ├── claude.ts         # Claude AI integration
+│   ├── lawyer-context.tsx # Lawyer state management
 │   └── pdf-generator.ts  # PDF generation
 └── types/
     └── index.ts          # TypeScript types

@@ -18,17 +18,17 @@ export function Footer() {
                 <FileText className="h-6 w-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold bg-gradient-to-r from-emerald-200 via-white to-teal-200 bg-clip-text text-transparent">PaperWise</span>
-                <span className="text-[10px] text-emerald-400/60 uppercase tracking-wider">Smart Documents</span>
+                <span className="font-serif text-2xl font-bold bg-gradient-to-r from-emerald-200 via-white to-teal-200 bg-clip-text text-transparent">Sakshi.ai</span>
+                <span className="text-[10px] text-emerald-400/60 uppercase tracking-wider">India's Legal Witness</span>
               </div>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              India's smartest AI-powered legal document platform. Create court-ready documents in 60 seconds.
+              India's trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.
             </p>
             <div className="flex items-center gap-4">
-              <a href="mailto:hello@paperwise.in" className="flex items-center gap-2 text-emerald-400/80 hover:text-emerald-400 text-sm transition-colors">
+              <a href="mailto:hello@sakshi.ai" className="flex items-center gap-2 text-emerald-400/80 hover:text-emerald-400 text-sm transition-colors">
                 <Mail className="h-4 w-4" />
-                hello@paperwise.in
+                hello@sakshi.ai
               </a>
             </div>
           </div>
@@ -97,14 +97,14 @@ export function Footer() {
         {/* Disclaimer */}
         <div className="mb-8">
           <p className="text-center text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            <strong className="text-emerald-400/80">Disclaimer:</strong> PaperWise provides automated document templates and is not a substitute for professional legal advice. 
+            <strong className="text-emerald-400/80">Disclaimer:</strong> Sakshi.ai provides automated document templates and is not a substitute for professional legal advice. 
             Documents should be reviewed by a qualified advocate before use. We are not a law firm and do not provide legal representation or attorney-client privilege.
           </p>
         </div>
         
         {/* Copyright */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>&copy; {currentYear} PaperWise. All rights reserved.</p>
+          <p>&copy; 2025 Sakshi.ai — India's Legal Witness. Made with ❤️ for India 🇮🇳</p>
           <div className="flex items-center gap-6">
             <Link href="/" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
             <Link href="/" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>

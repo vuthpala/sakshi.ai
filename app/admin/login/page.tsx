@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
           </div>
           <CardTitle className="text-2xl font-bold text-white">Admin Portal</CardTitle>
           <CardDescription className="text-slate-400">
-            PaperWise Management Console
+            Sakshi.ai Management Console
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@paperwise.in"
+                placeholder="admin@sakshi.ai"
                 required
                 className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-500"
               />

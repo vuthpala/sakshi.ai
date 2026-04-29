@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Noto_Sans_Telugu } from "next/font/google";
+import { 
+  Playfair_Display, 
+  Inter, 
+  Noto_Sans_Telugu,
+  Noto_Sans_Tamil,
+  Noto_Sans_Kannada,
+  Noto_Sans_Malayalam,
+  Noto_Sans_Bengali,
+  Noto_Sans_Devanagari,
+  Noto_Sans_Gujarati,
+} from "next/font/google";
 import "./globals.css";
 import { Chatbot } from "@/components/chatbot";
 import { AuthProvider } from "@/lib/auth-context";
@@ -7,6 +17,7 @@ import { AdminProvider } from "@/lib/admin-context";
 import { LawyerProvider } from "@/lib/lawyer-context";
 import { I18nProvider } from "@/components/i18n-provider";
 import { ToastProvider } from "@/components/toast-provider";
+import { NotificationProvider } from "@/lib/notification-context";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -27,36 +38,78 @@ const notoTelugu = Noto_Sans_Telugu({
   display: "swap",
 });
 
+const notoTamil = Noto_Sans_Tamil({
+  variable: "--font-tamil",
+  subsets: ["tamil"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoKannada = Noto_Sans_Kannada({
+  variable: "--font-kannada",
+  subsets: ["kannada"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoMalayalam = Noto_Sans_Malayalam({
+  variable: "--font-malayalam",
+  subsets: ["malayalam"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoBengali = Noto_Sans_Bengali({
+  variable: "--font-bengali",
+  subsets: ["bengali"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoGujarati = Noto_Sans_Gujarati({
+  variable: "--font-gujarati",
+  subsets: ["gujarati"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "PaperWise - Legal Documents in 15 Minutes | Government e-Stamp & Advocate Sign",
-  description: "Your legal documents ready in 15 minutes! Government e-Stamp and Advocate Sign included. India's fastest legal document platform. Rent Agreement, Sale Deed, Will, Legal Notice & more.",
-  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, paperwise, lawyer verified, e-stamp, aadhaar esign",
-  authors: [{ name: "PaperWise" }],
-  creator: "PaperWise",
-  publisher: "PaperWise",
+  title: "Sakshi.ai — India's Legal Witness | Government e-Stamp & Advocate Sign",
+  description: "Sakshi.ai — India's trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.",
+  keywords: "legal documents india, rent agreement online, sale deed, will, legal notice, affidavit, contract agreement india, sakshi, sakshi.ai, lawyer verified, e-stamp, aadhaar esign",
+  authors: [{ name: "Sakshi.ai" }],
+  creator: "Sakshi.ai",
+  publisher: "Sakshi.ai",
   metadataBase: new URL("https://doc-mu-olive.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "PaperWise - Legal Documents in 15 Minutes",
-    description: "Your legal documents ready in 15 minutes with Government e-Stamp and Advocate signature. India's #1 legal document platform.",
+    title: "Sakshi.ai — India's Legal Witness",
+    description: "Sakshi.ai — India's trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.",
     type: "website",
     locale: "te_IN",
-    siteName: "PaperWise",
+    siteName: "Sakshi.ai",
     url: "https://doc-mu-olive.vercel.app",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "PaperWise - Legal Documents in 15 Minutes with Government e-Stamp",
+        alt: "Sakshi.ai — India's Legal Witness - Legal Documents with Government e-Stamp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PaperWise - Legal Documents in 15 Minutes",
+    title: "Sakshi.ai — India's Legal Witness",
     description: "Government e-Stamp + Advocate Sign. India's #1 legal document platform.",
     images: ["/og-image.jpg"],
   },
@@ -103,15 +156,17 @@ export default function RootLayout({
       lang="te"
       className={`${playfair.variable} ${inter.variable} ${notoTelugu.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white font-sans">
+      <body className={`min-h-full bg-white font-sans ${playfair.variable} ${inter.variable} ${notoTelugu.variable} ${notoTamil.variable} ${notoKannada.variable} ${notoMalayalam.variable} ${notoBengali.variable} ${notoDevanagari.variable} ${notoGujarati.variable}`}>
         <AuthProvider>
           <AdminProvider>
             <LawyerProvider>
-              <I18nProvider>
-                {children}
-                <Chatbot />
-                <ToastProvider />
-              </I18nProvider>
+              <NotificationProvider>
+                <I18nProvider>
+                  {children}
+                  <Chatbot />
+                  <ToastProvider />
+                </I18nProvider>
+              </NotificationProvider>
             </LawyerProvider>
           </AdminProvider>
         </AuthProvider>

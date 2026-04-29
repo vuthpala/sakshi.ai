@@ -163,7 +163,7 @@ const resources = {
       'success.referral': 'Tell your friends',
       
       // Footer
-      'footer.disclaimer': 'PaperWise is a technology platform only. This is not a substitute for professional legal advice.',
+      'footer.disclaimer': 'Sakshi.ai is a technology platform only. This is not a substitute for professional legal advice.',
       'footer.rights': 'All rights reserved',
       
       // Language
@@ -334,7 +334,7 @@ const resources = {
       'success.referral': 'మీ స్నేహితులకు చెప్పండి',
       
       // Footer
-      'footer.disclaimer': 'PaperWise సాంకేతిక వేదిక మాత్రమే. ఇది వృత్తిపరమైన న్యాయ సలహాకు ప్రత్యామ్నాయం కాదు.',
+      'footer.disclaimer': 'Sakshi.ai సాంకేతిక వేదిక మాత్రమే. ఇది వృత్తిపరమైన న్యాయ సలహాకు ప్రత్యామ్నాయం కాదు.',
       'footer.rights': 'సర్వ హక్కులు ప్రత్యేకించబడ్డాయి',
       
       // Language

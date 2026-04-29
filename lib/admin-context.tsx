@@ -30,16 +30,16 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   // Check for existing admin session on mount
   useEffect(() => {
-    const storedAdmin = localStorage.getItem("paperwise_admin");
-    const storedAuth = localStorage.getItem("paperwise_admin_auth");
+    const storedAdmin = localStorage.getItem("sakshi_admin");
+    const storedAuth = localStorage.getItem("sakshi_admin_auth");
 
     if (storedAdmin && storedAuth === "true") {
       try {
         setAdmin(JSON.parse(storedAdmin));
       } catch (error) {
         console.error("Error parsing admin data:", error);
-        localStorage.removeItem("paperwise_admin");
-        localStorage.removeItem("paperwise_admin_auth");
+        localStorage.removeItem("sakshi_admin");
+        localStorage.removeItem("sakshi_admin_auth");
       }
     }
     setIsLoading(false);
@@ -62,8 +62,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string): Promise<boolean> => {
     // Simple admin authentication (in production, use proper backend auth)
     const ADMIN_CREDENTIALS = [
-      { email: "admin@paperwise.in", password: "admin123", name: "Admin", role: "admin" as const },
-      { email: "super@paperwise.in", password: "super123", name: "Super Admin", role: "superadmin" as const },
+      { email: "admin@sakshi.ai", password: "admin123", name: "Admin", role: "admin" as const },
+      { email: "super@sakshi.ai", password: "super123", name: "Super Admin", role: "superadmin" as const },
     ];
 
     const matched = ADMIN_CREDENTIALS.find(
@@ -77,8 +77,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         role: matched.role,
       };
       setAdmin(adminUser);
-      localStorage.setItem("paperwise_admin", JSON.stringify(adminUser));
-      localStorage.setItem("paperwise_admin_auth", "true");
+      localStorage.setItem("sakshi_admin", JSON.stringify(adminUser));
+      localStorage.setItem("sakshi_admin_auth", "true");
       return true;
     }
 
@@ -87,8 +87,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setAdmin(null);
-    localStorage.removeItem("paperwise_admin");
-    localStorage.removeItem("paperwise_admin_auth");
+    localStorage.removeItem("sakshi_admin");
+    localStorage.removeItem("sakshi_admin_auth");
     router.push("/admin/login");
   };
 

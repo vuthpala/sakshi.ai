@@ -231,9 +231,22 @@ ${JSON.stringify(data.details || data, null, 2)}
 Create a professional, legally comprehensive document suitable for Indian jurisdiction. Include all necessary clauses, legal provisions, and signature blocks.`,
 };
 
+// Language-specific system prompt additions
+const LANGUAGE_INSTRUCTIONS: Record<string, string> = {
+  english: "",
+  hindi: "Generate this document in HINDI (हिंदी). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Hindi.",
+  telugu: "Generate this document in TELUGU (తెలుగు). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Telugu.",
+  tamil: "Generate this document in TAMIL (தமிழ்). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Tamil.",
+  kannada: "Generate this document in KANNADA (ಕನ್ನಡ). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Kannada.",
+  malayalam: "Generate this document in MALAYALAM (മലയാളം). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Malayalam.",
+  bengali: "Generate this document in BENGALI (বাংলা). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Bengali.",
+  marathi: "Generate this document in MARATHI (मराठी). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Marathi.",
+  gujarati: "Generate this document in GUJARATI (ગુજરાતી). Use formal legal terminology appropriate for Indian courts. Keep all numbers, dates, and amounts in standard format. Include party names in both English and Gujarati.",
+};
+
 export async function POST(request: NextRequest) {
   try {
-    const { documentType, formData } = await request.json();
+    const { documentType, formData, language = "english" } = await request.json();
 
     if (!documentType || !formData) {
       return NextResponse.json(
@@ -246,12 +259,8 @@ export async function POST(request: NextRequest) {
     const promptFn = DOCUMENT_PROMPTS[documentType] || DOCUMENT_PROMPTS.default;
     const prompt = promptFn(formData);
 
-    // Call Claude API
-    const message = await anthropic.messages.create({
-      model: "claude-3-sonnet-20240229",
-      max_tokens: 4000,
-      temperature: 0.3,
-      system: `You are an expert Indian legal document drafter with 20+ years of experience. You create professional, legally sound documents that comply with Indian laws and are suitable for registration/notarization where applicable.
+    // Build system prompt with language instructions
+    let systemPrompt = `You are an expert Indian legal document drafter with 20+ years of experience. You create professional, legally sound documents that comply with Indian laws and are suitable for registration/notarization where applicable.
 
 Guidelines:
 1. Use formal legal language appropriate for Indian jurisdiction
@@ -263,7 +272,19 @@ Guidelines:
 7. Include dispute resolution mechanisms (arbitration/mediation)
 8. Add jurisdiction clauses (courts of competent jurisdiction)
 9. Include force majeure and termination clauses where relevant
-10. Ensure the document is comprehensive and legally enforceable`,
+10. Ensure the document is comprehensive and legally enforceable`;
+
+    // Add language-specific instructions
+    if (language !== "english" && LANGUAGE_INSTRUCTIONS[language]) {
+      systemPrompt += "\n\n" + LANGUAGE_INSTRUCTIONS[language];
+    }
+
+    // Call Claude API
+    const message = await anthropic.messages.create({
+      model: "claude-3-sonnet-20240229",
+      max_tokens: 4000,
+      temperature: 0.3,
+      system: systemPrompt,
       messages: [
         {
           role: "user",
@@ -277,6 +298,7 @@ Guidelines:
     return NextResponse.json({
       success: true,
       documentType,
+      language,
       generatedContent,
       timestamp: new Date().toISOString(),
     });

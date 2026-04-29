@@ -50,6 +50,17 @@ export interface RentAgreementFormData {
   terms: AgreementTerms;
 }
 
+export type DocumentLanguage = 
+  | "english"
+  | "hindi"
+  | "telugu"
+  | "tamil"
+  | "kannada"
+  | "malayalam"
+  | "bengali"
+  | "marathi"
+  | "gujarati";
+
 export interface GeneratedDocument {
   id: string;
   documentType: string;
@@ -60,6 +71,8 @@ export interface GeneratedDocument {
   createdAt: string;
   city: string;
   state: string;
+  language: DocumentLanguage;
+  generatedLanguage?: DocumentLanguage;
 }
 
 export const INDIAN_STATES = [

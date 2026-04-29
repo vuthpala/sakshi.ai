@@ -29,13 +29,13 @@ export async function POST(request: NextRequest) {
     const pdfBuffer = Buffer.from(documentContent, "base64");
 
     const { data, error } = await resend.emails.send({
-      from: "PaperWise <documents@paperwise.in>",
+      from: "Sakshi.ai Team <hello@sakshi.ai>",
       to: [to],
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); padding: 30px; text-align: center;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">PaperWise</h1>
+            <h1 style="color: white; margin: 0; font-size: 24px;">Sakshi.ai</h1>
             <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Your Legal Document is Ready</p>
           </div>
           
@@ -60,14 +60,14 @@ export async function POST(request: NextRequest) {
             
             <p style="font-size: 16px; color: #374151; margin-bottom: 10px;">
               Best regards,<br>
-              <strong>Team PaperWise</strong>
+              <strong>Team Sakshi.ai</strong><br>
+              <span style="font-size: 12px; color: #6b7280;">India's Legal Witness</span>
             </p>
           </div>
           
           <div style="background: #f3f4f6; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
             <p style="font-size: 12px; color: #6b7280; margin: 0;">
-              © 2024 PaperWise. All rights reserved.<br>
-              Legal documents made simple and accessible.
+              © 2025 Sakshi.ai — India's Legal Witness. Made with ❤️ for India 🇮🇳
             </p>
           </div>
         </div>

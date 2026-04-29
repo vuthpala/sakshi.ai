@@ -7,26 +7,372 @@ import { useLawyer } from "@/lib/lawyer-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Scale,
   FileText,
   Clock,
   CheckCircle,
   DollarSign,
   Star,
-  Bell,
-  LogOut,
-  User,
-  MessageSquare,
   TrendingUp,
-  AlertCircle,
-  Eye,
+  ArrowUpRight,
+  ArrowDownRight,
+  Users,
+  Calendar,
+  Activity,
+  MoreHorizontal,
+  Filter,
+  ChevronRight,
 } from "lucide-react";
 import { getStatusColor, getStatusLabel } from "@/lib/lawyer-utils";
 
+// Advanced Dashboard Component
 export default function LawyerDashboard() {
   const router = useRouter();
-  const { lawyer, isAuthenticated, isLoading, agreements, notifications, logout, updateStatus } = useLawyer();
-  const [activeTab, setActiveTab] = useState<"overview" | "agreements" | "earnings">("overview");
+  const { lawyer, isAuthenticated, isLoading, agreements } = useLawyer();
+  const [timeRange, setTimeRange] = useState<"week" | "month" | "year">("month");
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push("/lawyer/login");
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  if (isLoading || !lawyer) {
+    return null;
+  }
+
+  // Advanced calculations
+  const totalAgreements = agreements.length;
+  const pendingAgreements = agreements.filter((a) => ["new", "opened", "reviewing"].includes(a.status)).length;
+  const completedAgreements = agreements.filter((a) => a.status === "completed").length;
+  const totalEarnings = lawyer.totalEarnings;
+  
+  // Calculate trend (mock data - would come from API)
+  const earningsTrend = +12.5;
+  const agreementsTrend = +8.2;
+  const completionTrend = +15.3;
+
+  return (
+    <div className="space-y-8">
+      {/* Welcome Section */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-white">Welcome back, {lawyer.fullName.split(" ")[1] || lawyer.fullName}</h1>
+          <p className="text-slate-400 mt-1">Here&apos;s what&apos;s happening with your practice today.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <select 
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value as any)}
+            className="px-4 py-2 bg-slate-800 border border-slate-700 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+          >
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+            <option value="year">This Year</option>
+          </select>
+          <Button className="bg-amber-500 hover:bg-amber-600 text-slate-900">
+            <FileText className="w-4 h-4 mr-2" />
+            New Agreement
+          </Button>
+        </div>
+      </div>
+
+      {/* Advanced Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Total Earnings */}
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-amber-500/30 transition-all group">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-slate-400 font-medium">Total Earnings</p>
+                <p className="text-3xl font-bold text-white mt-2">₹{totalEarnings.toLocaleString()}</p>
+                <div className="flex items-center gap-1 mt-2">
+                  <ArrowUpRight className={`w-4 h-4 ${earningsTrend >= 0 ? "text-green-400" : "text-red-400"}`} />
+                  <span className={`text-sm ${earningsTrend >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {earningsTrend > 0 ? "+" : ""}{earningsTrend}%
+                  </span>
+                  <span className="text-sm text-slate-500">vs last {timeRange}</span>
+                </div>
+              </div>
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors">
+                <DollarSign className="w-6 h-6 text-amber-500" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Active Agreements */}
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-blue-500/30 transition-all group">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-slate-400 font-medium">Active Agreements</p>
+                <p className="text-3xl font-bold text-white mt-2">{pendingAgreements}</p>
+                <div className="flex items-center gap-1 mt-2">
+                  <ArrowUpRight className={`w-4 h-4 ${agreementsTrend >= 0 ? "text-green-400" : "text-red-400"}`} />
+                  <span className={`text-sm ${agreementsTrend >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {agreementsTrend > 0 ? "+" : ""}{agreementsTrend}%
+                  </span>
+                  <span className="text-sm text-slate-500">vs last {timeRange}</span>
+                </div>
+              </div>
+              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                <FileText className="w-6 h-6 text-blue-500" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Completed Cases */}
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-green-500/30 transition-all group">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-slate-400 font-medium">Completed</p>
+                <p className="text-3xl font-bold text-white mt-2">{completedAgreements}</p>
+                <div className="flex items-center gap-1 mt-2">
+                  <ArrowUpRight className={`w-4 h-4 ${completionTrend >= 0 ? "text-green-400" : "text-red-400"}`} />
+                  <span className={`text-sm ${completionTrend >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {completionTrend > 0 ? "+" : ""}{completionTrend}%
+                  </span>
+                  <span className="text-sm text-slate-500">vs last {timeRange}</span>
+                </div>
+              </div>
+              <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+                <CheckCircle className="w-6 h-6 text-green-500" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Client Rating */}
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-purple-500/30 transition-all group">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-slate-400 font-medium">Client Rating</p>
+                <div className="flex items-baseline gap-2 mt-2">
+                  <p className="text-3xl font-bold text-white">{lawyer.rating.toFixed(1)}</p>
+                  <span className="text-sm text-slate-500">/5.0</span>
+                </div>
+                <div className="flex items-center gap-1 mt-2">
+                  <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  <span className="text-sm text-slate-400">{lawyer.totalReviews} reviews</span>
+                </div>
+              </div>
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                <Star className="w-6 h-6 text-purple-500" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left Column - 2/3 width */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Recent Agreements */}
+          <Card className="bg-slate-900 border-slate-800">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <div>
+                <CardTitle className="text-xl text-white">Recent Agreements</CardTitle>
+                <p className="text-sm text-slate-400 mt-1">Manage and review your pending agreements</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button variant="outline" size="sm" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+                  <Filter className="w-4 h-4 mr-2" />
+                  Filter
+                </Button>
+                <Link href="/lawyer/agreements">
+                  <Button variant="ghost" size="sm" className="text-amber-500 hover:text-amber-400">
+                    View All
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {agreements.slice(0, 5).map((agreement, index) => (
+                  <div 
+                    key={agreement.id}
+                    className="group flex items-center gap-4 p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-all"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-6 h-6 text-slate-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3">
+                        <h4 className="text-white font-medium truncate">{agreement.documentTitle}</h4>
+                        <span className={getStatusColor(agreement.status)}>
+                          {getStatusLabel(agreement.status)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-4 mt-1 text-sm text-slate-400">
+                        <span>{agreement.userName}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-600" />
+                        <span>{new Date(agreement.sentAt).toLocaleDateString()}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-600" />
+                        <span className="text-amber-500 font-medium">₹{agreement.lawyerFee}</span>
+                      </div>
+                    </div>
+                    <Link href={`/lawyer/agreements/${agreement.id}`}>
+                      <Button 
+                        size="sm" 
+                        className="opacity-0 group-hover:opacity-100 transition-opacity bg-amber-500 hover:bg-amber-600 text-slate-900"
+                      >
+                        Review
+                      </Button>
+                    </Link>
+                  </div>
+                ))}
+                {agreements.length === 0 && (
+                  <div className="text-center py-12">
+                    <FileText className="w-16 h-16 text-slate-700 mx-auto mb-4" />
+                    <p className="text-slate-400 text-lg">No agreements yet</p>
+                    <p className="text-slate-500 text-sm mt-1">Agreements from clients will appear here</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Activity Chart Placeholder */}
+          <Card className="bg-slate-900 border-slate-800">
+            <CardHeader>
+              <CardTitle className="text-xl text-white">Activity Overview</CardTitle>
+              <p className="text-sm text-slate-400">Your document review activity over time</p>
+            </CardHeader>
+            <CardContent>
+              <div className="h-64 flex items-end justify-between gap-2 px-4">
+                {[40, 65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95].map((height, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                    <div 
+                      className="w-full bg-gradient-to-t from-amber-500/20 to-amber-500/60 rounded-t-lg transition-all hover:from-amber-500/40 hover:to-amber-500/80"
+                      style={{ height: `${height}%` }}
+                    />
+                    <span className="text-xs text-slate-500">{["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"][i]}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Right Column - 1/3 width */}
+        <div className="space-y-8">
+          {/* Upcoming Schedule */}
+          <Card className="bg-slate-900 border-slate-800">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg text-white flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-amber-500" />
+                Today&apos;s Schedule
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-medium text-amber-500">10:00</span>
+                  <div className="w-px h-full bg-slate-700 my-2" />
+                </div>
+                <div className="pb-4">
+                  <p className="text-white font-medium">Document Review</p>
+                  <p className="text-sm text-slate-400">Rent Agreement - Rahul Sharma</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-medium text-amber-500">14:30</span>
+                  <div className="w-px h-full bg-slate-700 my-2" />
+                </div>
+                <div className="pb-4">
+                  <p className="text-white font-medium">Client Call</p>
+                  <p className="text-sm text-slate-400">Power of Attorney discussion</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-medium text-amber-500">16:00</span>
+                </div>
+                <div>
+                  <p className="text-white font-medium">Sign Documents</p>
+                  <p className="text-sm text-slate-400">3 pending signatures</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Stats */}
+  <Card className="bg-slate-900 border-slate-800">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg text-white">Performance</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="text-slate-400">Response Time</span>
+                  <span className="text-green-400">2.4 hrs</span>
+                </div>
+                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full w-[85%] bg-green-500 rounded-full" />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="text-slate-400">Client Satisfaction</span>
+                  <span className="text-amber-400">98%</span>
+                </div>
+                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full w-[98%] bg-amber-500 rounded-full" />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="text-slate-400">On-time Delivery</span>
+                  <span className="text-blue-400">96%</span>
+                </div>
+                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full w-[96%] bg-blue-500 rounded-full" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Reviews */}
+          <Card className="bg-slate-900 border-slate-800">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg text-white">Recent Reviews</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {[
+                { name: "Rahul Sharma", rating: 5, comment: "Excellent service, very professional", time: "2 days ago" },
+                { name: "Anita Patel", rating: 5, comment: "Quick turnaround, highly recommended", time: "5 days ago" },
+                { name: "Kiran Kumar", rating: 4, comment: "Good work on the affidavit", time: "1 week ago" },
+              ].map((review, i) => (
+                <div key={i} className="border-b border-slate-800 last:border-0 pb-4 last:pb-0">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-white font-medium">{review.name}</span>
+                    <div className="flex">
+                      {[...Array(5)].map((_, j) => (
+                        <Star 
+                          key={j} 
+                          className={`w-3 h-3 ${j < review.rating ? "text-amber-400 fill-amber-400" : "text-slate-600"}`} 
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-400">{review.comment}</p>
+                  <p className="text-xs text-slate-500 mt-1">{review.time}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -65,7 +411,7 @@ export default function LawyerDashboard() {
               <Scale className="h-5 w-5 text-slate-900" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">PaperWise Lawyer</h1>
+              <h1 className="text-lg font-bold text-white">Sakshi.ai Lawyer</h1>
               <p className="text-xs text-slate-400">
                 {lawyer.verificationStatus === "verified" ? (
                   <span className="flex items-center gap-1 text-green-400">

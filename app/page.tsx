@@ -269,14 +269,14 @@ export default function Home() {
           </div>
         </section>
         
-        {/* === WHY CHOOSE PAPERWISE === */}
+        {/* === WHY CHOOSE SAKSHI.AI === */}
         <section className="py-20 bg-[#1B3A6B] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B3A6B] via-[#0f2744] to-[#1B3A6B]"></div>
           
           <div className="container relative mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why PaperWise?
+                Why Sakshi.ai?
               </h2>
             </div>
             
@@ -362,10 +362,10 @@ export default function Home() {
         <section className="py-8 bg-slate-900 border-t border-slate-800">
           <div className="container mx-auto px-4 text-center">
             <p className="text-sm text-slate-400">
-              PaperWise is a technology platform only. This is not a substitute for professional legal advice.
+              Sakshi.ai is a technology platform only. This is not a substitute for professional legal advice.
             </p>
             <p className="text-xs text-slate-500 mt-2">
-              © 2024 PaperWise. All rights reserved.
+              © 2025 Sakshi.ai — India's Legal Witness. Made with ❤️ for India 🇮🇳
             </p>
           </div>
         </section>
