@@ -581,13 +581,28 @@ export default function Home() {
           </div>
         </section>
         
-        {/* === TESTIMONIALS === */}
-        <section className="py-20 bg-white">
+        {/* === TESTIMONIALS - 2025 Redesign === */}
+        <section className="py-20 bg-[#0d1526] relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4"
+              >
                 What Our Users Say
-              </h2>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-[var(--text-secondary)]"
+              >
+                Trusted by thousands across India
+              </motion.p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -608,40 +623,47 @@ export default function Home() {
                   location: "Guntur"
                 },
               ].map((testimonial, idx) => (
-                <div key={idx} className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="glass-card p-6 hover-lift transition-all duration-300"
+                >
                   <div className="flex gap-1 mb-4">
                     {[1,2,3,4,5].map((star) => (
-                      <Star key={star} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      <Star key={star} className="h-4 w-4 text-[var(--accent-gold)] fill-[var(--accent-gold)]" />
                     ))}
                   </div>
-                  <p className="text-slate-700 mb-4 italic">
-                    "{testimonial.quote}"
+                  <p className="text-[var(--text-secondary)] mb-4 italic leading-relaxed">
+                    &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
-                      <span className="text-orange-600 font-bold">{testimonial.name[0]}</span>
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[var(--accent-orange)] to-[var(--accent-gold)] flex items-center justify-center">
+                      <span className="text-white font-bold">{testimonial.name[0]}</span>
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                      <p className="text-sm text-slate-500">
+                      <p className="font-semibold text-[var(--text-primary)]">{testimonial.name}</p>
+                      <p className="text-sm text-[var(--text-muted)]">
                         {testimonial.location}
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
         
-        {/* === FOOTER DISCLAIMER === */}
-        <section className="py-8 bg-slate-900 border-t border-slate-800">
+        {/* === FOOTER DISCLAIMER - 2025 Redesign === */}
+        <section className="py-8 bg-[#0a0f1e] border-t border-[var(--border)]">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--text-muted)]">
               Sakshi.ai is a technology platform only. This is not a substitute for professional legal advice.
             </p>
-            <p className="text-xs text-slate-500 mt-2">
-              © 2025 Sakshi.ai — India's Legal Witness. Made with ❤️ for India 🇮🇳
+            <p className="text-xs text-[var(--text-muted)] mt-2">
+              © 2025 Sakshi.ai — India&apos;s Legal Witness. Made with ❤️ for India 🇮🇳
             </p>
           </div>
         </section>
