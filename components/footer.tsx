@@ -45,23 +45,23 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Popular Documents</h4>
             <nav className="flex flex-col gap-3">
-              <Link href="/documents/rent-agreement" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors flex items-center gap-1 group">
+              <Link href="/documents/rent-agreement" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors flex items-center gap-1 group">
                 Rent Agreement
                 <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-              <Link href="/documents/sale-deed" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors flex items-center gap-1 group">
+              <Link href="/documents/sale-deed" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors flex items-center gap-1 group">
                 Sale Deed
                 <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-              <Link href="/documents/will-testament" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors flex items-center gap-1 group">
+              <Link href="/documents/will-testament" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors flex items-center gap-1 group">
                 Will / Testament
                 <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-              <Link href="/documents/legal-notice" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors flex items-center gap-1 group">
+              <Link href="/documents/legal-notice" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors flex items-center gap-1 group">
                 Legal Notice
                 <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-              <Link href="/documents/nda" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors flex items-center gap-1 group">
+              <Link href="/documents/nda" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors flex items-center gap-1 group">
                 NDA Agreement
                 <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
@@ -70,53 +70,57 @@ export function Footer() {
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Company</h4>
+            <h4 className="text-[var(--text-primary)] font-semibold mb-6 text-sm uppercase tracking-wider">Company</h4>
             <nav className="flex flex-col gap-3">
-              <Link href="/documents" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors">All Documents</Link>
-              <Link href="/pricing" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors">Pricing</Link>
-              <Link href="/" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors">How It Works</Link>
-              <Link href="/" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors">About Us</Link>
-              <Link href="/" className="text-slate-400 hover:text-emerald-400 text-sm transition-colors">Blog</Link>
+              <Link href="/documents" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors">All Documents</Link>
+              <Link href="/pricing" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors">Pricing</Link>
+              <Link href="/" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors">How It Works</Link>
+              <Link href="/" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors">About Us</Link>
+              <Link href="/" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] text-sm transition-colors">Blog</Link>
             </nav>
           </div>
           
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Contact</h4>
+            <h4 className="text-[var(--text-primary)] font-semibold mb-6 text-sm uppercase tracking-wider">Contact</h4>
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-emerald-500 mt-0.5" />
-                <span className="text-slate-400 text-sm">
+                <MapPin className="h-4 w-4 text-[var(--accent-gold)] mt-0.5" />
+                <span className="text-[var(--text-secondary)] text-sm">
                   Made with ❤️ in India<br />
                   Serving all 28 states
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-emerald-500" />
-                <span className="text-slate-400 text-sm">Support: Mon-Sat 9AM-7PM</span>
+                <Phone className="h-4 w-4 text-[var(--accent-gold)]" />
+                <span className="text-[var(--text-secondary)] text-sm">9949649606</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-[var(--accent-gold)]" />
+                <span className="text-[var(--text-secondary)] text-sm">hello@sakshi.ai</span>
               </div>
             </div>
           </div>
         </div>
         
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent mb-8"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-[var(--accent-gold)]/20 to-transparent mb-8"></div>
         
         {/* Disclaimer */}
         <div className="mb-8">
-          <p className="text-center text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            <strong className="text-emerald-400/80">Disclaimer:</strong> Sakshi.ai provides automated document templates and is not a substitute for professional legal advice. 
+          <p className="text-center text-xs text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
+            <strong className="text-[var(--accent-gold)]">Disclaimer:</strong> Sakshi.ai provides automated document templates and is not a substitute for professional legal advice. 
             Documents should be reviewed by a qualified advocate before use. We are not a law firm and do not provide legal representation or attorney-client privilege.
           </p>
         </div>
         
         {/* Copyright */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>&copy; 2025 Sakshi.ai — India's Legal Witness. Made with ❤️ for India 🇮🇳</p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+          <p>&copy; 2025 Sakshi.ai — India&apos;s Legal Witness. Made with ❤️ for India 🇮🇳</p>
           <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
-            <Link href="/" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
-            <Link href="/" className="hover:text-emerald-400 transition-colors">Refund Policy</Link>
+            <Link href="/" className="hover:text-[var(--accent-gold)] transition-colors">Privacy Policy</Link>
+            <Link href="/" className="hover:text-[var(--accent-gold)] transition-colors">Terms of Service</Link>
+            <Link href="/" className="hover:text-[var(--accent-gold)] transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>
