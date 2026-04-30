@@ -1,8 +1,6 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,7 +62,7 @@ const GREETINGS: Record<string, Record<string, string>> = {
   },
 };
 
-export default function ChatDocumentPage() {
+function ChatDocumentPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
@@ -470,5 +468,21 @@ export default function ChatDocumentPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Wrapper component with Suspense for useSearchParams
+export default function ChatDocumentPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-amber-500" />
+          <p className="text-slate-400">Loading chat...</p>
+        </div>
+      </div>
+    }>
+      <ChatDocumentPageContent />
+    </Suspense>
   );
 }
