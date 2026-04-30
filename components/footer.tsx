@@ -1,34 +1,42 @@
 "use client";
 
-import { FileText, Mail, MapPin, Phone, ExternalLink } from "lucide-react";
+import { FileText, Mail, MapPin, Phone, ExternalLink, Eye, Globe, Share2 } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-slate-950 border-t border-emerald-500/20">
+    <footer className="bg-[#0a0f1e] border-t border-[var(--border)]">
       <div className="container mx-auto px-4 py-16 md:px-8">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-emerald-700 shadow-lg shadow-emerald-500/20">
-                <FileText className="h-6 w-6 text-white" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent-orange)] to-[var(--accent-gold)] shadow-lg">
+                <Eye className="h-5 w-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold bg-gradient-to-r from-emerald-200 via-white to-teal-200 bg-clip-text text-transparent">Sakshi.ai</span>
-                <span className="text-[10px] text-emerald-400/60 uppercase tracking-wider">India's Legal Witness</span>
+                <span className="font-serif text-2xl font-bold text-[var(--text-primary)]">Sakshi<span className="text-[var(--accent-gold)]">.ai</span></span>
+                <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">India&apos;s Legal Witness</span>
               </div>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              India's trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.
+            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
+              India&apos;s trusted legal document platform. Generate documents in 9 Indian languages, find verified lawyers near you, and get digitally signed documents in minutes.
             </p>
             <div className="flex items-center gap-4">
-              <a href="mailto:hello@sakshi.ai" className="flex items-center gap-2 text-emerald-400/80 hover:text-emerald-400 text-sm transition-colors">
+              <a href="mailto:hello@sakshi.ai" className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent-gold)] text-sm transition-colors">
                 <Mail className="h-4 w-4" />
                 hello@sakshi.ai
+              </a>
+            </div>
+            <div className="flex items-center gap-3 mt-4">
+              <a href="#" className="p-2 text-[var(--text-muted)] hover:text-[var(--accent-gold)] hover:bg-white/5 rounded-lg transition-all">
+                <Globe className="h-4 w-4" />
+              </a>
+              <a href="#" className="p-2 text-[var(--text-muted)] hover:text-[var(--accent-gold)] hover:bg-white/5 rounded-lg transition-all">
+                <Share2 className="h-4 w-4" />
               </a>
             </div>
           </div>
